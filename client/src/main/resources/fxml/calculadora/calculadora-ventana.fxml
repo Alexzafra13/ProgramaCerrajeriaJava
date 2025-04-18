@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gestiontaller.server.controller.javafx.presupuesto.CalculadoraVentanaController">
+    <top>
+        <VBox BorderPane.alignment="CENTER">
+            <children>
+                <Label text="Calculadora de Ventanas ALUPROM-21">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                    <VBox.margin>
+                        <Insets bottom="10.0" />
+                    </VBox.margin>
+                </Label>
+                <GridPane hgap="10.0" vgap="10.0">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <Label text="Tipo de Elemento:" />
+                        <ComboBox fx:id="cmbTipoPresupuesto" prefWidth="200.0" GridPane.columnIndex="1" />
+                        <Label text="Serie:" GridPane.rowIndex="1" />
+                        <ComboBox fx:id="cmbSerie" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label text="Ancho (mm):" GridPane.rowIndex="2" />
+                        <TextField fx:id="txtAncho" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label text="Alto (mm):" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                        <TextField fx:id="txtAlto" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                        <Label text="Número de Hojas:" GridPane.rowIndex="3" />
+                        <TextField fx:id="txtNumeroHojas" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <CheckBox fx:id="chkPersiana" mnemonicParsing="false" text="Incluye Persiana" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <HBox alignment="CENTER_LEFT" spacing="10.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                            <children>
+                                <Label text="Altura Cajón (mm):" />
+                                <TextField fx:id="txtAlturaCajon" prefWidth="80.0" />
+                            </children>
+                        </HBox>
+                        <CheckBox fx:id="chkAltoTotal" mnemonicParsing="false" text="Alto incluye cajón" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+
+                        <Label text="Tipo de Cristal:" GridPane.rowIndex="4" />
+                        <HBox fx:id="hboxTipoCristal" alignment="CENTER_LEFT" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                            <children>
+                                <ComboBox fx:id="cmbTipoCristal" prefWidth="200.0" />
+                            </children>
+                        </HBox>
+
+                    </children>
+                </GridPane>
+                <HBox alignment="CENTER_RIGHT" spacing="10.0">
+                    <children>
+                        <Button fx:id="btnCalcular" defaultButton="true" mnemonicParsing="false" onAction="#handleCalcular" text="Calcular" />
+                        <Button fx:id="btnLimpiar" cancelButton="true" mnemonicParsing="false" onAction="#handleLimpiar" text="Limpiar" />
+                    </children>
+                    <VBox.margin>
+                        <Insets top="10.0" />
+                    </VBox.margin>
+                </HBox>
+            </children>
+            <BorderPane.margin>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </BorderPane.margin>
+        </VBox>
+    </top>
+    <center>
+        <TabPane fx:id="tabResultados" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+            <tabs>
+                <Tab fx:id="tabResumen" text="Resumen">
+                    <content>
+                        <VBox spacing="10.0">
+                            <children>
+                                <GridPane hgap="10.0" vgap="10.0">
+                                    <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    </columnConstraints>
+                                    <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    </rowConstraints>
+                                    <children>
+                                        <Label text="Descripción:" />
+                                        <Label fx:id="lblResumen" text="No hay resultados todavía" GridPane.columnIndex="1" />
+                                        <Label text="Medidas totales:" GridPane.rowIndex="1" />
+                                        <Label fx:id="lblMedidasTotales" text="-" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                        <Label text="Medidas ventana:" GridPane.rowIndex="2" />
+                                        <Label fx:id="lblMedidasVentana" text="-" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    </children>
+                                </GridPane>
+                                <HBox alignment="CENTER_RIGHT">
+                                    <children>
+                                        <Label text="Precio Total:">
+                                            <font>
+                                                <Font name="System Bold" size="14.0" />
+                                            </font>
+                                        </Label>
+                                        <Label fx:id="lblPrecioTotal" text="0.00 €">
+                                            <font>
+                                                <Font name="System Bold" size="14.0" />
+                                            </font>
+                                            <HBox.margin>
+                                                <Insets left="10.0" />
+                                            </HBox.margin>
+                                        </Label>
+                                    </children>
+                                </HBox>
+                            </children>
+                            <padding>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                            </padding>
+                        </VBox>
+                    </content>
+                </Tab>
+                <Tab fx:id="tabCortes" text="Cortes">
+                    <content>
+                        <TableView fx:id="tablaCortes">
+                            <columns>
+                                <TableColumn fx:id="colCodigoPerfil" prefWidth="100.0" text="Código" />
+                                <TableColumn fx:id="colNombrePerfil" prefWidth="200.0" text="Nombre" />
+                                <TableColumn fx:id="colLongitud" prefWidth="100.0" text="Longitud (mm)" />
+                                <TableColumn fx:id="colCantidad" prefWidth="75.0" text="Cantidad" />
+                                <TableColumn fx:id="colDescripcion" prefWidth="300.0" text="Descripción" />
+                            </columns>
+                        </TableView>
+                    </content>
+                </Tab>
+                <Tab fx:id="tabMateriales" text="Materiales">
+                    <content>
+                        <TableView fx:id="tablaMateriales">
+                            <columns>
+                                <TableColumn fx:id="colDescripcionMaterial" prefWidth="300.0" text="Descripción" />
+                                <TableColumn fx:id="colCantidadMaterial" prefWidth="100.0" text="Cantidad" />
+                                <TableColumn fx:id="colPrecioUnitario" prefWidth="150.0" text="Precio Unitario" />
+                                <TableColumn fx:id="colPrecioTotal" prefWidth="150.0" text="Precio Total" />
+                            </columns>
+                        </TableView>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </center>
+</BorderPane>
