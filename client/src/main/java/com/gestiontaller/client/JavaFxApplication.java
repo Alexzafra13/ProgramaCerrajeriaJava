@@ -1,8 +1,8 @@
 package com.gestiontaller.client;
 
+import com.gestiontaller.client.util.FXMLLoaderUtil;
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -20,10 +20,9 @@ public class JavaFxApplication extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
-        FXMLLoader fxmlLoader = springContext.getBean(FXMLLoader.class);
-        fxmlLoader.setLocation(getClass().getResource("/fxml/login.fxml"));
-        Parent root = fxmlLoader.load();
+    public void start(Stage primaryStage) {
+        FXMLLoaderUtil fxmlLoaderUtil = springContext.getBean(FXMLLoaderUtil.class);
+        Parent root = fxmlLoaderUtil.loadFXML("/fxml/login.fxml");
 
         primaryStage.setTitle("Gestión de Taller - Aluminio");
         primaryStage.setScene(new Scene(root, 600, 400));

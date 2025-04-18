@@ -38,4 +38,7 @@ public class Usuario {
     private LocalDateTime fechaCreacion = LocalDateTime.now();
 
     private LocalDateTime ultimoAcceso;
+
+    @Column
+    private String preferenciasVisuales;
 }

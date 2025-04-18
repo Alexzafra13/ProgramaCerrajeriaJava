@@ -24,7 +24,11 @@ public class SerieApiClient {
 
     private HttpHeaders createHeaders() {
         HttpHeaders headers = new HttpHeaders();
-        headers.set("Authorization", "Bearer " + SessionManager.getInstance().getToken());
+        // Añadir token de autenticación si está disponible
+        String token = SessionManager.getInstance().getToken();
+        if (token != null && !token.isEmpty()) {
+            headers.set("Authorization", "Bearer " + token);
+        }
         return headers;
     }
 
@@ -39,30 +43,6 @@ public class SerieApiClient {
         );
 
         return response.getBody();
-    }
-
-    public SerieAluminioDTO obtenerSerieAluminioPorId(Long id) {
-        HttpEntity<?> entity = new HttpEntity<>(createHeaders());
-
-        ResponseEntity<SerieAluminioDTO> response = restTemplate.exchange(
-                baseUrl + "/aluminio/{id}",
-                HttpMethod.GET,
-                entity,
-                SerieAluminioDTO.class,
-                id
-        );
-
-        return response.getBody();
-    }
-
-    public SerieAluminioDTO guardarSerieAluminio(SerieAluminioDTO serieDTO) {
-        HttpEntity<SerieAluminioDTO> entity = new HttpEntity<>(serieDTO, createHeaders());
-
-        return restTemplate.postForObject(
-                baseUrl + "/aluminio",
-                entity,
-                SerieAluminioDTO.class
-        );
     }
 
     public List<PerfilSerieDTO> obtenerPerfilesPorSerieId(Long serieId) {
@@ -98,6 +78,16 @@ public class SerieApiClient {
                 entity,
                 Void.class,
                 id
+        );
+    }
+
+    public SerieAluminioDTO guardarSerieAluminio(SerieAluminioDTO serieDTO) {
+        HttpEntity<SerieAluminioDTO> entity = new HttpEntity<>(serieDTO, createHeaders());
+
+        return restTemplate.postForObject(
+                baseUrl + "/aluminio",
+                entity,
+                SerieAluminioDTO.class
         );
     }
 }

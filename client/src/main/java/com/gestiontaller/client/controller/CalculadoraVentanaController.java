@@ -4,6 +4,11 @@ import com.gestiontaller.client.api.SerieApiClient;
 import com.gestiontaller.client.model.TipoCristal;
 import com.gestiontaller.client.model.presupuesto.TipoPresupuesto;
 import com.gestiontaller.client.model.serie.SerieAluminioDTO;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -11,8 +16,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
 
 @Component
 public class CalculadoraVentanaController {
@@ -48,28 +51,26 @@ public class CalculadoraVentanaController {
     @FXML private TableColumn<CorteDTO, Integer> colCantidad;
     @FXML private TableColumn<CorteDTO, String> colDescripcion;
 
-    @FXML private TableView<MaterialAdicionalDTO> tablaMateriales;
-    @FXML private TableColumn<MaterialAdicionalDTO, String> colDescripcionMaterial;
-    @FXML private TableColumn<MaterialAdicionalDTO, Integer> colCantidadMaterial;
-    @FXML private TableColumn<MaterialAdicionalDTO, Double> colPrecioUnitario;
-    @FXML private TableColumn<MaterialAdicionalDTO, Double> colPrecioTotal;
+    @FXML private TableView<MaterialDTO> tablaMateriales;
+    @FXML private TableColumn<MaterialDTO, String> colDescripcionMaterial;
+    @FXML private TableColumn<MaterialDTO, Integer> colCantidadMaterial;
+    @FXML private TableColumn<MaterialDTO, Double> colPrecioUnitario;
+    @FXML private TableColumn<MaterialDTO, Double> colPrecioTotal;
 
     private final SerieApiClient serieApiClient;
-    // Otros servicios de cliente necesarios...
 
     @Autowired
     public CalculadoraVentanaController(SerieApiClient serieApiClient) {
         this.serieApiClient = serieApiClient;
-        // Inicialización de otros servicios...
     }
 
     @FXML
     public void initialize() {
         // Inicializar ComboBox
-        cmbTipoPresupuesto.getItems().setAll(TipoPresupuesto.values());
+        cmbTipoPresupuesto.setItems(FXCollections.observableArrayList(TipoPresupuesto.values()));
         cmbTipoPresupuesto.setValue(TipoPresupuesto.VENTANA_CORREDERA);
 
-        cmbTipoCristal.getItems().setAll(TipoCristal.values());
+        cmbTipoCristal.setItems(FXCollections.observableArrayList(TipoCristal.values()));
         cmbTipoCristal.setValue(TipoCristal.SIMPLE);
 
         // Cargar series de aluminio
@@ -83,12 +84,15 @@ public class CalculadoraVentanaController {
 
         // Por defecto, deshabilitar el campo de altura cajón
         txtAlturaCajon.setDisable(true);
+
+        // Valores iniciales
+        txtNumeroHojas.setText("2");
     }
 
     private void cargarSeries() {
         try {
-            List<SerieAluminioDTO> series = serieApiClient.obtenerSeriesAluminio();
-            cmbSerie.getItems().setAll(series);
+            ObservableList<SerieAluminioDTO> series = FXCollections.observableArrayList(serieApiClient.obtenerSeriesAluminio());
+            cmbSerie.setItems(series);
 
             // Seleccionar por defecto la serie ALUPROM-21 si está disponible
             for (SerieAluminioDTO serie : series) {
@@ -104,17 +108,17 @@ public class CalculadoraVentanaController {
 
     private void inicializarTablas() {
         // Configurar columnas de tabla de cortes
-        colCodigoPerfil.setCellValueFactory(new PropertyValueFactory<>("codigoPerfil"));
-        colNombrePerfil.setCellValueFactory(new PropertyValueFactory<>("nombrePerfil"));
-        colLongitud.setCellValueFactory(new PropertyValueFactory<>("longitud"));
-        colCantidad.setCellValueFactory(new PropertyValueFactory<>("cantidad"));
-        colDescripcion.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
+        colCodigoPerfil.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCodigoPerfil()));
+        colNombrePerfil.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNombrePerfil()));
+        colLongitud.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getLongitud()).asObject());
+        colCantidad.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getCantidad()).asObject());
+        colDescripcion.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDescripcion()));
 
         // Configurar columnas de tabla de materiales
-        colDescripcionMaterial.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
-        colCantidadMaterial.setCellValueFactory(new PropertyValueFactory<>("cantidad"));
-        colPrecioUnitario.setCellValueFactory(new PropertyValueFactory<>("precioUnitario"));
-        colPrecioTotal.setCellValueFactory(new PropertyValueFactory<>("precioTotal"));
+        colDescripcionMaterial.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDescripcion()));
+        colCantidadMaterial.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getCantidad()).asObject());
+        colPrecioUnitario.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getPrecioUnitario()).asObject());
+        colPrecioTotal.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getPrecioTotal()).asObject());
     }
 
     private void configurarListeners() {
@@ -170,8 +174,8 @@ public class CalculadoraVentanaController {
             return;
         }
 
-        // TO-DO: Implementar la lógica de cálculo a través de llamadas a API
-        // Por ahora mostraremos datos de ejemplo
+        // Aquí iría la lógica real para realizar el cálculo
+        // Por ahora solo simularemos resultados
 
         // Actualizar UI con resultado
         lblResumen.setText("Ventana Corredera ALUPROM-21 con 2 hojas");
@@ -180,10 +184,23 @@ public class CalculadoraVentanaController {
                 (chkPersiana.isSelected() ? Integer.parseInt(txtAlturaCajon.getText()) : 0)) + " mm");
         lblPrecioTotal.setText("350.75 €");
 
-        // Simular datos para las tablas
-        // En una implementación real, estos datos vendrían de la API
-        tablaCortes.getItems().clear();
-        tablaMateriales.getItems().clear();
+        // Simular datos para las tablas (en una implementación real, estos datos vendrían de la API)
+        ObservableList<CorteDTO> cortes = FXCollections.observableArrayList(
+                new CorteDTO("ALUPROM21-ML", "Marco Lateral", 2000, 2, "Marco lateral"),
+                new CorteDTO("ALUPROM21-MS", "Marco Superior", 1000, 1, "Marco superior"),
+                new CorteDTO("ALUPROM21-MI", "Marco Inferior", 1000, 1, "Marco inferior"),
+                new CorteDTO("ALUPROM21-HL", "Hoja Lateral", 1920, 2, "Hoja lateral")
+        );
+
+        ObservableList<MaterialDTO> materiales = FXCollections.observableArrayList(
+                new MaterialDTO("Juego de rodamientos", 2, 8.50, 17.00),
+                new MaterialDTO("Felpa (metros)", 10, 0.80, 8.00),
+                new MaterialDTO("Cierre ventana corredera", 1, 12.30, 12.30),
+                new MaterialDTO("Vidrio simple 4mm", 2, 15.00, 30.00)
+        );
+
+        tablaCortes.setItems(cortes);
+        tablaMateriales.setItems(materiales);
 
         // Cambiar a la pestaña de resumen
         tabResultados.getSelectionModel().select(tabResumen);
@@ -283,23 +300,45 @@ public class CalculadoraVentanaController {
         alert.showAndWait();
     }
 
-    // DTOs simplificados para la demostración
+    // Clases internas para las tablas
     public static class CorteDTO {
-        private String codigoPerfil;
-        private String nombrePerfil;
-        private Integer longitud;
-        private Integer cantidad;
-        private String descripcion;
+        private final String codigoPerfil;
+        private final String nombrePerfil;
+        private final int longitud;
+        private final int cantidad;
+        private final String descripcion;
 
-        // Getters and setters...
+        public CorteDTO(String codigoPerfil, String nombrePerfil, int longitud, int cantidad, String descripcion) {
+            this.codigoPerfil = codigoPerfil;
+            this.nombrePerfil = nombrePerfil;
+            this.longitud = longitud;
+            this.cantidad = cantidad;
+            this.descripcion = descripcion;
+        }
+
+        public String getCodigoPerfil() { return codigoPerfil; }
+        public String getNombrePerfil() { return nombrePerfil; }
+        public int getLongitud() { return longitud; }
+        public int getCantidad() { return cantidad; }
+        public String getDescripcion() { return descripcion; }
     }
 
-    public static class MaterialAdicionalDTO {
-        private String descripcion;
-        private Integer cantidad;
-        private Double precioUnitario;
-        private Double precioTotal;
+    public static class MaterialDTO {
+        private final String descripcion;
+        private final int cantidad;
+        private final double precioUnitario;
+        private final double precioTotal;
 
-        // Getters and setters...
+        public MaterialDTO(String descripcion, int cantidad, double precioUnitario, double precioTotal) {
+            this.descripcion = descripcion;
+            this.cantidad = cantidad;
+            this.precioUnitario = precioUnitario;
+            this.precioTotal = precioTotal;
+        }
+
+        public String getDescripcion() { return descripcion; }
+        public int getCantidad() { return cantidad; }
+        public double getPrecioUnitario() { return precioUnitario; }
+        public double getPrecioTotal() { return precioTotal; }
     }
 }

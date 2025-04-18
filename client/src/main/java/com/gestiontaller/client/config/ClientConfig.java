@@ -2,7 +2,7 @@ package com.gestiontaller.client.config;
 
 import com.gestiontaller.client.api.AuthApiClient;
 import com.gestiontaller.client.api.SerieApiClient;
-import javafx.fxml.FXMLLoader;
+import com.gestiontaller.client.util.FXMLLoaderUtil;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -21,10 +21,8 @@ public class ClientConfig {
     }
 
     @Bean
-    public FXMLLoader fxmlLoader() {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setControllerFactory(applicationContext::getBean);
-        return loader;
+    public FXMLLoaderUtil fxmlLoaderUtil() {
+        return new FXMLLoaderUtil(applicationContext);
     }
 
     @Bean

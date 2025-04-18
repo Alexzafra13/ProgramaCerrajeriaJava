@@ -1,15 +1,25 @@
 package com.gestiontaller.client.controller;
 
 import com.gestiontaller.client.api.SerieApiClient;
-import com.gestiontaller.client.model.TipoMaterial;
 import com.gestiontaller.client.model.serie.*;
+import com.gestiontaller.client.util.FXMLLoaderUtil;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class SerieFormController {
@@ -30,13 +40,13 @@ public class SerieFormController {
     @FXML private TableView<PerfilSerieDTO> tablaPerfiles;
     @FXML private TableColumn<PerfilSerieDTO, String> colCodigoPerfil;
     @FXML private TableColumn<PerfilSerieDTO, String> colNombrePerfil;
-    @FXML private TableColumn<PerfilSerieDTO, TipoPerfil> colTipoPerfil;
+    @FXML private TableColumn<PerfilSerieDTO, String> colTipoPerfil;
     @FXML private TableColumn<PerfilSerieDTO, Double> colPesoPerfil;
     @FXML private TableColumn<PerfilSerieDTO, Double> colPrecioPerfil;
     @FXML private TableColumn<PerfilSerieDTO, Integer> colLongitudBarra;
 
     @FXML private TableView<DescuentoPerfilSerieDTO> tablaDescuentos;
-    @FXML private TableColumn<DescuentoPerfilSerieDTO, TipoPerfil> colTipoPerfilDesc;
+    @FXML private TableColumn<DescuentoPerfilSerieDTO, String> colTipoPerfilDesc;
     @FXML private TableColumn<DescuentoPerfilSerieDTO, Integer> colDescuentoMm;
     @FXML private TableColumn<DescuentoPerfilSerieDTO, String> colDescripcionDesc;
 
@@ -44,41 +54,47 @@ public class SerieFormController {
     @FXML private Button btnCancelar;
 
     private final SerieApiClient serieApiClient;
+    private final FXMLLoaderUtil fxmlLoaderUtil;
     private SerieAluminioDTO serieActual;
     private boolean esEdicion = false;
 
     @Autowired
-    public SerieFormController(SerieApiClient serieApiClient) {
+    public SerieFormController(SerieApiClient serieApiClient, FXMLLoaderUtil fxmlLoaderUtil) {
         this.serieApiClient = serieApiClient;
+        this.fxmlLoaderUtil = fxmlLoaderUtil;
     }
 
     @FXML
     public void initialize() {
         // Inicializar ComboBox
-        cmbTipoSerie.getItems().addAll(TipoSerie.values());
+        cmbTipoSerie.setItems(FXCollections.observableArrayList(TipoSerie.values()));
 
         // Inicializar columnas de la tabla de perfiles
-        colCodigoPerfil.setCellValueFactory(new PropertyValueFactory<>("codigo"));
-        colNombrePerfil.setCellValueFactory(new PropertyValueFactory<>("nombre"));
-        colTipoPerfil.setCellValueFactory(new PropertyValueFactory<>("tipoPerfil"));
-        colPesoPerfil.setCellValueFactory(new PropertyValueFactory<>("pesoMetro"));
-        colPrecioPerfil.setCellValueFactory(new PropertyValueFactory<>("precioMetro"));
-        colLongitudBarra.setCellValueFactory(new PropertyValueFactory<>("longitudBarra"));
+        colCodigoPerfil.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getCodigo()));
+        colNombrePerfil.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getNombre()));
+        colTipoPerfil.setCellValueFactory(data -> new SimpleStringProperty(
+                data.getValue().getTipoPerfil() != null ? data.getValue().getTipoPerfil().toString() : ""));
+        colPesoPerfil.setCellValueFactory(data -> new SimpleDoubleProperty(data.getValue().getPesoMetro()).asObject());
+        colPrecioPerfil.setCellValueFactory(data -> new SimpleDoubleProperty(data.getValue().getPrecioMetro()).asObject());
+        colLongitudBarra.setCellValueFactory(data -> new SimpleIntegerProperty(
+                data.getValue().getLongitudBarra() != null ? data.getValue().getLongitudBarra() : 0).asObject());
 
         // Inicializar columnas de la tabla de descuentos
-        colTipoPerfilDesc.setCellValueFactory(new PropertyValueFactory<>("tipoPerfil"));
-        colDescuentoMm.setCellValueFactory(new PropertyValueFactory<>("descuentoMilimetros"));
-        colDescripcionDesc.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
+        colTipoPerfilDesc.setCellValueFactory(data -> new SimpleStringProperty(
+                data.getValue().getTipoPerfil() != null ? data.getValue().getTipoPerfil().toString() : ""));
+        colDescuentoMm.setCellValueFactory(data -> new SimpleIntegerProperty(data.getValue().getDescuentoMilimetros()).asObject());
+        colDescripcionDesc.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getDescripcion()));
 
         // Valor por defecto para serie nueva
         serieActual = new SerieAluminioDTO();
-        serieActual.setTipoMaterial(TipoMaterial.ALUMINIO);
+        serieActual.setPerfiles(new ArrayList<>());
+        serieActual.setDescuentosPerfiles(new ArrayList<>());
         serieActual.setActiva(true);
     }
 
     public void setSerie(SerieAluminioDTO serie) {
         this.serieActual = serie;
-        this.esEdicion = true;
+        this.esEdicion = serie.getId() != null;
 
         // Cargar datos de la serie en el formulario
         txtCodigo.setText(serie.getCodigo());
@@ -96,16 +112,20 @@ public class SerieFormController {
 
         // Cargar perfiles y descuentos
         if (serie.getPerfiles() != null) {
-            tablaPerfiles.getItems().setAll(serie.getPerfiles());
+            tablaPerfiles.setItems(FXCollections.observableArrayList(serie.getPerfiles()));
+        } else {
+            tablaPerfiles.setItems(FXCollections.observableArrayList());
         }
 
         if (serie.getDescuentosPerfiles() != null) {
-            tablaDescuentos.getItems().setAll(serie.getDescuentosPerfiles());
+            tablaDescuentos.setItems(FXCollections.observableArrayList(serie.getDescuentosPerfiles()));
+        } else {
+            tablaDescuentos.setItems(FXCollections.observableArrayList());
         }
     }
 
     @FXML
-    private void handleGuardar(ActionEvent event) {
+    private void handleGuardar() {
         // Validar formulario
         if (!validarFormulario()) {
             return;
@@ -150,39 +170,140 @@ public class SerieFormController {
     }
 
     @FXML
-    private void handleCancelar(ActionEvent event) {
+    private void handleCancelar() {
         Stage stage = (Stage) btnCancelar.getScene().getWindow();
         stage.close();
     }
 
     @FXML
-    private void handleAgregarPerfil(ActionEvent event) {
-        // Implementación para agregar perfil
+    private void handleAgregarPerfil() {
+        try {
+            // Primero guarda la serie si es nueva
+            if (!esEdicion && serieActual.getId() == null) {
+                Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
+                confirm.setTitle("Guardar Serie");
+                confirm.setHeaderText("Para agregar perfiles, primero debe guardar la serie");
+                confirm.setContentText("¿Desea guardar la serie ahora?");
+
+                if (confirm.showAndWait().orElse(ButtonType.CANCEL) == ButtonType.OK) {
+                    if (!validarFormulario()) {
+                        return;
+                    }
+                    handleGuardar();
+                } else {
+                    return;
+                }
+            }
+
+            // Cargar formulario de perfil
+            Parent root = fxmlLoaderUtil.loadFXML("/fxml/serie/perfil-form.fxml");
+
+            // Configurar para un nuevo perfil
+            PerfilFormController controller = (PerfilFormController) root.getUserData();
+
+            PerfilSerieDTO nuevoPerfil = new PerfilSerieDTO();
+            nuevoPerfil.setSerieId(serieActual.getId());
+            controller.setPerfil(nuevoPerfil, serieActual.getNombre());
+
+            // Mostrar formulario
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Nuevo Perfil");
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
+
+            // Actualizar tabla
+            List<PerfilSerieDTO> perfilesActualizados = serieApiClient.obtenerPerfilesPorSerieId(serieActual.getId());
+            serieActual.setPerfiles(perfilesActualizados);
+            tablaPerfiles.setItems(FXCollections.observableArrayList(perfilesActualizados));
+
+        } catch (Exception e) {
+            mostrarError("Error", "Error al abrir formulario de perfil: " + e.getMessage());
+        }
     }
 
     @FXML
-    private void handleEditarPerfil(ActionEvent event) {
-        // Implementación para editar perfil
+    private void handleEditarPerfil() {
+        PerfilSerieDTO seleccionado = tablaPerfiles.getSelectionModel().getSelectedItem();
+        if (seleccionado == null) {
+            mostrarError("Error", "Debe seleccionar un perfil para editar");
+            return;
+        }
+
+        try {
+            // Cargar formulario de perfil
+            Parent root = fxmlLoaderUtil.loadFXML("/fxml/serie/perfil-form.fxml");
+
+            // Configurar con el perfil seleccionado
+            PerfilFormController controller = (PerfilFormController) root.getUserData();
+            controller.setPerfil(seleccionado, serieActual.getNombre());
+
+            // Mostrar formulario
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Editar Perfil");
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
+
+            // Actualizar tabla
+            List<PerfilSerieDTO> perfilesActualizados = serieApiClient.obtenerPerfilesPorSerieId(serieActual.getId());
+            serieActual.setPerfiles(perfilesActualizados);
+            tablaPerfiles.setItems(FXCollections.observableArrayList(perfilesActualizados));
+
+        } catch (Exception e) {
+            mostrarError("Error", "Error al abrir formulario de perfil: " + e.getMessage());
+        }
     }
 
     @FXML
-    private void handleEliminarPerfil(ActionEvent event) {
-        // Implementación para eliminar perfil
+    private void handleEliminarPerfil() {
+        PerfilSerieDTO seleccionado = tablaPerfiles.getSelectionModel().getSelectedItem();
+        if (seleccionado == null) {
+            mostrarError("Error", "Debe seleccionar un perfil para eliminar");
+            return;
+        }
+
+        Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
+        confirm.setTitle("Confirmar eliminación");
+        confirm.setHeaderText("¿Está seguro que desea eliminar el perfil?");
+        confirm.setContentText("Perfil: " + seleccionado.getNombre());
+
+        if (confirm.showAndWait().orElse(ButtonType.CANCEL) == ButtonType.OK) {
+            try {
+                // Eliminar perfil
+                serieApiClient.eliminarPerfilSerie(seleccionado.getId());
+
+                // Actualizar tabla
+                List<PerfilSerieDTO> perfilesActualizados = serieApiClient.obtenerPerfilesPorSerieId(serieActual.getId());
+                serieActual.setPerfiles(perfilesActualizados);
+                tablaPerfiles.setItems(FXCollections.observableArrayList(perfilesActualizados));
+
+                // Mensaje de éxito
+                Alert exito = new Alert(Alert.AlertType.INFORMATION);
+                exito.setTitle("Perfil eliminado");
+                exito.setHeaderText(null);
+                exito.setContentText("El perfil ha sido eliminado correctamente");
+                exito.showAndWait();
+
+            } catch (Exception e) {
+                mostrarError("Error", "No se pudo eliminar el perfil: " + e.getMessage());
+            }
+        }
     }
 
     @FXML
-    private void handleAgregarDescuento(ActionEvent event) {
-        // Implementación para agregar descuento
+    private void handleAgregarDescuento() {
+        // Implementación similar a handleAgregarPerfil pero para descuentos
     }
 
     @FXML
-    private void handleEditarDescuento(ActionEvent event) {
-        // Implementación para editar descuento
+    private void handleEditarDescuento() {
+        // Implementación similar a handleEditarPerfil pero para descuentos
     }
 
     @FXML
-    private void handleEliminarDescuento(ActionEvent event) {
-        // Implementación para eliminar descuento
+    private void handleEliminarDescuento() {
+        // Implementación similar a handleEliminarPerfil pero para descuentos
     }
 
     private boolean validarFormulario() {
@@ -237,14 +358,18 @@ public class SerieFormController {
         }
 
         if (errores.length() > 0) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error de validación");
-            alert.setHeaderText("Por favor corrija los siguientes errores:");
-            alert.setContentText(errores.toString());
-            alert.showAndWait();
+            mostrarError("Error de validación", errores.toString());
             return false;
         }
 
         return true;
+    }
+
+    private void mostrarError(String titulo, String mensaje) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText(titulo);
+        alert.setContentText(mensaje);
+        alert.showAndWait();
     }
 }

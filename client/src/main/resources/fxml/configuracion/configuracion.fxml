@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+    <top>
+        <Label text="Configuración" BorderPane.alignment="CENTER">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+            <BorderPane.margin>
+                <Insets bottom="10.0" top="10.0" />
+            </BorderPane.margin>
+        </Label>
+    </top>
+    <center>
+        <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+            <tabs>
+                <Tab text="Usuario">
+                    <content>
+                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0">
+                            <children>
+                                <GridPane hgap="10.0" vgap="10.0">
+                                    <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="10.0" prefWidth="150.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    </columnConstraints>
+                                    <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    </rowConstraints>
+                                    <children>
+                                        <Label text="Usuario:" />
+                                        <Label text="Nombre:" GridPane.rowIndex="1" />
+                                        <Label text="Email:" GridPane.rowIndex="2" />
+                                        <Label text="Teléfono:" GridPane.rowIndex="3" />
+                                        <Label text="Rol:" GridPane.rowIndex="4" />
+                                        <TextField fx:id="txtUsuario" GridPane.columnIndex="1" />
+                                        <TextField fx:id="txtNombreUsuario" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                        <TextField fx:id="txtEmailUsuario" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                        <TextField fx:id="txtTelefonoUsuario" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                        <TextField fx:id="txtRolUsuario" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    </children>
+                                </GridPane>
+                                <VBox spacing="10.0">
+                                    <children>
+                                        <Label text="Cambiar Contraseña">
+                                            <font>
+                                                <Font name="System Bold" size="14.0" />
+                                            </font>
+                                        </Label>
+                                        <GridPane hgap="10.0" vgap="10.0">
+                                            <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="200.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
+                                            <children>
+                                                <Label text="Contraseña Actual:" />
+                                                <Label text="Nueva Contraseña:" GridPane.rowIndex="1" />
+                                                <Label text="Confirmar Contraseña:" GridPane.rowIndex="2" />
+                                                <PasswordField fx:id="txtPasswordActual" GridPane.columnIndex="1" />
+                                                <PasswordField fx:id="txtPasswordNueva" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <PasswordField fx:id="txtPasswordConfirmar" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                            </children>
+                                        </GridPane>
+                                        <HBox alignment="CENTER_RIGHT">
+                                            <children>
+                                                <Button mnemonicParsing="false" text="Cambiar Contraseña" />
+                                            </children>
+                                        </HBox>
+                                    </children>
+                                </VBox>
+                                <HBox alignment="CENTER_RIGHT" spacing="10.0">
+                                    <children>
+                                        <Button mnemonicParsing="false" text="Guardar Cambios" />
+                                        <Button mnemonicParsing="false" text="Cancelar" />
+                                    </children>
+                                </HBox>
+                            </children>
+                            <padding>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                            </padding>
+                        </VBox>
+                    </content>
+                </Tab>
+                <Tab text="Usuarios del Sistema">
+                    <content>
+                        <BorderPane prefHeight="200.0" prefWidth="200.0">
+                            <center>
+                                <TableView fx:id="tablaUsuarios" BorderPane.alignment="CENTER">
+                                    <columns>
+                                        <TableColumn fx:id="colUsername" prefWidth="100.0" text="Usuario" />
+                                        <TableColumn fx:id="colNombreCompleto" prefWidth="200.0" text="Nombre Completo" />
+                                        <TableColumn fx:id="colRol" prefWidth="100.0" text="Rol" />
+                                        <TableColumn fx:id="colEmail" prefWidth="150.0" text="Email" />
+                                        <TableColumn fx:id="colUltimoAcceso" prefWidth="150.0" text="Último Acceso" />
+                                    </columns>
+                                    <BorderPane.margin>
+                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                    </BorderPane.margin>
+                                </TableView>
+                            </center>
+                            <bottom>
+                                <HBox alignment="CENTER_RIGHT" spacing="10.0" BorderPane.alignment="CENTER">
+                                    <children>
+                                        <Button mnemonicParsing="false" text="Nuevo Usuario" />
+                                        <Button mnemonicParsing="false" text="Editar" />
+                                        <Button mnemonicParsing="false" text="Eliminar" />
+                                        <Button mnemonicParsing="false" text="Resetear Contraseña" />
+                                    </children>
+                                    <padding>
+                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                    </padding>
+                                </HBox>
+                            </bottom>
+                        </BorderPane>
+                    </content>
+                </Tab>
+                <Tab text="Configuración General">
+                    <content>
+                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0">
+                            <children>
+                                <GridPane hgap="10.0" vgap="10.0">
+                                    <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" minWidth="10.0" prefWidth="250.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    </columnConstraints>
+                                    <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    </rowConstraints>
+                                    <children>
+                                        <Label text="Nombre de la Empresa:" />
+                                        <Label text="CIF:" GridPane.rowIndex="1" />
+                                        <Label text="Dirección:" GridPane.rowIndex="2" />
+                                        <Label text="Teléfono de Contacto:" GridPane.rowIndex="3" />
+                                        <Label text="Email:" GridPane.rowIndex="4" />
+                                        <TextField fx:id="txtEmpresa" GridPane.columnIndex="1" />
+                                        <TextField fx:id="txtCif" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                        <TextField fx:id="txtDireccionEmpresa" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                        <TextField fx:id="txtTelefonoEmpresa" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                        <TextField fx:id="txtEmailEmpresa" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    </children>
+                                </GridPane>
+                                <VBox spacing="10.0">
+                                    <children>
+                                        <Label text="Configuración de IVA">
+                                            <font>
+                                                <Font name="System Bold" size="14.0" />
+                                            </font>
+                                        </Label>
+                                        <GridPane hgap="10.0" vgap="10.0">
+                                            <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="250.0" minWidth="10.0" prefWidth="250.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
+                                            <children>
+                                                <Label text="Porcentaje de IVA por defecto:" />
+                                                <TextField fx:id="txtIva" GridPane.columnIndex="1" />
+                                            </children>
+                                        </GridPane>
+                                    </children>
+                                </VBox>
+                                <VBox spacing="10.0">
+                                    <children>
+                                        <Label text="Opciones Generales">
+                                            <font>
+                                                <Font name="System Bold" size="14.0" />
+                                            </font>
+                                        </Label>
+                                        <CheckBox fx:id="chkAlertaStockMinimo" mnemonicParsing="false" text="Mostrar alertas de stock mínimo" />
+                                        <CheckBox fx:id="chkBackupAutomatico" mnemonicParsing="false" text="Realizar backup automático al cerrar" />
+                                    </children>
+                                </VBox>
+                                <HBox alignment="CENTER_RIGHT" spacing="10.0">
+                                    <children>
+                                        <Button mnemonicParsing="false" text="Guardar Configuración" />
+                                        <Button mnemonicParsing="false" text="Cancelar" />
+                                    </children>
+                                </HBox>
+                            </children>
+                            <padding>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                            </padding>
+                        </VBox>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </center>
+</BorderPane>

@@ -1,9 +1,9 @@
 package com.gestiontaller.client.controller;
 
+import com.gestiontaller.client.util.FXMLLoaderUtil;
 import com.gestiontaller.client.util.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -12,8 +12,6 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import java.io.IOException;
 
 @Component
 public class DashboardController {
@@ -32,11 +30,11 @@ public class DashboardController {
     @FXML private Label lblTitulo;
     @FXML private StackPane contentArea;
 
-    private final FXMLLoader fxmlLoader;
+    private final FXMLLoaderUtil fxmlLoaderUtil;
 
     @Autowired
-    public DashboardController(FXMLLoader fxmlLoader) {
-        this.fxmlLoader = fxmlLoader;
+    public DashboardController(FXMLLoaderUtil fxmlLoaderUtil) {
+        this.fxmlLoaderUtil = fxmlLoaderUtil;
     }
 
     @FXML
@@ -55,20 +53,19 @@ public class DashboardController {
 
     private void cargarVistaInicio() {
         try {
-            // Cargar la vista de inicio
-            fxmlLoader.setLocation(getClass().getResource("/fxml/dashboard/inicio.fxml"));
-            Parent root = fxmlLoader.load();
+            Parent root = fxmlLoaderUtil.loadFXML("/fxml/dashboard/inicio.fxml");
 
             // Establecer título y contenido
             lblTitulo.setText("Panel de Control");
             contentArea.getChildren().clear();
             contentArea.getChildren().add(root);
-        } catch (IOException e) {
+        } catch (Exception e) {
             // Si falla, mostrar un mensaje temporal
             Label label = new Label("Bienvenido al sistema de gestión de taller");
             label.setStyle("-fx-font-size: 24px; -fx-font-weight: bold;");
             contentArea.getChildren().clear();
             contentArea.getChildren().add(label);
+            e.printStackTrace(); // Para depuración
         }
     }
 
@@ -124,8 +121,7 @@ public class DashboardController {
 
         try {
             // Volver a la pantalla de login
-            fxmlLoader.setLocation(getClass().getResource("/fxml/login.fxml"));
-            Parent root = fxmlLoader.load();
+            Parent root = fxmlLoaderUtil.loadFXML("/fxml/login.fxml");
 
             // Configurar la escena
             Scene scene = new Scene(root);
@@ -139,22 +135,20 @@ public class DashboardController {
             stage.setWidth(600);
             stage.setHeight(400);
             stage.centerOnScreen();
-
-        } catch (IOException e) {
+        } catch (Exception e) {
             System.err.println("Error al volver al login: " + e.getMessage());
+            e.printStackTrace(); // Para depuración
         }
     }
 
     private void cargarVista(String rutaFxml, String titulo) {
         try {
-            fxmlLoader.setLocation(getClass().getResource(rutaFxml));
-            Parent root = fxmlLoader.load();
+            Parent root = fxmlLoaderUtil.loadFXML(rutaFxml);
 
             lblTitulo.setText(titulo);
             contentArea.getChildren().clear();
             contentArea.getChildren().add(root);
-
-        } catch (IOException e) {
+        } catch (Exception e) {
             System.err.println("Error al cargar vista " + rutaFxml + ": " + e.getMessage());
 
             // Mostrar mensaje de error
@@ -162,6 +156,7 @@ public class DashboardController {
             label.setStyle("-fx-text-fill: red; -fx-font-weight: bold;");
             contentArea.getChildren().clear();
             contentArea.getChildren().add(label);
+            e.printStackTrace(); // Para depuración
         }
     }
 }
