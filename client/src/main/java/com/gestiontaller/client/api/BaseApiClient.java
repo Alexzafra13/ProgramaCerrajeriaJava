@@ -1,0 +1,49 @@
+package com.gestiontaller.client.api;
+
+import com.gestiontaller.client.util.SessionManager;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.web.client.RestTemplate;
+
+import java.util.Collections;
+
+/**
+ * Clase base para todos los clientes API que proporciona funcionalidad común
+ */
+public abstract class BaseApiClient {
+    protected final RestTemplate restTemplate;
+    protected final String baseUrl;
+
+    public BaseApiClient(String serverUrl, String apiPath) {
+        this.restTemplate = new RestTemplate();
+        this.baseUrl = serverUrl + apiPath;
+        System.out.println("Inicializando API client con URL base: " + this.baseUrl);
+    }
+
+    protected HttpHeaders createHeaders() {
+        HttpHeaders headers = new HttpHeaders();
+        String token = SessionManager.getInstance().getToken();
+        if (token != null && !token.isEmpty()) {
+            headers.set("Authorization", "Bearer " + token);
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+        } else {
+            System.out.println("ADVERTENCIA: No se encontró token de autenticación");
+        }
+        return headers;
+    }
+
+    protected <T> HttpEntity<T> createEntity(T body) {
+        return new HttpEntity<>(body, createHeaders());
+    }
+
+    protected HttpEntity<?> createEntity() {
+        return new HttpEntity<>(createHeaders());
+    }
+
+    protected void logError(String metodo, Exception e) {
+        System.err.println("Error en " + metodo + ": " + e.getMessage());
+        e.printStackTrace();
+    }
+}

@@ -20,6 +20,7 @@ import java.util.List;
 @Component
 public class SerieListController {
 
+    // Elementos de la tabla
     @FXML private TableView<SerieAluminioDTO> tablaSeries;
     @FXML private TableColumn<SerieAluminioDTO, String> colCodigo;
     @FXML private TableColumn<SerieAluminioDTO, String> colNombre;
@@ -28,13 +29,17 @@ public class SerieListController {
     @FXML private TableColumn<SerieAluminioDTO, String> colPermitePersiana;
     @FXML private TableColumn<SerieAluminioDTO, String> colPrecioBase;
 
+    // Elementos de filtro
     @FXML private ComboBox<TipoSerie> cmbFiltroTipo;
     @FXML private TextField txtBusqueda;
 
+    // Botones
     @FXML private Button btnAgregar;
     @FXML private Button btnEditar;
     @FXML private Button btnEliminar;
+    @FXML private Button btnCreacionRapida;
 
+    // Servicios
     private final SerieApiClient serieApiClient;
     private final FXMLLoaderUtil fxmlLoaderUtil;
 
@@ -46,7 +51,20 @@ public class SerieListController {
 
     @FXML
     public void initialize() {
-        // Configurar columnas
+        // Configurar columnas de la tabla
+        configurarColumnas();
+
+        // Inicializar filtros
+        inicializarFiltros();
+
+        // Configurar eventos de selección
+        configurarEventosSeleccion();
+
+        // Cargar datos iniciales
+        cargarSeries();
+    }
+
+    private void configurarColumnas() {
         colCodigo.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getCodigo()));
         colNombre.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getNombre()));
         colTipo.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getTipoSerie() != null ?
@@ -55,7 +73,9 @@ public class SerieListController {
         colPermitePersiana.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().isPermitePersiana() ? "Sí" : "No"));
         colPrecioBase.setCellValueFactory(data -> new SimpleStringProperty(
                 String.format("%.2f €/m", data.getValue().getPrecioMetroBase())));
+    }
 
+    private void inicializarFiltros() {
         // Cargar datos de filtro
         cmbFiltroTipo.setItems(FXCollections.observableArrayList(TipoSerie.values()));
         cmbFiltroTipo.getItems().add(0, null); // Opción para mostrar todos
@@ -64,7 +84,9 @@ public class SerieListController {
         // Configurar listener para filtro
         cmbFiltroTipo.valueProperty().addListener((obs, oldVal, newVal) -> filtrarSeries());
         txtBusqueda.textProperty().addListener((obs, oldVal, newVal) -> filtrarSeries());
+    }
 
+    private void configurarEventosSeleccion() {
         // Listener para habilitar/deshabilitar botones según selección
         tablaSeries.getSelectionModel().selectedItemProperty().addListener(
                 (obs, oldSelection, newSelection) -> {
@@ -72,9 +94,6 @@ public class SerieListController {
                     btnEditar.setDisable(!haySeleccion);
                     btnEliminar.setDisable(!haySeleccion);
                 });
-
-        // Cargar datos iniciales
-        cargarSeries();
     }
 
     private void cargarSeries() {
@@ -189,6 +208,24 @@ public class SerieListController {
             } catch (Exception e) {
                 mostrarError("Error", "No se pudo eliminar la serie: " + e.getMessage());
             }
+        }
+    }
+
+    @FXML
+    private void handleCreacionRapida() {
+        try {
+            Parent root = fxmlLoaderUtil.loadFXML("/fxml/serie/serie-creacion-rapida.fxml");
+
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Creación Rápida de Serie");
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
+
+            // Actualizar la tabla después de cerrar el formulario
+            cargarSeries();
+        } catch (Exception e) {
+            mostrarError("Error", "Error al abrir el formulario de creación rápida: " + e.getMessage());
         }
     }
 

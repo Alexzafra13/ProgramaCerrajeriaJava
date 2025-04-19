@@ -37,6 +37,11 @@ public interface SerieService {
     List<DescuentoPerfilSerieDTO> obtenerDescuentosPorSerieId(Long serieId);
 
     DescuentoPerfilSerieDTO guardarDescuentoPerfilSerie(DescuentoPerfilSerieDTO descuentoDTO);
+    /**
+     * Crea una serie completa de aluminio con todos sus componentes y productos
+     */
+    SerieAluminioDTO crearSerieCompleta(String codigo, String nombre, String descripcion,
+                                        TipoSerie tipoSerie, boolean roturaPuente, boolean permitePersiana);
 
     void eliminarDescuentoPerfilSerie(Long id);
 }

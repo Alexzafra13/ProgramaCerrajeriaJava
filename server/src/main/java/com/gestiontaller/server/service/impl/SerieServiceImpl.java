@@ -18,7 +18,9 @@ import com.gestiontaller.server.repository.serie.DescuentoPerfilSerieRepository;
 import com.gestiontaller.server.repository.serie.PerfilSerieRepository;
 import com.gestiontaller.server.repository.serie.SerieAluminioRepository;
 import com.gestiontaller.server.repository.serie.SerieBaseRepository;
+import com.gestiontaller.server.service.interfaces.InventarioSerieService;
 import com.gestiontaller.server.service.interfaces.SerieService;
+import com.gestiontaller.server.util.generador.GeneradorSeries;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,6 +39,12 @@ public class SerieServiceImpl implements SerieService {
     private final SerieAluminioMapper serieAluminioMapper;
     private final PerfilSerieMapper perfilSerieMapper;
     private final DescuentoPerfilSerieMapper descuentoPerfilSerieMapper;
+
+    @Autowired
+    private GeneradorSeries generadorSeries;
+
+    @Autowired
+    private InventarioSerieService inventarioSerieService;
 
     @Autowired
     public SerieServiceImpl(
@@ -177,6 +185,30 @@ public class SerieServiceImpl implements SerieService {
         savedDto.setDescuentosPerfiles(obtenerDescuentosPorSerieId(savedSerie.getId()));
 
         return savedDto;
+    }
+
+    @Override
+    @Transactional
+    public SerieAluminioDTO crearSerieCompleta(String codigo, String nombre, String descripcion,
+                                               TipoSerie tipoSerie, boolean roturaPuente, boolean permitePersiana) {
+        // Verificar que no exista ya una serie con ese código
+        if (serieBaseRepository.findByCodigo(codigo).isPresent()) {
+            throw new RuntimeException("Ya existe una serie con el código: " + codigo);
+        }
+
+        // Generar la serie completa con todos sus componentes
+        SerieAluminioDTO serieDTO = generadorSeries.generarSerieAluminio(
+                codigo, nombre, descripcion, tipoSerie, roturaPuente, permitePersiana);
+
+        // Guardar la serie
+        SerieAluminioDTO serieSaved = guardarSerieAluminio(serieDTO);
+
+        // Generar productos para esta serie en el inventario
+        SerieBase serie = serieBaseRepository.findById(serieSaved.getId())
+                .orElseThrow(() -> new RuntimeException("Serie no encontrada tras guardar"));
+        inventarioSerieService.generarProductosParaSerie(serie);
+
+        return serieSaved;
     }
 
     @Override

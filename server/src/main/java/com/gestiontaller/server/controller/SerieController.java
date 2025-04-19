@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/series")
@@ -70,6 +71,19 @@ public class SerieController {
     @PostMapping("/aluminio")
     public ResponseEntity<SerieAluminioDTO> guardarSerieAluminio(@RequestBody SerieAluminioDTO serieDTO) {
         return ResponseEntity.ok(serieService.guardarSerieAluminio(serieDTO));
+    }
+
+    @PostMapping("/aluminio/completa")
+    public ResponseEntity<SerieAluminioDTO> crearSerieCompleta(@RequestBody Map<String, Object> datos) {
+        String codigo = (String) datos.get("codigo");
+        String nombre = (String) datos.get("nombre");
+        String descripcion = (String) datos.get("descripcion");
+        TipoSerie tipoSerie = TipoSerie.valueOf((String) datos.get("tipoSerie"));
+        boolean roturaPuente = (boolean) datos.getOrDefault("roturaPuente", false);
+        boolean permitePersiana = (boolean) datos.getOrDefault("permitePersiana", false);
+
+        return ResponseEntity.ok(serieService.crearSerieCompleta(
+                codigo, nombre, descripcion, tipoSerie, roturaPuente, permitePersiana));
     }
 
     @GetMapping("/{serieId}/perfiles")

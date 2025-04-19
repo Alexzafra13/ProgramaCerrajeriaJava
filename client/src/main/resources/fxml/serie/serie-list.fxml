@@ -67,6 +67,7 @@
                 <Button fx:id="btnAgregar" mnemonicParsing="false" onAction="#handleAgregar" text="Agregar" />
                 <Button fx:id="btnEditar" mnemonicParsing="false" onAction="#handleEditar" text="Editar" />
                 <Button fx:id="btnEliminar" mnemonicParsing="false" onAction="#handleEliminar" text="Eliminar" />
+                <Button fx:id="btnCreacionRapida" mnemonicParsing="false" onAction="#handleCreacionRapida" text="Creación Rápida" />
             </children>
             <BorderPane.margin>
                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
