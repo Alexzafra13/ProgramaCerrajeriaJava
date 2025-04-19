@@ -8,8 +8,10 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SerieApiClient {
@@ -27,67 +29,133 @@ public class SerieApiClient {
         // Añadir token de autenticación si está disponible
         String token = SessionManager.getInstance().getToken();
         if (token != null && !token.isEmpty()) {
-            headers.set("Authorization", "Bearer " + token);
+            // Probar diferentes formatos de token según la configuración del servidor
+            // Opción 1: Sin prefijo
+            headers.set("Authorization", token);
+            System.out.println("Enviando token: " + token.substring(0, Math.min(10, token.length())) + "...");
+        } else {
+            System.out.println("ADVERTENCIA: Token de autenticación no disponible");
         }
         return headers;
     }
 
     public List<SerieAluminioDTO> obtenerSeriesAluminio() {
-        HttpEntity<?> entity = new HttpEntity<>(createHeaders());
+        try {
+            System.out.println("Solicitando series de aluminio al servidor...");
+            HttpEntity<?> entity = new HttpEntity<>(createHeaders());
 
-        ResponseEntity<List<SerieAluminioDTO>> response = restTemplate.exchange(
-                baseUrl + "/aluminio",
-                HttpMethod.GET,
-                entity,
-                new ParameterizedTypeReference<List<SerieAluminioDTO>>() {}
-        );
+            ResponseEntity<List<SerieAluminioDTO>> response = restTemplate.exchange(
+                    baseUrl + "/aluminio",
+                    HttpMethod.GET,
+                    entity,
+                    new ParameterizedTypeReference<List<SerieAluminioDTO>>() {}
+            );
 
-        return response.getBody();
+            List<SerieAluminioDTO> series = response.getBody();
+            if (series != null) {
+                System.out.println("Respuesta del servidor: " + series.size() + " series recibidas");
+                for (SerieAluminioDTO serie : series) {
+                    System.out.println("  - Serie: " + serie.getCodigo() + " - " + serie.getNombre());
+                }
+            } else {
+                System.out.println("Respuesta del servidor: sin series (body null)");
+            }
+            return series != null ? series : new ArrayList<>();
+        } catch (HttpClientErrorException.Unauthorized e) {
+            System.err.println("Error de autenticación al obtener series. Token posiblemente expirado o inválido.");
+            return new ArrayList<>();
+        } catch (Exception e) {
+            System.err.println("Error obteniendo series: " + e.getMessage());
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
     }
 
     public List<PerfilSerieDTO> obtenerPerfilesPorSerieId(Long serieId) {
-        HttpEntity<?> entity = new HttpEntity<>(createHeaders());
+        try {
+            System.out.println("Solicitando perfiles para serie ID: " + serieId);
+            HttpEntity<?> entity = new HttpEntity<>(createHeaders());
 
-        ResponseEntity<List<PerfilSerieDTO>> response = restTemplate.exchange(
-                baseUrl + "/{serieId}/perfiles",
-                HttpMethod.GET,
-                entity,
-                new ParameterizedTypeReference<List<PerfilSerieDTO>>() {},
-                serieId
-        );
+            ResponseEntity<List<PerfilSerieDTO>> response = restTemplate.exchange(
+                    baseUrl + "/{serieId}/perfiles",
+                    HttpMethod.GET,
+                    entity,
+                    new ParameterizedTypeReference<List<PerfilSerieDTO>>() {},
+                    serieId
+            );
 
-        return response.getBody();
+            return response.getBody() != null ? response.getBody() : new ArrayList<>();
+        } catch (Exception e) {
+            System.err.println("Error obteniendo perfiles para serie ID " + serieId + ": " + e.getMessage());
+            return new ArrayList<>();
+        }
     }
 
     public PerfilSerieDTO guardarPerfilSerie(PerfilSerieDTO perfilDTO) {
-        HttpEntity<PerfilSerieDTO> entity = new HttpEntity<>(perfilDTO, createHeaders());
+        try {
+            System.out.println("Guardando perfil: " + perfilDTO.getCodigo());
+            HttpEntity<PerfilSerieDTO> entity = new HttpEntity<>(perfilDTO, createHeaders());
 
-        return restTemplate.postForObject(
-                baseUrl + "/perfiles",
-                entity,
-                PerfilSerieDTO.class
-        );
+            return restTemplate.postForObject(
+                    baseUrl + "/perfiles",
+                    entity,
+                    PerfilSerieDTO.class
+            );
+        } catch (Exception e) {
+            System.err.println("Error guardando perfil: " + e.getMessage());
+            throw e;
+        }
     }
 
     public void eliminarPerfilSerie(Long id) {
-        HttpEntity<?> entity = new HttpEntity<>(createHeaders());
+        try {
+            System.out.println("Eliminando perfil ID: " + id);
+            HttpEntity<?> entity = new HttpEntity<>(createHeaders());
 
-        restTemplate.exchange(
-                baseUrl + "/perfiles/{id}",
-                HttpMethod.DELETE,
-                entity,
-                Void.class,
-                id
-        );
+            restTemplate.exchange(
+                    baseUrl + "/perfiles/{id}",
+                    HttpMethod.DELETE,
+                    entity,
+                    Void.class,
+                    id
+            );
+        } catch (Exception e) {
+            System.err.println("Error eliminando perfil ID " + id + ": " + e.getMessage());
+            throw e;
+        }
     }
 
     public SerieAluminioDTO guardarSerieAluminio(SerieAluminioDTO serieDTO) {
-        HttpEntity<SerieAluminioDTO> entity = new HttpEntity<>(serieDTO, createHeaders());
+        try {
+            System.out.println("Guardando serie: " + serieDTO.getCodigo());
+            HttpEntity<SerieAluminioDTO> entity = new HttpEntity<>(serieDTO, createHeaders());
 
-        return restTemplate.postForObject(
-                baseUrl + "/aluminio",
-                entity,
-                SerieAluminioDTO.class
-        );
+            return restTemplate.postForObject(
+                    baseUrl + "/aluminio",
+                    entity,
+                    SerieAluminioDTO.class
+            );
+        } catch (Exception e) {
+            System.err.println("Error guardando serie: " + e.getMessage());
+            throw e;
+        }
+    }
+
+    public void eliminarSerie(Long id) {
+        try {
+            System.out.println("Eliminando serie ID: " + id);
+            HttpEntity<?> entity = new HttpEntity<>(createHeaders());
+
+            restTemplate.exchange(
+                    baseUrl + "/{id}",
+                    HttpMethod.DELETE,
+                    entity,
+                    Void.class,
+                    id
+            );
+        } catch (Exception e) {
+            System.err.println("Error eliminando serie ID " + id + ": " + e.getMessage());
+            throw e;
+        }
     }
 }

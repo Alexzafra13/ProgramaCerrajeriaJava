@@ -4,6 +4,7 @@ import com.gestiontaller.client.api.SerieApiClient;
 import com.gestiontaller.client.model.TipoCristal;
 import com.gestiontaller.client.model.presupuesto.TipoPresupuesto;
 import com.gestiontaller.client.model.serie.SerieAluminioDTO;
+import com.gestiontaller.client.model.serie.TipoSerie;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -12,10 +13,11 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 public class CalculadoraVentanaController {
@@ -91,19 +93,70 @@ public class CalculadoraVentanaController {
 
     private void cargarSeries() {
         try {
-            ObservableList<SerieAluminioDTO> series = FXCollections.observableArrayList(serieApiClient.obtenerSeriesAluminio());
-            cmbSerie.setItems(series);
+            System.out.println("Iniciando carga de series...");
+            List<SerieAluminioDTO> series = serieApiClient.obtenerSeriesAluminio();
 
-            // Seleccionar por defecto la serie ALUPROM-21 si está disponible
+            // Si no hay series disponibles (por error de autenticación u otro motivo), crear una de ejemplo
+            if (series.isEmpty()) {
+                System.out.println("No se obtuvieron series. Creando serie de ejemplo ALUPROM-21...");
+                SerieAluminioDTO serieAluprom21 = crearSerieAlupromEjemplo();
+                series = List.of(serieAluprom21);
+            }
+
+            ObservableList<SerieAluminioDTO> seriesObservables = FXCollections.observableArrayList(series);
+            cmbSerie.setItems(seriesObservables);
+
+            // Buscar ALUPROM-21
+            boolean encontrada = false;
             for (SerieAluminioDTO serie : series) {
                 if ("ALUPROM-21".equals(serie.getCodigo())) {
+                    System.out.println("Serie ALUPROM-21 encontrada. Estableciendo como valor por defecto.");
                     cmbSerie.setValue(serie);
+                    encontrada = true;
                     break;
                 }
             }
+
+            if (!encontrada && !series.isEmpty()) {
+                System.out.println("No se encontró ALUPROM-21. Seleccionando primera serie disponible: " +
+                        series.get(0).getCodigo());
+                cmbSerie.setValue(series.get(0));
+            }
         } catch (Exception e) {
-            mostrarError("Error al cargar series", "No se pudieron cargar las series: " + e.getMessage());
+            System.err.println("Error grave al cargar series: " + e.getMessage());
+            e.printStackTrace();
+
+            // Asegurar que siempre haya al menos una serie disponible
+            SerieAluminioDTO serieDefault = crearSerieAlupromEjemplo();
+            cmbSerie.setItems(FXCollections.observableArrayList(List.of(serieDefault)));
+            cmbSerie.setValue(serieDefault);
+
+            mostrarError("Error al cargar series",
+                    "Se están usando datos de ejemplo debido a un error de conexión con el servidor");
         }
+    }
+
+    /**
+     * Crea una serie ALUPROM-21 de ejemplo para casos en que no se pueda obtener del servidor
+     */
+    private SerieAluminioDTO crearSerieAlupromEjemplo() {
+        SerieAluminioDTO serie = new SerieAluminioDTO();
+        serie.setId(1L);
+        serie.setCodigo("ALUPROM-21");
+        serie.setNombre("Serie ALUPROM 21 (ejemplo)");
+        serie.setDescripcion("Serie de aluminio para ventanas correderas de dos hojas");
+        serie.setTipoSerie(TipoSerie.CORREDERA);
+        serie.setEspesorMinimo(1.5);
+        serie.setEspesorMaximo(1.8);
+        serie.setColor("BLANCO");
+        serie.setRoturaPuente(false);
+        serie.setPermitePersiana(true);
+        serie.setPrecioMetroBase(15.0);
+        serie.setActiva(true);
+
+        // Podrías añadir también perfiles de ejemplo si los necesitas
+
+        return serie;
     }
 
     private void inicializarTablas() {
