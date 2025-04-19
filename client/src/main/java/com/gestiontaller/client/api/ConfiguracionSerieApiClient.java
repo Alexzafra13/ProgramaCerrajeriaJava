@@ -10,6 +10,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -30,19 +31,14 @@ public class ConfiguracionSerieApiClient {
 
     private HttpHeaders createHeaders() {
         HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+
         String token = SessionManager.getInstance().getToken();
         if (token != null && !token.isEmpty()) {
-            // Prueba diferentes formatos de Authorization
-            // Opción 1: Bearer + token (estándar OAuth 2.0)
+            // Añadir token de autenticación
             headers.set("Authorization", "Bearer " + token);
-            System.out.println("Enviando token con Bearer: Bearer " + token.substring(0, Math.min(15, token.length())) + "...");
-
-            // Opción 2: Solo el token
-            // headers.set("Authorization", token);
-
-            // También agrega formato básico de contenido
-            headers.setContentType(MediaType.APPLICATION_JSON);
-            headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+            System.out.println("Enviando token: Bearer " + token.substring(0, Math.min(15, token.length())) + "...");
         } else {
             System.out.println("ADVERTENCIA: No se encontró token de autenticación");
         }
@@ -71,6 +67,10 @@ public class ConfiguracionSerieApiClient {
                 System.out.println("La respuesta no contiene configuraciones (body null)");
                 return new ArrayList<>();
             }
+        } catch (HttpClientErrorException e) {
+            System.err.println("Error de servidor (" + e.getStatusCode() + "): " + e.getMessage());
+            System.err.println("Respuesta del servidor: " + e.getResponseBodyAsString());
+            return new ArrayList<>();
         } catch (Exception e) {
             System.err.println("Error obteniendo configuraciones para serie: " + e.getMessage());
             e.printStackTrace();
@@ -99,6 +99,10 @@ public class ConfiguracionSerieApiClient {
                 System.out.println("La respuesta no contiene configuración (body null)");
             }
             return config;
+        } catch (HttpClientErrorException e) {
+            System.err.println("Error de servidor (" + e.getStatusCode() + "): " + e.getMessage());
+            System.err.println("Respuesta del servidor: " + e.getResponseBodyAsString());
+            return null;
         } catch (Exception e) {
             System.err.println("Error obteniendo configuración: " + e.getMessage());
             e.printStackTrace();
@@ -116,8 +120,8 @@ public class ConfiguracionSerieApiClient {
 
         try {
             System.out.println("Aplicando configuración ID: " + configuracionId);
-            HttpEntity<?> entity = new HttpEntity<>(createHeaders());
 
+            // Construir URL con parámetros
             UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(baseUrl + "/" + configuracionId + "/aplicar")
                     .queryParam("ancho", ancho)
                     .queryParam("alto", alto)
@@ -132,26 +136,40 @@ public class ConfiguracionSerieApiClient {
             }
 
             String url = builder.toUriString();
-            System.out.println("URL: " + url);
+            System.out.println("URL completa: " + url);
 
+            // Crear cabeceras
+            HttpHeaders headers = createHeaders();
+            System.out.println("Cabeceras: " + headers);
+            HttpEntity<?> entity = new HttpEntity<>(headers);
+
+            // Realizar petición GET en lugar de POST
             ResponseEntity<ResultadoCalculoDTO> response = restTemplate.exchange(
                     url,
-                    HttpMethod.POST,
+                    HttpMethod.GET,
                     entity,
                     ResultadoCalculoDTO.class
             );
 
+            // Procesar respuesta
             ResultadoCalculoDTO resultado = response.getBody();
             if (resultado != null) {
-                System.out.println("Cálculo completado correctamente");
+                System.out.println("Cálculo completado exitosamente");
+                if (resultado.getCortes() != null) {
+                    System.out.println("Número de cortes: " + resultado.getCortes().size());
+                }
             } else {
                 System.out.println("La respuesta no contiene resultados (body null)");
             }
             return resultado;
+        } catch (HttpClientErrorException e) {
+            System.err.println("Error de servidor (" + e.getStatusCode() + "): " + e.getMessage());
+            System.err.println("Respuesta del servidor: " + e.getResponseBodyAsString());
+            throw e;
         } catch (Exception e) {
             System.err.println("Error aplicando configuración: " + e.getMessage());
             e.printStackTrace();
-            return null;
+            throw e;
         }
     }
 

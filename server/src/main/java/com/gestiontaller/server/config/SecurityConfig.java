@@ -9,7 +9,7 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
-import org.springframework.http.MediaType;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -34,18 +34,13 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        // Deshabilitamos todas las restricciones de seguridad para desarrollo
         http
-                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+                .cors(Customizer.withDefaults())
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/api/auth/**").permitAll()
-                        .requestMatchers("/api/series/**").permitAll()
-                        .requestMatchers("/api/configuraciones-serie/**").permitAll()
-                        .anyRequest().authenticated()
-                )
-                // Deshabilitar autenticación básica y por formulario para APIs RESTful
-                .httpBasic(httpBasic -> httpBasic.disable())
-                .formLogin(formLogin -> formLogin.disable());
+                        .requestMatchers("/**").permitAll() // Permite todas las rutas por ahora
+                );
 
         return http.build();
     }
@@ -54,7 +49,7 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(Arrays.asList("*"));
-        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(Arrays.asList("authorization", "content-type", "x-auth-token"));
         configuration.setExposedHeaders(Arrays.asList("x-auth-token"));
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
@@ -69,12 +64,14 @@ public class SecurityConfig {
             @Override
             protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
                     throws ServletException, IOException {
-                System.out.println("DEBUG - Request URL: " + request.getRequestURL().toString());
+                System.out.println("DEBUG - Request URL: " + request.getRequestURL().toString() + (request.getQueryString() != null ? "?" + request.getQueryString() : ""));
+                System.out.println("DEBUG - Method: " + request.getMethod());
                 System.out.println("DEBUG - Authorization header: " + request.getHeader("Authorization"));
                 filterChain.doFilter(request, response);
+                System.out.println("DEBUG - Response status: " + response.getStatus());
             }
         });
-        registration.addUrlPatterns("/api/configuraciones-serie/*");
+        registration.addUrlPatterns("/api/*");
         registration.setOrder(Ordered.HIGHEST_PRECEDENCE);
         return registration;
     }
