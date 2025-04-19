@@ -1,7 +1,5 @@
 package com.gestiontaller.server.factory;
 
-import com.gestiontaller.server.dto.calculo.ResultadoCalculoDTO;
-import com.gestiontaller.server.model.TipoCristal;
 import com.gestiontaller.server.model.serie.TipoSerie;
 import org.springframework.stereotype.Component;
 

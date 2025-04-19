@@ -1,8 +1,6 @@
 package com.gestiontaller.server.controller;
 
-import com.gestiontaller.server.dto.calculo.ResultadoCalculoDTO;
 import com.gestiontaller.server.dto.configuracion.PlantillaConfiguracionSerieDTO;
-import com.gestiontaller.server.model.TipoCristal;
 import com.gestiontaller.server.service.interfaces.ConfiguracionSerieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

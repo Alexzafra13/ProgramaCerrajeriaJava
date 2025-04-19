@@ -1,4 +1,4 @@
-package com.gestiontaller.server.model;
+package com.gestiontaller.common.model;
 
 public enum TipoMaterial {
     ALUMINIO,

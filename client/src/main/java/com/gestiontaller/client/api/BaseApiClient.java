@@ -1,6 +1,8 @@
 package com.gestiontaller.client.api;
 
 import com.gestiontaller.client.util.SessionManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -12,13 +14,14 @@ import java.util.Collections;
  * Clase base para todos los clientes API que proporciona funcionalidad común
  */
 public abstract class BaseApiClient {
+    protected final Logger logger = LoggerFactory.getLogger(getClass());
     protected final RestTemplate restTemplate;
     protected final String baseUrl;
 
     public BaseApiClient(String serverUrl, String apiPath) {
         this.restTemplate = new RestTemplate();
         this.baseUrl = serverUrl + apiPath;
-        System.out.println("Inicializando API client con URL base: " + this.baseUrl);
+        logger.info("Inicializando API client con URL base: {}", this.baseUrl);
     }
 
     protected HttpHeaders createHeaders() {
@@ -29,7 +32,7 @@ public abstract class BaseApiClient {
             headers.setContentType(MediaType.APPLICATION_JSON);
             headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
         } else {
-            System.out.println("ADVERTENCIA: No se encontró token de autenticación");
+            logger.warn("No se encontró token de autenticación");
         }
         return headers;
     }
@@ -43,7 +46,6 @@ public abstract class BaseApiClient {
     }
 
     protected void logError(String metodo, Exception e) {
-        System.err.println("Error en " + metodo + ": " + e.getMessage());
-        e.printStackTrace();
+        logger.error("Error en {}: {}", metodo, e.getMessage(), e);
     }
 }

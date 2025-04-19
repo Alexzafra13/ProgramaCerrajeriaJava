@@ -1,6 +1,6 @@
-package com.gestiontaller.server.dto.calculo;
+package com.gestiontaller.common.dto.calculo;
 
-import com.gestiontaller.server.model.serie.TipoPerfil;
+import com.gestiontaller.common.model.serie.TipoPerfil;
 import lombok.Data;
 
 @Data
@@ -18,5 +18,4 @@ public class CorteDTO {
     private String ubicacion;
     private Integer descuentoAplicado;
     private String grupoCorte;
-
 }

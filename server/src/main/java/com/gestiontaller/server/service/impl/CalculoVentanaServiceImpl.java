@@ -2,10 +2,7 @@ package com.gestiontaller.server.service.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gestiontaller.server.dto.calculo.CalculoVentanaDTO;
-import com.gestiontaller.server.dto.calculo.CorteDTO;
-import com.gestiontaller.server.dto.calculo.MaterialAdicionalDTO;
 import com.gestiontaller.server.dto.calculo.ParametrosCalculoDTO;
-import com.gestiontaller.server.dto.calculo.ResultadoCalculoDTO;
 import com.gestiontaller.server.dto.configuracion.PlantillaConfiguracionSerieDTO;
 import com.gestiontaller.server.mapper.CalculoVentanaMapper;
 import com.gestiontaller.server.mapper.CorteVentanaMapper;

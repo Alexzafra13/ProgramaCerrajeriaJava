@@ -1,6 +1,5 @@
 package com.gestiontaller.server.mapper;
 
-import com.gestiontaller.server.dto.calculo.MaterialAdicionalDTO;
 import com.gestiontaller.server.model.calculo.MaterialAdicional;
 import com.gestiontaller.server.model.producto.Producto;
 import org.mapstruct.Mapper;

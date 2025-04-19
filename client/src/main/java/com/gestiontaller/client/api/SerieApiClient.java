@@ -19,7 +19,7 @@ public class SerieApiClient extends BaseApiClient {
 
     public List<SerieAluminioDTO> obtenerSeriesAluminio() {
         try {
-            System.out.println("Solicitando series de aluminio al servidor...");
+            logger.debug("Solicitando series de aluminio al servidor...");
             ResponseEntity<List<SerieAluminioDTO>> response = restTemplate.exchange(
                     baseUrl + "/aluminio",
                     HttpMethod.GET,
@@ -29,9 +29,9 @@ public class SerieApiClient extends BaseApiClient {
 
             List<SerieAluminioDTO> series = response.getBody();
             if (series != null) {
-                System.out.println("Respuesta del servidor: " + series.size() + " series recibidas");
+                logger.debug("Respuesta del servidor: {} series recibidas", series.size());
             } else {
-                System.out.println("Respuesta del servidor: sin series (body null)");
+                logger.warn("Respuesta del servidor: sin series (body null)");
             }
             return series != null ? series : new ArrayList<>();
         } catch (Exception e) {
@@ -42,7 +42,7 @@ public class SerieApiClient extends BaseApiClient {
 
     public List<PerfilSerieDTO> obtenerPerfilesPorSerieId(Long serieId) {
         try {
-            System.out.println("Solicitando perfiles para serie ID: " + serieId);
+            logger.debug("Solicitando perfiles para serie ID: {}", serieId);
             ResponseEntity<List<PerfilSerieDTO>> response = restTemplate.exchange(
                     baseUrl + "/{serieId}/perfiles",
                     HttpMethod.GET,
@@ -60,7 +60,7 @@ public class SerieApiClient extends BaseApiClient {
 
     public PerfilSerieDTO guardarPerfilSerie(PerfilSerieDTO perfilDTO) {
         try {
-            System.out.println("Guardando perfil: " + perfilDTO.getCodigo());
+            logger.debug("Guardando perfil: {}", perfilDTO.getCodigo());
             return restTemplate.postForObject(
                     baseUrl + "/perfiles",
                     createEntity(perfilDTO),
@@ -74,7 +74,7 @@ public class SerieApiClient extends BaseApiClient {
 
     public void eliminarPerfilSerie(Long id) {
         try {
-            System.out.println("Eliminando perfil ID: " + id);
+            logger.debug("Eliminando perfil ID: {}", id);
             restTemplate.exchange(
                     baseUrl + "/perfiles/{id}",
                     HttpMethod.DELETE,
@@ -90,7 +90,7 @@ public class SerieApiClient extends BaseApiClient {
 
     public SerieAluminioDTO guardarSerieAluminio(SerieAluminioDTO serieDTO) {
         try {
-            System.out.println("Guardando serie: " + serieDTO.getCodigo());
+            logger.debug("Guardando serie: {}", serieDTO.getCodigo());
             return restTemplate.postForObject(
                     baseUrl + "/aluminio",
                     createEntity(serieDTO),
@@ -105,7 +105,7 @@ public class SerieApiClient extends BaseApiClient {
     public SerieAluminioDTO crearSerieCompleta(String codigo, String nombre, String descripcion,
                                                String tipoSerie, boolean roturaPuente, boolean permitePersiana) {
         try {
-            System.out.println("Creando serie completa: " + codigo);
+            logger.debug("Creando serie completa: {}", codigo);
 
             Map<String, Object> datos = new HashMap<>();
             datos.put("codigo", codigo);
@@ -128,7 +128,7 @@ public class SerieApiClient extends BaseApiClient {
 
     public void eliminarSerie(Long id) {
         try {
-            System.out.println("Eliminando serie ID: " + id);
+            logger.debug("Eliminando serie ID: {}", id);
             restTemplate.exchange(
                     baseUrl + "/{id}",
                     HttpMethod.DELETE,

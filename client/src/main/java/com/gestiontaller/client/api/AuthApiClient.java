@@ -26,13 +26,13 @@ public class AuthApiClient extends BaseApiClient {
 
             HttpEntity<LoginRequest> entity = new HttpEntity<>(request, headers);
 
-            System.out.println("Enviando solicitud de login a: " + baseUrl + "/login");
+            logger.debug("Enviando solicitud de login para usuario: {}", username);
             LoginResponse response = restTemplate.postForObject(baseUrl + "/login", entity, LoginResponse.class);
 
             if (response != null && response.getToken() != null) {
-                System.out.println("Login exitoso para " + username);
+                logger.info("Login exitoso para usuario: {}", username);
             } else {
-                System.out.println("No se recibió token en la respuesta de login");
+                logger.warn("No se recibió token en la respuesta de login");
             }
 
             return response;

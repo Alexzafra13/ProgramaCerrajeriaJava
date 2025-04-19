@@ -1,21 +1,20 @@
 package com.gestiontaller.server.service.impl;
 
-import com.gestiontaller.server.dto.calculo.CorteDTO;
-import com.gestiontaller.server.dto.calculo.MaterialAdicionalDTO;
-import com.gestiontaller.server.dto.calculo.ResultadoCalculoDTO;
 import com.gestiontaller.server.dto.configuracion.PlantillaConfiguracionSerieDTO;
+import com.gestiontaller.server.exception.ConfiguracionNotFoundException;
+import com.gestiontaller.server.exception.SerieNotFoundException;
 import com.gestiontaller.server.mapper.configuracion.PlantillaConfiguracionSerieMapper;
-import com.gestiontaller.server.model.TipoCristal;
 import com.gestiontaller.server.model.configuracion.MaterialConfiguracion;
 import com.gestiontaller.server.model.configuracion.PerfilConfiguracion;
 import com.gestiontaller.server.model.configuracion.PlantillaConfiguracionSerie;
-import com.gestiontaller.server.model.presupuesto.TipoPresupuesto;
 import com.gestiontaller.server.model.serie.SerieBase;
 import com.gestiontaller.server.repository.configuracion.MaterialConfiguracionRepository;
 import com.gestiontaller.server.repository.configuracion.PerfilConfiguracionRepository;
 import com.gestiontaller.server.repository.configuracion.PlantillaConfiguracionSerieRepository;
 import com.gestiontaller.server.repository.serie.SerieBaseRepository;
 import com.gestiontaller.server.service.interfaces.ConfiguracionSerieService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,6 +27,8 @@ import java.util.stream.Collectors;
 
 @Service
 public class ConfiguracionSerieServiceImpl implements ConfiguracionSerieService {
+
+    private static final Logger logger = LoggerFactory.getLogger(ConfiguracionSerieServiceImpl.class);
 
     private final PlantillaConfiguracionSerieRepository configRepo;
     private final PerfilConfiguracionRepository perfilConfigRepo;
@@ -55,6 +56,7 @@ public class ConfiguracionSerieServiceImpl implements ConfiguracionSerieService 
     @Override
     @Transactional(readOnly = true)
     public List<PlantillaConfiguracionSerieDTO> obtenerConfiguracionesPorSerie(Long serieId) {
+        logger.debug("Obteniendo configuraciones para serie ID: {}", serieId);
         return configRepo.findBySerieIdAndActivaTrue(serieId).stream()
                 .map(configMapper::toDto)
                 .collect(Collectors.toList());
@@ -63,33 +65,34 @@ public class ConfiguracionSerieServiceImpl implements ConfiguracionSerieService 
     @Override
     @Transactional(readOnly = true)
     public PlantillaConfiguracionSerieDTO obtenerConfiguracionPorId(Long id) {
+        logger.debug("Obteniendo configuración con ID: {}", id);
         return configRepo.findByIdWithDetails(id)
                 .map(configMapper::toDto)
-                .orElseThrow(() -> new RuntimeException("Configuración no encontrada con ID: " + id));
+                .orElseThrow(() -> new ConfiguracionNotFoundException(id));
     }
 
     @Override
     @Transactional(readOnly = true)
     public PlantillaConfiguracionSerieDTO obtenerConfiguracionPorSerieYHojas(Long serieId, Integer numHojas) {
+        logger.debug("Obteniendo configuración para serie ID: {} con {} hojas", serieId, numHojas);
         return configRepo.findBySerieIdAndNumHojas(serieId, numHojas)
                 .map(configMapper::toDto)
-                .orElseThrow(() -> new RuntimeException(
-                        "No existe configuración para la serie ID " + serieId +
-                                " con " + numHojas + " hojas"));
+                .orElseThrow(() -> new ConfiguracionNotFoundException(serieId, numHojas));
     }
 
     @Override
     @Transactional
     public PlantillaConfiguracionSerieDTO guardarConfiguracion(PlantillaConfiguracionSerieDTO dto) {
+        logger.debug("Guardando configuración: {} para serie ID: {}", dto.getNombre(), dto.getSerieId());
         // Verificar serie
         SerieBase serie = serieRepo.findById(dto.getSerieId())
-                .orElseThrow(() -> new RuntimeException("Serie no encontrada con ID: " + dto.getSerieId()));
+                .orElseThrow(() -> new SerieNotFoundException(dto.getSerieId()));
 
         PlantillaConfiguracionSerie config;
         if (dto.getId() != null) {
             // Actualizar existente
             config = configRepo.findById(dto.getId())
-                    .orElseThrow(() -> new RuntimeException("Configuración no encontrada con ID: " + dto.getId()));
+                    .orElseThrow(() -> new ConfiguracionNotFoundException(dto.getId()));
             configMapper.updateEntityFromDto(dto, config);
         } else {
             // Crear nueva
@@ -98,6 +101,7 @@ public class ConfiguracionSerieServiceImpl implements ConfiguracionSerieService 
 
         // Guardar configuración principal
         PlantillaConfiguracionSerie savedConfig = configRepo.save(config);
+        logger.info("Configuración guardada con ID: {}", savedConfig.getId());
 
         return configMapper.toDto(savedConfig);
     }
@@ -105,7 +109,12 @@ public class ConfiguracionSerieServiceImpl implements ConfiguracionSerieService 
     @Override
     @Transactional
     public void eliminarConfiguracion(Long id) {
+        logger.debug("Eliminando configuración con ID: {}", id);
+        if (!configRepo.existsById(id)) {
+            throw new ConfiguracionNotFoundException(id);
+        }
         configRepo.deleteById(id);
+        logger.info("Configuración eliminada con ID: {}", id);
     }
 
     @Override
@@ -113,8 +122,11 @@ public class ConfiguracionSerieServiceImpl implements ConfiguracionSerieService 
     public ResultadoCalculoDTO aplicarConfiguracion(Long configuracionId, Integer anchoTotal,
                                                     Integer altoTotal, Boolean incluyePersiana,
                                                     Integer alturaCajon, TipoCristal tipoCristal) {
+        logger.debug("Aplicando configuración ID: {} para ventana de {}x{} mm",
+                configuracionId, anchoTotal, altoTotal);
+
         PlantillaConfiguracionSerie config = configRepo.findByIdWithDetails(configuracionId)
-                .orElseThrow(() -> new RuntimeException("Configuración no encontrada"));
+                .orElseThrow(() -> new ConfiguracionNotFoundException(configuracionId));
 
         ResultadoCalculoDTO resultado = new ResultadoCalculoDTO();
         List<CorteDTO> cortes = new ArrayList<>();
@@ -259,6 +271,7 @@ public class ConfiguracionSerieServiceImpl implements ConfiguracionSerieService 
                 descripcionPersiana,
                 tipoCristalDesc));
 
+        logger.info("Cálculo completado para configuración ID: {}", configuracionId);
         return resultado;
     }
 }

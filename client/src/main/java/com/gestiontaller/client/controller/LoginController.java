@@ -13,12 +13,15 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.HttpClientErrorException;
 
 @Component
 public class LoginController {
+    private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
     @FXML
     private TextField txtUsername;
@@ -62,30 +65,25 @@ public class LoginController {
         }
 
         try {
-            System.out.println("Intentando login con usuario: " + username);
+            logger.debug("Intentando login con usuario: {}", username);
             LoginResponse response = authApiClient.login(username, password);
 
             // Debuguear la respuesta
-            System.out.println("Respuesta de autenticación recibida:");
-            System.out.println("ID: " + response.getId());
-            System.out.println("Username: " + response.getUsername());
-            System.out.println("Rol: " + response.getRol());
-            System.out.println("Token: " + response.getToken());
+            logger.debug("Respuesta de autenticación recibida: ID: {}, Username: {}, Rol: {}",
+                    response.getId(), response.getUsername(), response.getRol());
 
             SessionManager.getInstance().setLoginInfo(response);
 
             // Verificar que se estableció correctamente
-            System.out.println("Token almacenado en SessionManager: " +
-                    SessionManager.getInstance().getToken());
+            logger.debug("Token almacenado en SessionManager: {}", SessionManager.getInstance().getToken());
 
             abrirDashboard();
         } catch (HttpClientErrorException e) {
+            logger.error("Error de autenticación: {}", e.getMessage());
             mostrarError("Error de autenticación: " + e.getMessage());
-            System.err.println("Error de autenticación: " + e);
         } catch (Exception e) {
+            logger.error("Error inesperado al iniciar sesión", e);
             mostrarError("Error al iniciar sesión: " + e.getMessage());
-            System.err.println("Error inesperado: " + e);
-            e.printStackTrace(); // Para depuración
         }
     }
 
@@ -107,14 +105,17 @@ public class LoginController {
             stage.setScene(scene);
             stage.setMaximized(true);
             stage.show();
+
+            logger.info("Dashboard abierto correctamente para usuario: {}",
+                    SessionManager.getInstance().getUsername());
         } catch (Exception e) {
+            logger.error("Error al cargar el dashboard", e);
             mostrarError("Error al cargar el dashboard: " + e.getMessage());
-            System.err.println("Error al cargar dashboard: " + e);
-            e.printStackTrace(); // Para depuración
         }
     }
 
     private void mostrarError(String mensaje) {
+        logger.warn("Error en login: {}", mensaje);
         lblError.setText(mensaje);
         lblError.setVisible(true);
     }

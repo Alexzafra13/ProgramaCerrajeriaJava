@@ -1,8 +1,6 @@
 package com.gestiontaller.server.service.interfaces;
 
-import com.gestiontaller.server.dto.calculo.ResultadoCalculoDTO;
 import com.gestiontaller.server.dto.configuracion.PlantillaConfiguracionSerieDTO;
-import com.gestiontaller.server.model.TipoCristal;
 
 import java.util.List;
 

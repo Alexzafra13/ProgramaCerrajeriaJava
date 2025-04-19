@@ -1,6 +1,5 @@
 package com.gestiontaller.server.model.serie;
 
-import com.gestiontaller.server.model.TipoMaterial;
 import jakarta.persistence.*;
 import lombok.Data;
 

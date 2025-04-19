@@ -1,6 +1,6 @@
-package com.gestiontaller.server.dto.auth;
+package com.gestiontaller.common.dto.auth;
 
-import com.gestiontaller.server.model.usuario.Rol;
+import com.gestiontaller.common.model.usuario.Rol;
 import lombok.Builder;
 import lombok.Data;
 

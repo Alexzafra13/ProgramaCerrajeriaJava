@@ -1,4 +1,4 @@
-package com.gestiontaller.server.dto.calculo;
+package com.gestiontaller.common.dto.calculo;
 
 import lombok.Data;
 
@@ -15,5 +15,4 @@ public class MaterialAdicionalDTO {
     private Integer unidadesPorCaja;
     private Double precioUnitario;
     private Double precioTotal;
-
 }

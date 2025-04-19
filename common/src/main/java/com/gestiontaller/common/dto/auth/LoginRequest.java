@@ -1,4 +1,4 @@
-package com.gestiontaller.server.dto.auth;
+package com.gestiontaller.common.dto.auth;
 
 import lombok.Data;
 

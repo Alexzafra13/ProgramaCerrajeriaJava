@@ -1,6 +1,5 @@
 package com.gestiontaller.server.service.interfaces;
 
-import com.gestiontaller.server.dto.calculo.ResultadoCalculoDTO;
 import com.gestiontaller.server.model.producto.Producto;
 import com.gestiontaller.server.model.serie.SerieBase;
 

@@ -4,7 +4,6 @@ import com.gestiontaller.server.dto.serie.DescuentoPerfilSerieDTO;
 import com.gestiontaller.server.dto.serie.PerfilSerieDTO;
 import com.gestiontaller.server.dto.serie.SerieAluminioDTO;
 import com.gestiontaller.server.dto.serie.SerieBaseDTO;
-import com.gestiontaller.server.model.TipoMaterial;
 import com.gestiontaller.server.model.serie.TipoSerie;
 
 import java.util.List;

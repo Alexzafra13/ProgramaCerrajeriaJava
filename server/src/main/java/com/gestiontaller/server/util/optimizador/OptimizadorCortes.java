@@ -1,7 +1,5 @@
 package com.gestiontaller.server.util.optimizador;
 
-import com.gestiontaller.server.dto.calculo.CorteDTO;
-import com.gestiontaller.server.dto.calculo.ResultadoCalculoDTO;
 import com.gestiontaller.server.dto.inventario.RetalDTO;
 import com.gestiontaller.server.service.interfaces.InventarioService;
 import org.springframework.beans.factory.annotation.Autowired;

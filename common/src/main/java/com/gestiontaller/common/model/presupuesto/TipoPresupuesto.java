@@ -1,4 +1,4 @@
-package com.gestiontaller.server.model.presupuesto;
+package com.gestiontaller.common.model.presupuesto;
 
 public enum TipoPresupuesto {
     VENTANA_CORREDERA,

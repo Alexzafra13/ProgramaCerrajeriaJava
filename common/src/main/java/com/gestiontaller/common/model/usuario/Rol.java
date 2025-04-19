@@ -1,4 +1,4 @@
-package com.gestiontaller.server.model.usuario;
+package com.gestiontaller.common.model.usuario;
 
 public enum Rol {
     ADMIN,

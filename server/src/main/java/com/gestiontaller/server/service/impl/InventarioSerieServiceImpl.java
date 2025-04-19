@@ -1,6 +1,5 @@
 package com.gestiontaller.server.service.impl;
 
-import com.gestiontaller.server.dto.calculo.ResultadoCalculoDTO;
 import com.gestiontaller.server.dto.inventario.MovimientoStockDTO;
 import com.gestiontaller.server.model.inventario.TipoMovimiento;
 import com.gestiontaller.server.model.producto.Producto;
@@ -16,7 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
  * Servicio que maneja la integración entre series y el inventario

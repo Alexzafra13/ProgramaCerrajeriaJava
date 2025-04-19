@@ -1,6 +1,5 @@
 package com.gestiontaller.server.dto.usuario;
 
-import com.gestiontaller.server.model.usuario.Rol;
 import lombok.Data;
 
 import java.time.LocalDateTime;

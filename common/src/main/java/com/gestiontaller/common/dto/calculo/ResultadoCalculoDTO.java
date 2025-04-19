@@ -1,7 +1,7 @@
-package com.gestiontaller.server.dto.calculo;
+package com.gestiontaller.common.dto.calculo;
 
-import com.gestiontaller.server.model.TipoCristal;
-import com.gestiontaller.server.model.presupuesto.TipoPresupuesto;
+import com.gestiontaller.common.model.TipoCristal;
+import com.gestiontaller.common.model.presupuesto.TipoPresupuesto;
 import lombok.Data;
 
 import java.util.ArrayList;
