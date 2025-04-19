@@ -40,8 +40,8 @@ CREATE TABLE IF NOT EXISTS material_configuracion (
 -- Datos iniciales - Configuración para ALUPROM-21 con 2 hojas
 INSERT INTO plantilla_configuracion_serie (serie_id, nombre, num_hojas, activa, descripcion)
 SELECT id, 'Ventana Corredera 2 Hojas', 2, TRUE, 'Configuración estándar para ventanas correderas de 2 hojas'
-FROM serie_base WHERE codigo = 'ALUPROM-21'
-ON DUPLICATE KEY UPDATE nombre = nombre;
+FROM serie_base
+WHERE codigo = 'ALUPROM-21';
 
 -- Obtener ID de la configuración recién creada
 SET @config_id = LAST_INSERT_ID();

@@ -1,6 +1,7 @@
+// client/src/main/java/com/gestiontaller/client/model/calculo/ResultadoCalculoDTO.java
+
 package com.gestiontaller.client.model.calculo;
 
-import com.gestiontaller.client.controller.CalculadoraVentanaController;
 import com.gestiontaller.client.model.TipoCristal;
 import com.gestiontaller.client.model.presupuesto.TipoPresupuesto;
 import lombok.Data;
@@ -19,7 +20,7 @@ public class ResultadoCalculoDTO {
     private Boolean incluyePersiana;
     private Integer alturaCajon;
     private String resumen;
-    private List<CalculadoraVentanaController.CorteDTO> cortes = new ArrayList<>();
+    private List<CorteDTO> cortes = new ArrayList<>();
     private List<MaterialAdicionalDTO> materialesAdicionales = new ArrayList<>();
     private Double precioTotal;
     private String resultadoJson; // Resultado completo en formato JSON para almacenamiento

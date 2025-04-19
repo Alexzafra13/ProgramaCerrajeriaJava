@@ -7,11 +7,13 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class SerieApiClient {
@@ -22,6 +24,7 @@ public class SerieApiClient {
     public SerieApiClient(String serverUrl) {
         this.restTemplate = new RestTemplate();
         this.baseUrl = serverUrl + "/api/series";
+        System.out.println("Inicializando SerieApiClient con URL base: " + this.baseUrl);
     }
 
     private HttpHeaders createHeaders() {
@@ -29,10 +32,13 @@ public class SerieApiClient {
         // Añadir token de autenticación si está disponible
         String token = SessionManager.getInstance().getToken();
         if (token != null && !token.isEmpty()) {
-            // Probar diferentes formatos de token según la configuración del servidor
-            // Opción 1: Sin prefijo
-            headers.set("Authorization", token);
-            System.out.println("Enviando token: " + token.substring(0, Math.min(10, token.length())) + "...");
+            // Usar formato Bearer
+            headers.set("Authorization", "Bearer " + token);
+            System.out.println("Enviando token con Bearer: Bearer " + token.substring(0, Math.min(15, token.length())) + "...");
+
+            // También agrega formato básico de contenido
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
         } else {
             System.out.println("ADVERTENCIA: Token de autenticación no disponible");
         }

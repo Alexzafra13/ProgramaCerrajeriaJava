@@ -3,6 +3,7 @@ package com.gestiontaller.server.model.cliente;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
@@ -51,7 +52,7 @@ public class Cliente {
     private String web;
 
     @Column
-    private double descuento; // Descuento para este cliente
+    private BigDecimal descuento; // Descuento para este cliente
 
     @Column(nullable = false)
     private LocalDate fechaAlta = LocalDate.now();

@@ -62,13 +62,29 @@ public class LoginController {
         }
 
         try {
+            System.out.println("Intentando login con usuario: " + username);
             LoginResponse response = authApiClient.login(username, password);
+
+            // Debuguear la respuesta
+            System.out.println("Respuesta de autenticación recibida:");
+            System.out.println("ID: " + response.getId());
+            System.out.println("Username: " + response.getUsername());
+            System.out.println("Rol: " + response.getRol());
+            System.out.println("Token: " + response.getToken());
+
             SessionManager.getInstance().setLoginInfo(response);
+
+            // Verificar que se estableció correctamente
+            System.out.println("Token almacenado en SessionManager: " +
+                    SessionManager.getInstance().getToken());
+
             abrirDashboard();
         } catch (HttpClientErrorException e) {
             mostrarError("Error de autenticación: " + e.getMessage());
+            System.err.println("Error de autenticación: " + e);
         } catch (Exception e) {
             mostrarError("Error al iniciar sesión: " + e.getMessage());
+            System.err.println("Error inesperado: " + e);
             e.printStackTrace(); // Para depuración
         }
     }
@@ -93,6 +109,7 @@ public class LoginController {
             stage.show();
         } catch (Exception e) {
             mostrarError("Error al cargar el dashboard: " + e.getMessage());
+            System.err.println("Error al cargar dashboard: " + e);
             e.printStackTrace(); // Para depuración
         }
     }

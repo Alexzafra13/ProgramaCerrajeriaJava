@@ -1,3 +1,5 @@
+// client/src/main/java/com/gestiontaller/client/model/calculo/CorteDTO.java
+
 package com.gestiontaller.client.model.calculo;
 
 import com.gestiontaller.client.model.serie.TipoPerfil;

@@ -1,4 +1,4 @@
--- Script para insertar datos iniciales cuando la base de datos está vacía
+-- server/src/main/resources/db/migration/V2__datos_iniciales.sql
 
 -- Creación de usuario administrador por defecto
 INSERT INTO usuario (username, password, nombre, apellidos, email, telefono, rol, activo, fecha_creacion)
@@ -11,7 +11,7 @@ VALUES ('ALUPROM-21', 'Serie ALUPROM 21', 'Serie de aluminio para ventanas corre
 ON DUPLICATE KEY UPDATE nombre = nombre;
 
 -- Obtener ID de la serie insertada
-SET @serie_aluprom21_id = (SELECT id FROM serie_base WHERE codigo = 'ALUPROM-21');
+SET @serie_aluprom21_id = (SELECT id FROM serie_base WHERE codigo = 'ALUPROM-21' LIMIT 1);
 
 -- Insertar detalles de serie de aluminio
 INSERT INTO serie_aluminio (id, tipo_serie, espesor_minimo, espesor_maximo, color, rotura_puente, permite_persiana)
@@ -38,44 +38,55 @@ VALUES
     (@serie_aluprom21_id, 'HOJA', 20, 'Ancho hoja: (ancho total / 2) - 2 cm')
 ON DUPLICATE KEY UPDATE descuento_milimetros = VALUES(descuento_milimetros);
 
--- Categorías de productos
-INSERT INTO categoria_producto (nombre, descripcion)
+-- Categorías de productos (usar INSERT IGNORE para evitar duplicados)
+INSERT IGNORE INTO categoria_producto (nombre, descripcion)
 VALUES ('Perfiles', 'Perfiles de aluminio para ventanas y puertas'),
        ('Herrajes', 'Herrajes para ventanas y puertas'),
        ('Tornillería', 'Tornillos y fijaciones'),
        ('Accesorios', 'Accesorios para instalación'),
-       ('Vidrios', 'Vidrios para ventanas y puertas')
-ON DUPLICATE KEY UPDATE nombre = nombre;
+       ('Vidrios', 'Vidrios para ventanas y puertas');
 
--- Obtener IDs de categorías
-SET @cat_perfiles_id = (SELECT id FROM categoria_producto WHERE nombre = 'Perfiles');
-SET @cat_herrajes_id = (SELECT id FROM categoria_producto WHERE nombre = 'Herrajes');
-SET @cat_tornilleria_id = (SELECT id FROM categoria_producto WHERE nombre = 'Tornillería');
-SET @cat_accesorios_id = (SELECT id FROM categoria_producto WHERE nombre = 'Accesorios');
-SET @cat_vidrios_id = (SELECT id FROM categoria_producto WHERE nombre = 'Vidrios');
-
--- Productos de ejemplo
-INSERT INTO producto (codigo, nombre, descripcion, categoria_id, tipo, unidad_medida, precio_compra, margen_beneficio, precio_venta, aplicar_iva, stock_minimo, stock_actual, activo)
+-- Crear productos con la inserción directa en lugar de usar variables que pueden causar problemas
+INSERT IGNORE INTO producto (codigo, nombre, descripcion, categoria_id, tipo, unidad_medida, precio_compra, margen_beneficio, precio_venta, aplicar_iva, stock_minimo, stock_actual, activo)
 VALUES
     -- Herrajes
-    ('H001', 'Juego rodamientos corredera', 'Juego completo de rodamientos para ventana corredera', @cat_herrajes_id, 'HERRAJE', 'UNIDADES', 4.50, 30, 5.85, 1, 20, 50, 1),
-    ('H002', 'Cierre ventana corredera', 'Cierre completo para ventana corredera', @cat_herrajes_id, 'HERRAJE', 'UNIDADES', 7.80, 30, 10.14, 1, 10, 25, 1),
+    ('H001', 'Juego rodamientos corredera', 'Juego completo de rodamientos para ventana corredera',
+     (SELECT id FROM categoria_producto WHERE nombre = 'Herrajes' LIMIT 1),
+     'HERRAJE', 'UNIDADES', 4.50, 30, 5.85, 1, 20, 50, 1),
+
+    ('H002', 'Cierre ventana corredera', 'Cierre completo para ventana corredera',
+     (SELECT id FROM categoria_producto WHERE nombre = 'Herrajes' LIMIT 1),
+     'HERRAJE', 'UNIDADES', 7.80, 30, 10.14, 1, 10, 25, 1),
 
     -- Tornillería
-    ('T001', 'Tornillo autorroscante 3.5x16', 'Tornillo autorroscante para aluminio', @cat_tornilleria_id, 'TORNILLO', 'UNIDADES', 0.02, 30, 0.026, 1, 500, 1000, 1),
-    ('T002', 'Tornillo autorroscante 3.9x19', 'Tornillo autorroscante para aluminio', @cat_tornilleria_id, 'TORNILLO', 'UNIDADES', 0.03, 30, 0.039, 1, 500, 1000, 1),
+    ('T001', 'Tornillo autorroscante 3.5x16', 'Tornillo autorroscante para aluminio',
+     (SELECT id FROM categoria_producto WHERE nombre = 'Tornillería' LIMIT 1),
+     'TORNILLO', 'UNIDADES', 0.02, 30, 0.026, 1, 500, 1000, 1),
+
+    ('T002', 'Tornillo autorroscante 3.9x19', 'Tornillo autorroscante para aluminio',
+     (SELECT id FROM categoria_producto WHERE nombre = 'Tornillería' LIMIT 1),
+     'TORNILLO', 'UNIDADES', 0.03, 30, 0.039, 1, 500, 1000, 1),
 
     -- Accesorios
-    ('A001', 'Felpa 5mm (metro)', 'Felpa para ventanas correderas', @cat_accesorios_id, 'ACCESORIO', 'METROS', 0.45, 30, 0.585, 1, 50, 200, 1),
-    ('A002', 'Goma EPDM (metro)', 'Goma para estanqueidad', @cat_accesorios_id, 'GOMA', 'METROS', 0.55, 30, 0.715, 1, 50, 200, 1),
+    ('A001', 'Felpa 5mm (metro)', 'Felpa para ventanas correderas',
+     (SELECT id FROM categoria_producto WHERE nombre = 'Accesorios' LIMIT 1),
+     'ACCESORIO', 'METROS', 0.45, 30, 0.585, 1, 50, 200, 1),
+
+    ('A002', 'Goma EPDM (metro)', 'Goma para estanqueidad',
+     (SELECT id FROM categoria_producto WHERE nombre = 'Accesorios' LIMIT 1),
+     'GOMA', 'METROS', 0.55, 30, 0.715, 1, 50, 200, 1),
 
     -- Vidrios
-    ('V001', 'Vidrio simple 4mm', 'Vidrio simple transparente 4mm', @cat_vidrios_id, 'VIDRIO', 'METROS_CUADRADOS', 15.00, 30, 19.50, 1, 10, 50, 1),
-    ('V002', 'Vidrio doble 4-12-4', 'Vidrio doble cámara 4-12-4', @cat_vidrios_id, 'VIDRIO', 'METROS_CUADRADOS', 25.00, 30, 32.50, 1, 10, 30, 1)
-ON DUPLICATE KEY UPDATE nombre = nombre;
+    ('V001', 'Vidrio simple 4mm', 'Vidrio simple transparente 4mm',
+     (SELECT id FROM categoria_producto WHERE nombre = 'Vidrios' LIMIT 1),
+     'VIDRIO', 'METROS_CUADRADOS', 15.00, 30, 19.50, 1, 10, 50, 1),
+
+    ('V002', 'Vidrio doble 4-12-4', 'Vidrio doble cámara 4-12-4',
+     (SELECT id FROM categoria_producto WHERE nombre = 'Vidrios' LIMIT 1),
+     'VIDRIO', 'METROS_CUADRADOS', 25.00, 30, 32.50, 1, 10, 30, 1);
 
 -- Estados de trabajo
-INSERT INTO estado_trabajo (codigo, nombre, descripcion, color, orden, requiere_aprobacion, es_final)
+INSERT IGNORE INTO estado_trabajo (codigo, nombre, descripcion, color, orden, requiere_aprobacion, es_final)
 VALUES ('PDTE', 'Pendiente', 'Trabajo pendiente de iniciar', '#FFA500', 10, 0, 0),
        ('ASIG', 'Asignado', 'Trabajo asignado a operario', '#4682B4', 20, 0, 0),
        ('PROG', 'En progreso', 'Trabajo en ejecución', '#1E90FF', 30, 0, 0),
@@ -84,11 +95,9 @@ VALUES ('PDTE', 'Pendiente', 'Trabajo pendiente de iniciar', '#FFA500', 10, 0, 0
        ('VERI', 'Verificado', 'Trabajo verificado pendiente de instalación', '#008000', 60, 0, 0),
        ('INST', 'Instalado', 'Trabajo instalado en ubicación del cliente', '#006400', 70, 0, 0),
        ('FACT', 'Facturado', 'Trabajo facturado', '#000080', 80, 0, 1),
-       ('CANC', 'Cancelado', 'Trabajo cancelado', '#FF0000', 90, 1, 1)
-ON DUPLICATE KEY UPDATE nombre = nombre;
+       ('CANC', 'Cancelado', 'Trabajo cancelado', '#FF0000', 90, 1, 1);
 
 -- Cliente de ejemplo
-INSERT INTO cliente (codigo, tipo_cliente, nombre, apellidos, razon_social, nif_cif, direccion_fiscal, codigo_postal, localidad, provincia, pais, telefono1, email, fecha_alta, activo)
+INSERT IGNORE INTO cliente (codigo, tipo_cliente, nombre, apellidos, razon_social, nif_cif, direccion_fiscal, codigo_postal, localidad, provincia, pais, telefono1, email, fecha_alta, activo)
 VALUES ('CLI001', 'PARTICULAR', 'Juan', 'García López', NULL, '12345678Z', 'C/ Ejemplo 123', '28001', 'Madrid', 'Madrid', 'España', '600123456', 'juan.garcia@ejemplo.com', NOW(), 1),
-       ('EMP001', 'EMPRESA', NULL, NULL, 'Construcciones Ejemplo S.L.', 'B12345678', 'Avda. Industrial 45', '08001', 'Barcelona', 'Barcelona', 'España', '934567890', 'ventas@construccionesejemplo.com', NOW(), 1)
-ON DUPLICATE KEY UPDATE nombre = nombre;
+       ('EMP001', 'EMPRESA', NULL, NULL, 'Construcciones Ejemplo S.L.', 'B12345678', 'Avda. Industrial 45', '08001', 'Barcelona', 'Barcelona', 'España', '934567890', 'ventas@construccionesejemplo.com', NOW(), 1);

@@ -1,3 +1,5 @@
+// client/src/main/java/com/gestiontaller/client/controller/CalculadoraVentanaController.java
+
 package com.gestiontaller.client.controller;
 
 import com.gestiontaller.client.api.ConfiguracionSerieApiClient;
@@ -9,7 +11,6 @@ import com.gestiontaller.client.model.calculo.ResultadoCalculoDTO;
 import com.gestiontaller.client.model.configuracion.PlantillaConfiguracionSerieDTO;
 import com.gestiontaller.client.model.presupuesto.TipoPresupuesto;
 import com.gestiontaller.client.model.serie.SerieAluminioDTO;
-import com.gestiontaller.client.model.serie.TipoSerie;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
