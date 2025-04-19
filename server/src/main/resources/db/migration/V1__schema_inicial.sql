@@ -1,4 +1,4 @@
--- Esquema inicial para la base de datos (migraciones Flyway)
+-- Esquema inicial completo para sistema de gestión de taller de aluminio y cerrajería
 
 -- Tabla de usuarios
 CREATE TABLE IF NOT EXISTS usuario (
@@ -363,4 +363,41 @@ CREATE TABLE IF NOT EXISTS retal (
     FOREIGN KEY (producto_id) REFERENCES producto(id),
     FOREIGN KEY (trabajo_id) REFERENCES trabajo(id),
     FOREIGN KEY (usuario_id) REFERENCES usuario(id)
+);
+
+-- Tabla para plantillas de configuración de series
+CREATE TABLE IF NOT EXISTS plantilla_configuracion_serie (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    serie_id BIGINT NOT NULL,
+    nombre VARCHAR(100) NOT NULL,
+    num_hojas INT NOT NULL,
+    activa BOOLEAN DEFAULT TRUE,
+    descripcion TEXT,
+    FOREIGN KEY (serie_id) REFERENCES serie_base(id),
+    UNIQUE KEY uk_serie_num_hojas (serie_id, num_hojas)
+);
+
+-- Tabla para perfiles en cada configuración
+CREATE TABLE IF NOT EXISTS perfil_configuracion (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    configuracion_id BIGINT NOT NULL,
+    perfil_id BIGINT NOT NULL,
+    tipo_perfil VARCHAR(50) NOT NULL,
+    cantidad INT NOT NULL,
+    descuento_cm DECIMAL(5,2),
+    formula_calculo TEXT,
+    FOREIGN KEY (configuracion_id) REFERENCES plantilla_configuracion_serie(id) ON DELETE CASCADE,
+    FOREIGN KEY (perfil_id) REFERENCES perfil_serie(id)
+);
+
+-- Tabla para materiales en cada configuración
+CREATE TABLE IF NOT EXISTS material_configuracion (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    configuracion_id BIGINT NOT NULL,
+    producto_id BIGINT,
+    descripcion VARCHAR(255) NOT NULL,
+    cantidad_base INT NOT NULL,
+    formula_cantidad TEXT,
+    FOREIGN KEY (configuracion_id) REFERENCES plantilla_configuracion_serie(id) ON DELETE CASCADE,
+    FOREIGN KEY (producto_id) REFERENCES producto(id)
 );

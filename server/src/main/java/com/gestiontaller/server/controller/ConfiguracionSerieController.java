@@ -23,19 +23,19 @@ public class ConfiguracionSerieController {
 
     @GetMapping("/serie/{serieId}")
     public ResponseEntity<List<PlantillaConfiguracionSerieDTO>> obtenerConfiguracionesPorSerie(
-            @PathVariable Long serieId) {
+            @PathVariable("serieId") Long serieId) {
         return ResponseEntity.ok(configuracionService.obtenerConfiguracionesPorSerie(serieId));
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<PlantillaConfiguracionSerieDTO> obtenerConfiguracionPorId(
-            @PathVariable Long id) {
+            @PathVariable("id") Long id) {
         return ResponseEntity.ok(configuracionService.obtenerConfiguracionPorId(id));
     }
 
     @GetMapping("/serie/{serieId}/hojas/{numHojas}")
     public ResponseEntity<PlantillaConfiguracionSerieDTO> obtenerConfiguracionPorSerieYHojas(
-            @PathVariable Long serieId, @PathVariable Integer numHojas) {
+            @PathVariable("serieId") Long serieId, @PathVariable("numHojas") Integer numHojas) {
         return ResponseEntity.ok(configuracionService.obtenerConfiguracionPorSerieYHojas(serieId, numHojas));
     }
 
@@ -46,14 +46,14 @@ public class ConfiguracionSerieController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> eliminarConfiguracion(@PathVariable Long id) {
+    public ResponseEntity<Void> eliminarConfiguracion(@PathVariable("id") Long id) {
         configuracionService.eliminarConfiguracion(id);
         return ResponseEntity.ok().build();
     }
 
     @PostMapping("/{configuracionId}/aplicar")
     public ResponseEntity<ResultadoCalculoDTO> aplicarConfiguracion(
-            @PathVariable Long configuracionId,
+            @PathVariable("configuracionId") Long configuracionId,
             @RequestParam Integer ancho,
             @RequestParam Integer alto,
             @RequestParam(required = false, defaultValue = "false") Boolean incluyePersiana,
