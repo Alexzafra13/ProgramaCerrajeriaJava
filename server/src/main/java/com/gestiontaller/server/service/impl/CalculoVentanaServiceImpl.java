@@ -6,6 +6,7 @@ import com.gestiontaller.server.dto.calculo.CorteDTO;
 import com.gestiontaller.server.dto.calculo.MaterialAdicionalDTO;
 import com.gestiontaller.server.dto.calculo.ParametrosCalculoDTO;
 import com.gestiontaller.server.dto.calculo.ResultadoCalculoDTO;
+import com.gestiontaller.server.dto.configuracion.PlantillaConfiguracionSerieDTO;
 import com.gestiontaller.server.mapper.CalculoVentanaMapper;
 import com.gestiontaller.server.mapper.CorteVentanaMapper;
 import com.gestiontaller.server.mapper.MaterialAdicionalMapper;
@@ -13,20 +14,18 @@ import com.gestiontaller.server.model.calculo.CalculoVentana;
 import com.gestiontaller.server.model.calculo.CorteVentana;
 import com.gestiontaller.server.model.calculo.MaterialAdicional;
 import com.gestiontaller.server.model.presupuesto.LineaPresupuesto;
-import com.gestiontaller.server.model.serie.PerfilSerie;
 import com.gestiontaller.server.model.serie.SerieBase;
 import com.gestiontaller.server.model.trabajo.Trabajo;
 import com.gestiontaller.server.repository.calculo.CalculoVentanaRepository;
 import com.gestiontaller.server.repository.presupuesto.LineaPresupuestoRepository;
-import com.gestiontaller.server.repository.serie.PerfilSerieRepository;
+import com.gestiontaller.server.repository.serie.SerieBaseRepository;
 import com.gestiontaller.server.repository.trabajo.TrabajoRepository;
 import com.gestiontaller.server.service.interfaces.CalculoVentanaService;
-import com.gestiontaller.server.util.calculadora.CalculadoraVentana;
+import com.gestiontaller.server.service.interfaces.ConfiguracionSerieService;
 import com.gestiontaller.server.util.optimizador.OptimizadorCortes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import com.gestiontaller.server.repository.serie.SerieBaseRepository;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -38,86 +37,65 @@ public class CalculoVentanaServiceImpl implements CalculoVentanaService {
     private final CalculoVentanaRepository calculoVentanaRepository;
     private final LineaPresupuestoRepository lineaPresupuestoRepository;
     private final SerieBaseRepository serieBaseRepository;
-    private final PerfilSerieRepository perfilSerieRepository;
     private final TrabajoRepository trabajoRepository;
     private final CalculoVentanaMapper calculoVentanaMapper;
     private final CorteVentanaMapper corteVentanaMapper;
     private final MaterialAdicionalMapper materialAdicionalMapper;
-    private final CalculadoraVentana calculadora;
     private final OptimizadorCortes optimizadorCortes;
     private final ObjectMapper objectMapper;
+    private final ConfiguracionSerieService configuracionService;
 
     @Autowired
     public CalculoVentanaServiceImpl(
             CalculoVentanaRepository calculoVentanaRepository,
             LineaPresupuestoRepository lineaPresupuestoRepository,
             SerieBaseRepository serieBaseRepository,
-            PerfilSerieRepository perfilSerieRepository,
             TrabajoRepository trabajoRepository,
             CalculoVentanaMapper calculoVentanaMapper,
             CorteVentanaMapper corteVentanaMapper,
             MaterialAdicionalMapper materialAdicionalMapper,
-            CalculadoraVentana calculadora,
             OptimizadorCortes optimizadorCortes,
-            ObjectMapper objectMapper) {
+            ObjectMapper objectMapper,
+            ConfiguracionSerieService configuracionService) {
         this.calculoVentanaRepository = calculoVentanaRepository;
         this.lineaPresupuestoRepository = lineaPresupuestoRepository;
         this.serieBaseRepository = serieBaseRepository;
-        this.perfilSerieRepository = perfilSerieRepository;
         this.trabajoRepository = trabajoRepository;
         this.calculoVentanaMapper = calculoVentanaMapper;
         this.corteVentanaMapper = corteVentanaMapper;
         this.materialAdicionalMapper = materialAdicionalMapper;
-        this.calculadora = calculadora;
         this.optimizadorCortes = optimizadorCortes;
         this.objectMapper = objectMapper;
+        this.configuracionService = configuracionService;
     }
 
     @Override
     @Transactional
     public ResultadoCalculoDTO calcularVentana(ParametrosCalculoDTO parametros) {
-        // Obtener la serie
-        SerieBase serie = serieBaseRepository.findById(parametros.getSerieId())
-                .orElseThrow(() -> new RuntimeException("Serie no encontrada"));
+        // Verificar que existe la serie
+        serieBaseRepository.findById(parametros.getSerieId())
+                .orElseThrow(() -> new RuntimeException("Serie no encontrada con ID: " + parametros.getSerieId()));
 
-        // Obtener perfiles necesarios
-        List<PerfilSerie> perfiles = perfilSerieRepository.findBySerieId(parametros.getSerieId());
+        // Obtener la configuración específica para esta serie y número de hojas
+        PlantillaConfiguracionSerieDTO config =
+                configuracionService.obtenerConfiguracionPorSerieYHojas(
+                        parametros.getSerieId(),
+                        parametros.getNumeroHojas());
 
-        // Verificar si es la serie ALUPROM-21
-        ResultadoCalculoDTO resultado;
-        if (serie.getCodigo().equals("ALUPROM-21")) {
-            // Para ALUPROM-21 siempre usamos 2 hojas
-            parametros.setNumeroHojas(2);
+        // Aplicar la configuración para obtener el resultado
+        ResultadoCalculoDTO resultado = configuracionService.aplicarConfiguracion(
+                config.getId(),
+                parametros.getAncho(),
+                parametros.getAlto(),
+                parametros.getIncluyePersiana(),
+                parametros.getAlturaCajonPersiana(),
+                parametros.getTipoCristal()
+        );
 
-            resultado = calculadora.calcularVentana(
-                    parametros.getAncho(),
-                    parametros.getAlto(),
-                    parametros.getNumeroHojas(),
-                    parametros.getIncluyePersiana(),
-                    parametros.getAlturaCajonPersiana(),
-                    parametros.getAltoEsTotal(),
-                    serie,
-                    perfiles
-            );
-        } else {
-            // Para otras series, usar cálculo genérico
-            resultado = calculadora.calcularVentana(
-                    parametros.getAncho(),
-                    parametros.getAlto(),
-                    parametros.getNumeroHojas(),
-                    parametros.getIncluyePersiana(),
-                    parametros.getAlturaCajonPersiana(),
-                    parametros.getAltoEsTotal(),
-                    serie,
-                    perfiles
-            );
-        }
-
+        // Serializar el resultado para almacenamiento
         try {
-            // Convertir el resultado a JSON para almacenamiento
             resultado.setResultadoJson(objectMapper.writeValueAsString(resultado));
         } catch (Exception e) {
-            // Manejar error de serialización
             throw new RuntimeException("Error al serializar resultado: " + e.getMessage());
         }
 
@@ -203,6 +181,19 @@ public class CalculoVentanaServiceImpl implements CalculoVentanaService {
         parametros.setTipoPresupuesto(linea.getTipoPresupuesto());
         parametros.setIncluyePersiana(linea.getIncluyePersiana());
 
+        // Si no tiene número de hojas, buscar la primera configuración disponible
+        // para esta serie y usar su número de hojas por defecto
+        if (parametros.getNumeroHojas() == null || parametros.getNumeroHojas() <= 0) {
+            List<PlantillaConfiguracionSerieDTO> configs =
+                    configuracionService.obtenerConfiguracionesPorSerie(linea.getSerie().getId());
+            if (!configs.isEmpty()) {
+                parametros.setNumeroHojas(configs.get(0).getNumHojas());
+            } else {
+                // Si no hay configuraciones, usar 2 hojas por defecto
+                parametros.setNumeroHojas(2);
+            }
+        }
+
         // Calcular ventana
         ResultadoCalculoDTO resultado = calcularVentana(parametros);
 
@@ -222,7 +213,6 @@ public class CalculoVentanaServiceImpl implements CalculoVentanaService {
         return resultado;
     }
 
-    // Continúa desde donde se truncó el archivo
     @Override
     @Transactional
     public ResultadoCalculoDTO optimizarCortesParaTrabajo(Long trabajoId) {

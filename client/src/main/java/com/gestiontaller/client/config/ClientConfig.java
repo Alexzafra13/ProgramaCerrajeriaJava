@@ -1,6 +1,7 @@
 package com.gestiontaller.client.config;
 
 import com.gestiontaller.client.api.AuthApiClient;
+import com.gestiontaller.client.api.ConfiguracionSerieApiClient;
 import com.gestiontaller.client.api.SerieApiClient;
 import com.gestiontaller.client.util.FXMLLoaderUtil;
 import org.springframework.beans.factory.annotation.Value;
@@ -31,7 +32,7 @@ public class ClientConfig {
     }
 
     @Bean
-    public SerieApiClient serieApiClient() {
-        return new SerieApiClient(apiBaseUrl);
+    public ConfiguracionSerieApiClient configuracionSerieApiClient() {
+        return new ConfiguracionSerieApiClient(apiBaseUrl);
     }
 }

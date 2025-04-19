@@ -1,7 +1,12 @@
 package com.gestiontaller.client.controller;
 
+import com.gestiontaller.client.api.ConfiguracionSerieApiClient;
 import com.gestiontaller.client.api.SerieApiClient;
 import com.gestiontaller.client.model.TipoCristal;
+import com.gestiontaller.client.model.calculo.CorteDTO;
+import com.gestiontaller.client.model.calculo.MaterialAdicionalDTO;
+import com.gestiontaller.client.model.calculo.ResultadoCalculoDTO;
+import com.gestiontaller.client.model.configuracion.PlantillaConfiguracionSerieDTO;
 import com.gestiontaller.client.model.presupuesto.TipoPresupuesto;
 import com.gestiontaller.client.model.serie.SerieAluminioDTO;
 import com.gestiontaller.client.model.serie.TipoSerie;
@@ -53,17 +58,21 @@ public class CalculadoraVentanaController {
     @FXML private TableColumn<CorteDTO, Integer> colCantidad;
     @FXML private TableColumn<CorteDTO, String> colDescripcion;
 
-    @FXML private TableView<MaterialDTO> tablaMateriales;
-    @FXML private TableColumn<MaterialDTO, String> colDescripcionMaterial;
-    @FXML private TableColumn<MaterialDTO, Integer> colCantidadMaterial;
-    @FXML private TableColumn<MaterialDTO, Double> colPrecioUnitario;
-    @FXML private TableColumn<MaterialDTO, Double> colPrecioTotal;
+    @FXML private TableView<MaterialAdicionalDTO> tablaMateriales;
+    @FXML private TableColumn<MaterialAdicionalDTO, String> colDescripcionMaterial;
+    @FXML private TableColumn<MaterialAdicionalDTO, Integer> colCantidadMaterial;
+    @FXML private TableColumn<MaterialAdicionalDTO, Double> colPrecioUnitario;
+    @FXML private TableColumn<MaterialAdicionalDTO, Double> colPrecioTotal;
 
     private final SerieApiClient serieApiClient;
+    private final ConfiguracionSerieApiClient configuracionSerieApiClient;
 
     @Autowired
-    public CalculadoraVentanaController(SerieApiClient serieApiClient) {
+    public CalculadoraVentanaController(
+            SerieApiClient serieApiClient,
+            ConfiguracionSerieApiClient configuracionSerieApiClient) {
         this.serieApiClient = serieApiClient;
+        this.configuracionSerieApiClient = configuracionSerieApiClient;
     }
 
     @FXML
@@ -86,9 +95,6 @@ public class CalculadoraVentanaController {
 
         // Por defecto, deshabilitar el campo de altura cajón
         txtAlturaCajon.setDisable(true);
-
-        // Valores iniciales
-        txtNumeroHojas.setText("2");
     }
 
     private void cargarSeries() {
@@ -96,17 +102,16 @@ public class CalculadoraVentanaController {
             System.out.println("Iniciando carga de series...");
             List<SerieAluminioDTO> series = serieApiClient.obtenerSeriesAluminio();
 
-            // Si no hay series disponibles (por error de autenticación u otro motivo), crear una de ejemplo
+            // Si no hay series disponibles, mostrar error
             if (series.isEmpty()) {
-                System.out.println("No se obtuvieron series. Creando serie de ejemplo ALUPROM-21...");
-                SerieAluminioDTO serieAluprom21 = crearSerieAlupromEjemplo();
-                series = List.of(serieAluprom21);
+                mostrarError("Error", "No se encontraron series de aluminio. Contacte con el administrador.");
+                return;
             }
 
             ObservableList<SerieAluminioDTO> seriesObservables = FXCollections.observableArrayList(series);
             cmbSerie.setItems(seriesObservables);
 
-            // Buscar ALUPROM-21
+            // Buscar ALUPROM-21 u otra serie por defecto
             boolean encontrada = false;
             for (SerieAluminioDTO serie : series) {
                 if ("ALUPROM-21".equals(serie.getCodigo())) {
@@ -122,41 +127,17 @@ public class CalculadoraVentanaController {
                         series.get(0).getCodigo());
                 cmbSerie.setValue(series.get(0));
             }
+
+            // Cargar configuraciones para la serie seleccionada
+            if (cmbSerie.getValue() != null) {
+                cargarConfiguracionesSerie(cmbSerie.getValue().getId());
+            }
         } catch (Exception e) {
-            System.err.println("Error grave al cargar series: " + e.getMessage());
+            System.err.println("Error al cargar series: " + e.getMessage());
             e.printStackTrace();
-
-            // Asegurar que siempre haya al menos una serie disponible
-            SerieAluminioDTO serieDefault = crearSerieAlupromEjemplo();
-            cmbSerie.setItems(FXCollections.observableArrayList(List.of(serieDefault)));
-            cmbSerie.setValue(serieDefault);
-
-            mostrarError("Error al cargar series",
-                    "Se están usando datos de ejemplo debido a un error de conexión con el servidor");
+            mostrarError("Error de conexión",
+                    "No se pudieron cargar las series. Verifique la conexión con el servidor.");
         }
-    }
-
-    /**
-     * Crea una serie ALUPROM-21 de ejemplo para casos en que no se pueda obtener del servidor
-     */
-    private SerieAluminioDTO crearSerieAlupromEjemplo() {
-        SerieAluminioDTO serie = new SerieAluminioDTO();
-        serie.setId(1L);
-        serie.setCodigo("ALUPROM-21");
-        serie.setNombre("Serie ALUPROM 21 (ejemplo)");
-        serie.setDescripcion("Serie de aluminio para ventanas correderas de dos hojas");
-        serie.setTipoSerie(TipoSerie.CORREDERA);
-        serie.setEspesorMinimo(1.5);
-        serie.setEspesorMaximo(1.8);
-        serie.setColor("BLANCO");
-        serie.setRoturaPuente(false);
-        serie.setPermitePersiana(true);
-        serie.setPrecioMetroBase(15.0);
-        serie.setActiva(true);
-
-        // Podrías añadir también perfiles de ejemplo si los necesitas
-
-        return serie;
     }
 
     private void inicializarTablas() {
@@ -185,12 +166,11 @@ public class CalculadoraVentanaController {
             }
         });
 
-        // Listener para tipo de presupuesto
-        cmbTipoPresupuesto.valueProperty().addListener((obs, oldVal, newVal) -> {
-            if (newVal == TipoPresupuesto.VENTANA_CORREDERA) {
-                txtNumeroHojas.setText("2"); // Por defecto 2 hojas para correderas
-            } else if (newVal == TipoPresupuesto.VENTANA_ABATIBLE) {
-                txtNumeroHojas.setText("1"); // Por defecto 1 hoja para abatibles
+        // Listener para serie seleccionada
+        cmbSerie.valueProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal != null) {
+                // Buscar configuraciones disponibles para esta serie
+                cargarConfiguracionesSerie(newVal.getId());
             }
         });
 
@@ -220,6 +200,38 @@ public class CalculadoraVentanaController {
         });
     }
 
+    private void cargarConfiguracionesSerie(Long serieId) {
+        try {
+            List<PlantillaConfiguracionSerieDTO> configuraciones =
+                    configuracionSerieApiClient.obtenerConfiguracionesPorSerie(serieId);
+
+            if (configuraciones.isEmpty()) {
+                mostrarError("Error de configuración",
+                        "No existen configuraciones para esta serie. Contacte con el administrador.");
+                txtNumeroHojas.setEditable(true);
+                txtNumeroHojas.setDisable(false);
+                txtNumeroHojas.setText("2"); // Valor por defecto general
+                return;
+            }
+
+            // Si hay configuraciones disponibles, actualizar el número de hojas según la primera configuración
+            PlantillaConfiguracionSerieDTO primerConfig = configuraciones.get(0);
+            txtNumeroHojas.setText(primerConfig.getNumHojas().toString());
+
+            // Si solo hay una configuración con un número específico de hojas, deshabilitar el campo
+            if (configuraciones.size() == 1) {
+                txtNumeroHojas.setEditable(false);
+                txtNumeroHojas.setDisable(true);
+            } else {
+                txtNumeroHojas.setEditable(true);
+                txtNumeroHojas.setDisable(false);
+            }
+        } catch (Exception e) {
+            System.err.println("Error al cargar configuraciones de serie: " + e.getMessage());
+            mostrarError("Error", "No se pudieron cargar las configuraciones para esta serie");
+        }
+    }
+
     @FXML
     private void handleCalcular(ActionEvent event) {
         // Validar formulario
@@ -227,43 +239,62 @@ public class CalculadoraVentanaController {
             return;
         }
 
-        // Aquí iría la lógica real para realizar el cálculo
-        // Por ahora solo simularemos resultados
+        SerieAluminioDTO serie = cmbSerie.getValue();
+        if (serie == null) {
+            mostrarError("Error", "Debe seleccionar una serie");
+            return;
+        }
 
-        // Actualizar UI con resultado
-        lblResumen.setText("Ventana Corredera ALUPROM-21 con 2 hojas");
-        lblMedidasTotales.setText(txtAncho.getText() + " x " + txtAlto.getText() + " mm");
-        lblMedidasVentana.setText(txtAncho.getText() + " x " + (Integer.parseInt(txtAlto.getText()) -
-                (chkPersiana.isSelected() ? Integer.parseInt(txtAlturaCajon.getText()) : 0)) + " mm");
-        lblPrecioTotal.setText("350.75 €");
+        int ancho = Integer.parseInt(txtAncho.getText().trim());
+        int alto = Integer.parseInt(txtAlto.getText().trim());
+        int numHojas = Integer.parseInt(txtNumeroHojas.getText().trim());
+        boolean incluyePersiana = chkPersiana.isSelected();
+        Integer alturaCajon = null;
+        if (incluyePersiana && !txtAlturaCajon.getText().trim().isEmpty()) {
+            alturaCajon = Integer.parseInt(txtAlturaCajon.getText().trim());
+        }
+        TipoCristal tipoCristal = cmbTipoCristal.getValue();
 
-        // Simular datos para las tablas (en una implementación real, estos datos vendrían de la API)
-        ObservableList<CorteDTO> cortes = FXCollections.observableArrayList(
-                new CorteDTO("ALUPROM21-ML", "Marco Lateral", 2000, 2, "Marco lateral"),
-                new CorteDTO("ALUPROM21-MS", "Marco Superior", 1000, 1, "Marco superior"),
-                new CorteDTO("ALUPROM21-MI", "Marco Inferior", 1000, 1, "Marco inferior"),
-                new CorteDTO("ALUPROM21-HL", "Hoja Lateral", 1920, 2, "Hoja lateral")
-        );
+        try {
+            // Obtener la configuración específica para esta serie y número de hojas
+            PlantillaConfiguracionSerieDTO config =
+                    configuracionSerieApiClient.obtenerConfiguracionPorSerieYHojas(serie.getId(), numHojas);
 
-        ObservableList<MaterialDTO> materiales = FXCollections.observableArrayList(
-                new MaterialDTO("Juego de rodamientos", 2, 8.50, 17.00),
-                new MaterialDTO("Felpa (metros)", 10, 0.80, 8.00),
-                new MaterialDTO("Cierre ventana corredera", 1, 12.30, 12.30),
-                new MaterialDTO("Vidrio simple 4mm", 2, 15.00, 30.00)
-        );
+            if (config == null) {
+                mostrarError("Error", "No existe configuración para " + serie.getNombre() +
+                        " con " + numHojas + " hojas.");
+                return;
+            }
 
-        tablaCortes.setItems(cortes);
-        tablaMateriales.setItems(materiales);
+            // Aplicar la configuración para calcular
+            ResultadoCalculoDTO resultado = configuracionSerieApiClient.aplicarConfiguracion(
+                    config.getId(), ancho, alto, incluyePersiana, alturaCajon, tipoCristal);
 
-        // Cambiar a la pestaña de resumen
-        tabResultados.getSelectionModel().select(tabResumen);
+            if (resultado == null) {
+                mostrarError("Error", "No se pudo obtener el resultado del cálculo");
+                return;
+            }
+
+            // Actualizar la interfaz con el resultado
+            actualizarUI(resultado);
+
+        } catch (Exception e) {
+            mostrarError("Error", "Error al realizar el cálculo: " + e.getMessage());
+        }
     }
 
     @FXML
     private void handleLimpiar(ActionEvent event) {
         txtAncho.clear();
         txtAlto.clear();
-        txtNumeroHojas.setText("2");
+
+        // No limpiar el número de hojas, lo dejamos según la configuración de la serie
+        if (cmbSerie.getValue() != null) {
+            cargarConfiguracionesSerie(cmbSerie.getValue().getId());
+        } else {
+            txtNumeroHojas.setText("2");
+        }
+
         chkPersiana.setSelected(false);
         txtAlturaCajon.clear();
         chkAltoTotal.setSelected(false);
@@ -353,45 +384,33 @@ public class CalculadoraVentanaController {
         alert.showAndWait();
     }
 
-    // Clases internas para las tablas
-    public static class CorteDTO {
-        private final String codigoPerfil;
-        private final String nombrePerfil;
-        private final int longitud;
-        private final int cantidad;
-        private final String descripcion;
+    // Método para actualizar la interfaz con el resultado
+    private void actualizarUI(ResultadoCalculoDTO resultado) {
+        // Actualizar resumen
+        lblResumen.setText(resultado.getResumen());
+        lblMedidasTotales.setText(resultado.getAncho() + " x " + resultado.getAlto() + " mm");
 
-        public CorteDTO(String codigoPerfil, String nombrePerfil, int longitud, int cantidad, String descripcion) {
-            this.codigoPerfil = codigoPerfil;
-            this.nombrePerfil = nombrePerfil;
-            this.longitud = longitud;
-            this.cantidad = cantidad;
-            this.descripcion = descripcion;
+        if (resultado.getAltoVentana() != null && !resultado.getAltoVentana().equals(resultado.getAlto())) {
+            lblMedidasVentana.setText(resultado.getAnchoVentana() + " x " + resultado.getAltoVentana() + " mm");
+        } else {
+            lblMedidasVentana.setText("Igual a medidas totales");
         }
 
-        public String getCodigoPerfil() { return codigoPerfil; }
-        public String getNombrePerfil() { return nombrePerfil; }
-        public int getLongitud() { return longitud; }
-        public int getCantidad() { return cantidad; }
-        public String getDescripcion() { return descripcion; }
-    }
+        lblPrecioTotal.setText(String.format("%.2f €", resultado.getPrecioTotal()));
 
-    public static class MaterialDTO {
-        private final String descripcion;
-        private final int cantidad;
-        private final double precioUnitario;
-        private final double precioTotal;
-
-        public MaterialDTO(String descripcion, int cantidad, double precioUnitario, double precioTotal) {
-            this.descripcion = descripcion;
-            this.cantidad = cantidad;
-            this.precioUnitario = precioUnitario;
-            this.precioTotal = precioTotal;
+        // Actualizar tabla de cortes
+        if (resultado.getCortes() != null) {
+            ObservableList<CorteDTO> cortes = FXCollections.observableArrayList(resultado.getCortes());
+            tablaCortes.setItems(cortes);
         }
 
-        public String getDescripcion() { return descripcion; }
-        public int getCantidad() { return cantidad; }
-        public double getPrecioUnitario() { return precioUnitario; }
-        public double getPrecioTotal() { return precioTotal; }
+        // Actualizar tabla de materiales
+        if (resultado.getMaterialesAdicionales() != null) {
+            ObservableList<MaterialAdicionalDTO> materiales = FXCollections.observableArrayList(resultado.getMaterialesAdicionales());
+            tablaMateriales.setItems(materiales);
+        }
+
+        // Cambiar a la pestaña de resumen
+        tabResultados.getSelectionModel().select(tabResumen);
     }
 }
