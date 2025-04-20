@@ -2,8 +2,8 @@
 
 package com.gestiontaller.client.model.calculo;
 
-import com.gestiontaller.client.model.TipoCristal;
-import com.gestiontaller.client.model.presupuesto.TipoPresupuesto;
+import com.gestiontaller.common.model.presupuesto.TipoPresupuesto;
+import com.gestiontaller.common.model.ventana.TipoCristal;
 import lombok.Data;
 
 import java.util.ArrayList;

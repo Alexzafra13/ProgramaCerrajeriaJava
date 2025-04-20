@@ -1,8 +1,8 @@
 package com.gestiontaller.client.api;
 
-import com.gestiontaller.client.model.TipoCristal;
 import com.gestiontaller.client.model.calculo.ResultadoCalculoDTO;
 import com.gestiontaller.client.model.configuracion.PlantillaConfiguracionSerieDTO;
+import com.gestiontaller.common.model.ventana.TipoCristal;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;

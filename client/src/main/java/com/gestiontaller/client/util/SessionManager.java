@@ -1,7 +1,7 @@
 package com.gestiontaller.client.util;
 
-import com.gestiontaller.client.model.auth.LoginResponse;
-import com.gestiontaller.client.model.usuario.Rol;
+import com.gestiontaller.common.model.auth.LoginResponse;
+import com.gestiontaller.common.model.usuario.Rol;
 
 public class SessionManager {
 

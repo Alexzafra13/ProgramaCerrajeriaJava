@@ -1,5 +1,7 @@
 package com.gestiontaller.client.model.serie;
 
+import com.gestiontaller.common.model.serie.TipoSerie;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

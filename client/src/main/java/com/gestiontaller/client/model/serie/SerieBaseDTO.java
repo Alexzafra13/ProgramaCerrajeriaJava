@@ -1,6 +1,5 @@
 package com.gestiontaller.client.model.serie;
 
-import com.gestiontaller.client.model.TipoMaterial;
 import lombok.Data;
 
 @Data

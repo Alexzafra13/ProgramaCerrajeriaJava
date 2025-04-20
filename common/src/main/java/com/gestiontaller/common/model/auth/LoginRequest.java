@@ -1,4 +1,4 @@
-package com.gestiontaller.client.model.auth;
+package com.gestiontaller.common.model.auth;
 
 import lombok.Data;
 

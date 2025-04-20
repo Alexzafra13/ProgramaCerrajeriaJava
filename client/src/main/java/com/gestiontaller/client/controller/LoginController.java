@@ -1,7 +1,7 @@
 package com.gestiontaller.client.controller;
 
 import com.gestiontaller.client.api.AuthApiClient;
-import com.gestiontaller.client.model.auth.LoginResponse;
+import com.gestiontaller.common.model.auth.LoginResponse;
 import com.gestiontaller.client.util.FXMLLoaderUtil;
 import com.gestiontaller.client.util.SessionManager;
 import javafx.event.ActionEvent;

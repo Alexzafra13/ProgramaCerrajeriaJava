@@ -2,7 +2,7 @@
 
 package com.gestiontaller.client.model.calculo;
 
-import com.gestiontaller.client.model.serie.TipoPerfil;
+import com.gestiontaller.common.model.serie.TipoPerfil;
 import lombok.Data;
 
 @Data

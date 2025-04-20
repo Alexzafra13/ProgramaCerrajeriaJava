@@ -1,8 +1,13 @@
 package com.gestiontaller.server.service.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.gestiontaller.common.dto.calculo.*;
+import com.gestiontaller.common.dto.calculo.CalculoVentanaDTO;
+import com.gestiontaller.common.dto.calculo.CorteDTO;
+import com.gestiontaller.common.dto.calculo.MaterialAdicionalDTO;
+import com.gestiontaller.common.dto.calculo.ParametrosCalculoDTO;
+import com.gestiontaller.common.dto.calculo.ResultadoCalculoDTO;
 import com.gestiontaller.common.dto.configuracion.PlantillaConfiguracionSerieDTO;
+import com.gestiontaller.common.model.ventana.TipoCristal;
 import com.gestiontaller.server.mapper.CalculoVentanaMapper;
 import com.gestiontaller.server.mapper.CorteVentanaMapper;
 import com.gestiontaller.server.mapper.MaterialAdicionalMapper;

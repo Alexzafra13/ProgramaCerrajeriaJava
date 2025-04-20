@@ -1,7 +1,7 @@
 package com.gestiontaller.client.api;
 
-import com.gestiontaller.client.model.auth.LoginRequest;
-import com.gestiontaller.client.model.auth.LoginResponse;
+import com.gestiontaller.common.model.auth.LoginRequest;
+import com.gestiontaller.common.model.auth.LoginResponse;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;

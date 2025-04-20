@@ -1,8 +1,8 @@
 package com.gestiontaller.client.controller;
 
 import com.gestiontaller.client.api.SerieApiClient;
-import com.gestiontaller.client.model.serie.SerieAluminioDTO;
-import com.gestiontaller.client.model.serie.TipoSerie;
+import com.gestiontaller.common.model.serie.TipoSerie;
+import com.gestiontaller.common.dto.serie.SerieAluminioDTO;
 import com.gestiontaller.client.util.FXMLLoaderUtil;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;

@@ -1,6 +1,11 @@
 package com.gestiontaller.server.service.impl;
 
+import com.gestiontaller.common.dto.calculo.CorteDTO;
+import com.gestiontaller.common.dto.calculo.MaterialAdicionalDTO;
+import com.gestiontaller.common.dto.calculo.ResultadoCalculoDTO;
 import com.gestiontaller.common.dto.configuracion.PlantillaConfiguracionSerieDTO;
+import com.gestiontaller.common.model.presupuesto.TipoPresupuesto;
+import com.gestiontaller.common.model.ventana.TipoCristal;
 import com.gestiontaller.server.exception.ConfiguracionNotFoundException;
 import com.gestiontaller.server.exception.SerieNotFoundException;
 import com.gestiontaller.server.mapper.configuracion.PlantillaConfiguracionSerieMapper;

@@ -4,7 +4,6 @@ package com.gestiontaller.client.controller;
 
 import com.gestiontaller.client.api.ConfiguracionSerieApiClient;
 import com.gestiontaller.client.api.SerieApiClient;
-import com.gestiontaller.client.model.TipoCristal;
 import com.gestiontaller.client.model.calculo.CorteDTO;
 import com.gestiontaller.client.model.calculo.MaterialAdicionalDTO;
 import com.gestiontaller.client.model.calculo.ResultadoCalculoDTO;
