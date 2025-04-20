@@ -1,5 +1,3 @@
-// client/src/main/java/com/gestiontaller/client/controller/CalculadoraVentanaController.java
-
 package com.gestiontaller.client.controller;
 
 import com.gestiontaller.client.api.ConfiguracionSerieApiClient;
@@ -24,7 +22,10 @@ import javafx.scene.layout.HBox;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.List;
+import java.util.Locale;
 
 @Component
 public class CalculadoraVentanaController {
@@ -69,12 +70,19 @@ public class CalculadoraVentanaController {
     private final SerieApiClient serieApiClient;
     private final ConfiguracionSerieApiClient configuracionSerieApiClient;
 
+    // Formato para números decimales (usando coma como separador decimal)
+    private final DecimalFormat decimalFormat;
+
     @Autowired
     public CalculadoraVentanaController(
             SerieApiClient serieApiClient,
             ConfiguracionSerieApiClient configuracionSerieApiClient) {
         this.serieApiClient = serieApiClient;
         this.configuracionSerieApiClient = configuracionSerieApiClient;
+
+        // Configurar formato decimal para España (coma como separador decimal)
+        DecimalFormatSymbols symbols = new DecimalFormatSymbols(new Locale("es", "ES"));
+        this.decimalFormat = new DecimalFormat("#,##0.00", symbols);
     }
 
     @FXML
@@ -112,6 +120,32 @@ public class CalculadoraVentanaController {
 
             ObservableList<SerieAluminioDTO> seriesObservables = FXCollections.observableArrayList(series);
             cmbSerie.setItems(seriesObservables);
+
+            // Configurar el formateador para mostrar el código y nombre en el ComboBox
+            cmbSerie.setCellFactory(listView -> new ListCell<SerieAluminioDTO>() {
+                @Override
+                protected void updateItem(SerieAluminioDTO item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (empty || item == null) {
+                        setText(null);
+                    } else {
+                        setText(item.getCodigo() + " - " + item.getNombre());
+                    }
+                }
+            });
+
+            // Configurar cómo se muestra el elemento seleccionado
+            cmbSerie.setButtonCell(new ListCell<SerieAluminioDTO>() {
+                @Override
+                protected void updateItem(SerieAluminioDTO item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (empty || item == null) {
+                        setText(null);
+                    } else {
+                        setText(item.getCodigo() + " - " + item.getNombre());
+                    }
+                }
+            });
 
             // Buscar ALUPROM-21 u otra serie por defecto
             boolean encontrada = false;
@@ -155,6 +189,31 @@ public class CalculadoraVentanaController {
         colCantidadMaterial.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getCantidad()).asObject());
         colPrecioUnitario.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getPrecioUnitario()).asObject());
         colPrecioTotal.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getPrecioTotal()).asObject());
+
+        // Formatear las columnas numéricas para mostrar correctamente los decimales
+        colPrecioUnitario.setCellFactory(column -> new TableCell<MaterialAdicionalDTO, Double>() {
+            @Override
+            protected void updateItem(Double item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                } else {
+                    setText(decimalFormat.format(item) + " €");
+                }
+            }
+        });
+
+        colPrecioTotal.setCellFactory(column -> new TableCell<MaterialAdicionalDTO, Double>() {
+            @Override
+            protected void updateItem(Double item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                } else {
+                    setText(decimalFormat.format(item) + " €");
+                }
+            }
+        });
     }
 
     private void configurarListeners() {
@@ -164,7 +223,7 @@ public class CalculadoraVentanaController {
             if (!newVal) {
                 txtAlturaCajon.setText("");
             } else {
-                txtAlturaCajon.setText("160"); // Valor por defecto
+                txtAlturaCajon.setText("16"); // Valor por defecto en cm
             }
         });
 
@@ -176,16 +235,16 @@ public class CalculadoraVentanaController {
             }
         });
 
-        // Formateo numérico para campos de texto
+        // Formateo para campos de texto que aceptan decimales
         txtAncho.textProperty().addListener((obs, oldVal, newVal) -> {
-            if (!newVal.matches("\\d*")) {
-                txtAncho.setText(newVal.replaceAll("[^\\d]", ""));
+            if (!newVal.matches("\\d*[,.]?\\d*")) {
+                txtAncho.setText(oldVal);
             }
         });
 
         txtAlto.textProperty().addListener((obs, oldVal, newVal) -> {
-            if (!newVal.matches("\\d*")) {
-                txtAlto.setText(newVal.replaceAll("[^\\d]", ""));
+            if (!newVal.matches("\\d*[,.]?\\d*")) {
+                txtAlto.setText(oldVal);
             }
         });
 
@@ -196,8 +255,8 @@ public class CalculadoraVentanaController {
         });
 
         txtAlturaCajon.textProperty().addListener((obs, oldVal, newVal) -> {
-            if (!newVal.matches("\\d*")) {
-                txtAlturaCajon.setText(newVal.replaceAll("[^\\d]", ""));
+            if (!newVal.matches("\\d*[,.]?\\d*")) {
+                txtAlturaCajon.setText(oldVal);
             }
         });
     }
@@ -247,13 +306,15 @@ public class CalculadoraVentanaController {
             return;
         }
 
-        int ancho = Integer.parseInt(txtAncho.getText().trim());
-        int alto = Integer.parseInt(txtAlto.getText().trim());
+        // Convertir las medidas en cm a mm para el sistema interno
+        int ancho = convertirCmAMm(txtAncho.getText().trim());
+        int alto = convertirCmAMm(txtAlto.getText().trim());
         int numHojas = Integer.parseInt(txtNumeroHojas.getText().trim());
         boolean incluyePersiana = chkPersiana.isSelected();
+
         Integer alturaCajon = null;
         if (incluyePersiana && !txtAlturaCajon.getText().trim().isEmpty()) {
-            alturaCajon = Integer.parseInt(txtAlturaCajon.getText().trim());
+            alturaCajon = convertirCmAMm(txtAlturaCajon.getText().trim());
         }
         TipoCristal tipoCristal = cmbTipoCristal.getValue();
 
@@ -308,7 +369,28 @@ public class CalculadoraVentanaController {
         lblResumen.setText("No hay resultados todavía");
         lblMedidasTotales.setText("-");
         lblMedidasVentana.setText("-");
-        lblPrecioTotal.setText("0.00 €");
+        lblPrecioTotal.setText("0,00 €");
+    }
+
+    // Método para convertir medidas en cm (con posibles decimales) a mm enteros
+    private int convertirCmAMm(String valor) {
+        // Reemplazar coma por punto para asegurar el parseo correcto
+        String valorNormalizado = valor.replace(',', '.');
+        try {
+            // Multiplicar por 10 para convertir cm a mm
+            double valorCm = Double.parseDouble(valorNormalizado);
+            return (int) Math.round(valorCm * 10);
+        } catch (NumberFormatException e) {
+            // Si hay error de formato, mostrar error y devolver 0
+            mostrarError("Error de formato", "El valor '" + valor + "' no es un número válido");
+            return 0;
+        }
+    }
+
+    // Método para convertir mm a cm con formato para mostrar
+    private String convertirMmACm(int valorMm) {
+        double valorCm = valorMm / 10.0;
+        return decimalFormat.format(valorCm);
     }
 
     private boolean validarFormulario() {
@@ -322,12 +404,13 @@ public class CalculadoraVentanaController {
             errores.append("- El ancho es obligatorio\n");
         } else {
             try {
-                int ancho = Integer.parseInt(txtAncho.getText().trim());
+                String anchoStr = txtAncho.getText().trim().replace(',', '.');
+                double ancho = Double.parseDouble(anchoStr);
                 if (ancho <= 0) {
                     errores.append("- El ancho debe ser mayor que 0\n");
                 }
             } catch (NumberFormatException e) {
-                errores.append("- El ancho debe ser un número entero\n");
+                errores.append("- El ancho debe ser un número válido\n");
             }
         }
 
@@ -335,12 +418,13 @@ public class CalculadoraVentanaController {
             errores.append("- El alto es obligatorio\n");
         } else {
             try {
-                int alto = Integer.parseInt(txtAlto.getText().trim());
+                String altoStr = txtAlto.getText().trim().replace(',', '.');
+                double alto = Double.parseDouble(altoStr);
                 if (alto <= 0) {
                     errores.append("- El alto debe ser mayor que 0\n");
                 }
             } catch (NumberFormatException e) {
-                errores.append("- El alto debe ser un número entero\n");
+                errores.append("- El alto debe ser un número válido\n");
             }
         }
 
@@ -361,12 +445,13 @@ public class CalculadoraVentanaController {
             errores.append("- La altura del cajón de persiana es obligatoria\n");
         } else if (chkPersiana.isSelected()) {
             try {
-                int alturaCajon = Integer.parseInt(txtAlturaCajon.getText().trim());
+                String alturaCajonStr = txtAlturaCajon.getText().trim().replace(',', '.');
+                double alturaCajon = Double.parseDouble(alturaCajonStr);
                 if (alturaCajon <= 0) {
                     errores.append("- La altura del cajón debe ser mayor que 0\n");
                 }
             } catch (NumberFormatException e) {
-                errores.append("- La altura del cajón debe ser un número entero\n");
+                errores.append("- La altura del cajón debe ser un número válido\n");
             }
         }
 
@@ -390,18 +475,32 @@ public class CalculadoraVentanaController {
     private void actualizarUI(ResultadoCalculoDTO resultado) {
         // Actualizar resumen
         lblResumen.setText(resultado.getResumen());
-        lblMedidasTotales.setText(resultado.getAncho() + " x " + resultado.getAlto() + " mm");
+
+        // Convertir mm a cm para mostrar en la interfaz
+        String anchoTotalCm = convertirMmACm(resultado.getAncho());
+        String altoTotalCm = convertirMmACm(resultado.getAlto());
+        lblMedidasTotales.setText(anchoTotalCm + " x " + altoTotalCm + " cm");
 
         if (resultado.getAltoVentana() != null && !resultado.getAltoVentana().equals(resultado.getAlto())) {
-            lblMedidasVentana.setText(resultado.getAnchoVentana() + " x " + resultado.getAltoVentana() + " mm");
+            String anchoVentanaCm = convertirMmACm(resultado.getAnchoVentana());
+            String altoVentanaCm = convertirMmACm(resultado.getAltoVentana());
+            lblMedidasVentana.setText(anchoVentanaCm + " x " + altoVentanaCm + " cm");
         } else {
             lblMedidasVentana.setText("Igual a medidas totales");
         }
 
-        lblPrecioTotal.setText(String.format("%.2f €", resultado.getPrecioTotal()));
+        lblPrecioTotal.setText(decimalFormat.format(resultado.getPrecioTotal()) + " €");
 
         // Actualizar tabla de cortes
         if (resultado.getCortes() != null) {
+            // Modificar la visualización de longitudes: convertir de mm a cm para mostrar
+            resultado.getCortes().forEach(corte -> {
+                // Añadir una descripción con la medida en cm
+                String descripcionOriginal = corte.getDescripcion();
+                String longitudCm = convertirMmACm(corte.getLongitud());
+                corte.setDescripcion(descripcionOriginal + " (" + longitudCm + " cm)");
+            });
+
             ObservableList<CorteDTO> cortes = FXCollections.observableArrayList(resultado.getCortes());
             tablaCortes.setItems(cortes);
         }

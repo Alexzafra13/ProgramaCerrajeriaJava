@@ -10,6 +10,7 @@ import java.util.Map;
 
 /**
  * Servicio para evaluar fórmulas y expresiones matemáticas
+ * Trabaja con valores en centímetros para cálculos de ventanas
  */
 @Service
 public class FormulaEvaluatorService {
@@ -22,9 +23,11 @@ public class FormulaEvaluatorService {
 
     /**
      * Evalúa una fórmula JavaScript con las variables proporcionadas
+     * Las variables y el resultado se interpretan como valores en centímetros
+     *
      * @param formula La fórmula a evaluar
-     * @param variables Mapa de variables a usar en la evaluación
-     * @return El resultado como Double
+     * @param variables Mapa de variables a usar en la evaluación (en centímetros)
+     * @return El resultado como Double (en centímetros)
      */
     public Double evaluarFormula(String formula, Map<String, Object> variables) {
         try {
@@ -52,8 +55,10 @@ public class FormulaEvaluatorService {
 
     /**
      * Evalúa una fórmula JavaScript con las variables proporcionadas
+     * Las variables se interpretan como centímetros, y el resultado se redondea a un entero
+     *
      * @param formula La fórmula a evaluar
-     * @param variables Mapa de variables a usar en la evaluación
+     * @param variables Mapa de variables a usar en la evaluación (en centímetros)
      * @return El resultado como Integer
      */
     public Integer evaluarFormulaEntero(String formula, Map<String, Object> variables) {
@@ -63,6 +68,7 @@ public class FormulaEvaluatorService {
 
     /**
      * Evalúa una condición JavaScript (expresión booleana)
+     *
      * @param condicion La condición a evaluar
      * @param variables Mapa de variables a usar en la evaluación
      * @return El resultado como Boolean

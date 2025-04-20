@@ -22,7 +22,7 @@
     <top>
         <VBox BorderPane.alignment="CENTER">
             <children>
-                <Label text="Calculadora de Ventanas ALUPROM-21">
+                <Label text="Calculadora de Ventanas">
                     <font>
                         <Font name="System Bold" size="18.0" />
                     </font>
@@ -49,17 +49,17 @@
                         <ComboBox fx:id="cmbTipoPresupuesto" prefWidth="200.0" GridPane.columnIndex="1" />
                         <Label text="Serie:" GridPane.rowIndex="1" />
                         <ComboBox fx:id="cmbSerie" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Label text="Ancho (mm):" GridPane.rowIndex="2" />
-                        <TextField fx:id="txtAncho" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <Label text="Alto (mm):" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                        <TextField fx:id="txtAlto" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                        <Label text="Ancho (cm):" GridPane.rowIndex="2" />
+                        <TextField fx:id="txtAncho" promptText="Ej: 120,5" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label text="Alto (cm):" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                        <TextField fx:id="txtAlto" promptText="Ej: 85,3" GridPane.columnIndex="3" GridPane.rowIndex="2" />
                         <Label text="Número de Hojas:" GridPane.rowIndex="3" />
                         <TextField fx:id="txtNumeroHojas" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                         <CheckBox fx:id="chkPersiana" mnemonicParsing="false" text="Incluye Persiana" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                         <HBox alignment="CENTER_LEFT" spacing="10.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
                             <children>
-                                <Label text="Altura Cajón (mm):" />
-                                <TextField fx:id="txtAlturaCajon" prefWidth="80.0" />
+                                <Label text="Altura Cajón (cm):" />
+                                <TextField fx:id="txtAlturaCajon" prefWidth="80.0" promptText="Ej: 16,5" />
                             </children>
                         </HBox>
                         <CheckBox fx:id="chkAltoTotal" mnemonicParsing="false" text="Alto incluye cajón" GridPane.columnIndex="2" GridPane.rowIndex="3" />
@@ -121,7 +121,7 @@
                                                 <Font name="System Bold" size="14.0" />
                                             </font>
                                         </Label>
-                                        <Label fx:id="lblPrecioTotal" text="0.00 €">
+                                        <Label fx:id="lblPrecioTotal" text="0,00 €">
                                             <font>
                                                 <Font name="System Bold" size="14.0" />
                                             </font>

@@ -26,9 +26,17 @@ public class PerfilConfiguracion {
     @Column(nullable = false)
     private Integer cantidad;
 
+    /**
+     * Descuento en centímetros con decimales.
+     * Este valor se almacena directamente como un Double en la base de datos.
+     */
     @Column(name = "descuento_cm")
     private Double descuentoCm;
 
+    /**
+     * Fórmula de cálculo en JavaScript que opera en centímetros.
+     * Las variables en la fórmula (anchoTotal, altoVentana, etc.) se interpretan como centímetros.
+     */
     @Column(name = "formula_calculo")
     private String formulaCalculo;
 }

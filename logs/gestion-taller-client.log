@@ -563,3 +563,93 @@ org.springframework.web.client.HttpServerErrorException$InternalServerError: 500
 2025-04-20 10:17:25.620 [JavaFX Application Thread] DEBUG c.g.c.a.ConfiguracionSerieApiClient - Configuración recibida: Ventana Corredera 2 Hojas
 2025-04-20 10:17:25.620 [JavaFX Application Thread] DEBUG c.g.c.a.ConfiguracionSerieApiClient - Aplicando configuración ID: 1
 2025-04-20 10:17:25.636 [JavaFX Application Thread] DEBUG c.g.c.a.ConfiguracionSerieApiClient - Cálculo completado correctamente
+2025-04-20 10:39:54.363 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - Starting application using Java 21.0.4 with PID 23332 (started by Alejandro in C:\Users\Alejandro\Desktop\GestionTallerCerrajeriayAluminioApp)
+2025-04-20 10:39:54.365 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - No active profile set, falling back to 1 default profile: "default"
+2025-04-20 10:39:54.726 [JavaFX-Launcher] INFO  c.g.client.api.SerieApiClient - Inicializando API client con URL base: http://localhost:8080/api/series
+2025-04-20 10:39:54.729 [JavaFX-Launcher] INFO  c.g.c.a.ConfiguracionSerieApiClient - Inicializando API client con URL base: http://localhost:8080/api/configuraciones-serie
+2025-04-20 10:39:54.739 [JavaFX-Launcher] INFO  c.g.client.api.AuthApiClient - Inicializando API client con URL base: http://localhost:8080/api/auth
+2025-04-20 10:39:54.856 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - Started application in 0.674 seconds (process running for 1.254)
+2025-04-20 10:39:56.155 [JavaFX Application Thread] DEBUG c.g.c.controller.LoginController - Intentando login con usuario: admin
+2025-04-20 10:39:56.158 [JavaFX Application Thread] DEBUG c.g.client.api.AuthApiClient - Enviando solicitud de login para usuario: admin
+2025-04-20 10:39:56.386 [JavaFX Application Thread] INFO  c.g.client.api.AuthApiClient - Login exitoso para usuario: admin
+2025-04-20 10:39:56.386 [JavaFX Application Thread] DEBUG c.g.c.controller.LoginController - Respuesta de autenticación recibida: ID: 1, Username: admin, Rol: ADMIN
+2025-04-20 10:39:56.386 [JavaFX Application Thread] DEBUG c.g.c.controller.LoginController - Token almacenado en SessionManager: 02625480-9532-4688-8d0d-b84976d2bace
+2025-04-20 10:39:56.442 [JavaFX Application Thread] INFO  c.g.c.controller.LoginController - Dashboard abierto correctamente para usuario: admin
+2025-04-20 10:39:57.533 [JavaFX Application Thread] DEBUG c.g.client.api.SerieApiClient - Solicitando series de aluminio al servidor...
+2025-04-20 10:39:57.569 [JavaFX Application Thread] DEBUG c.g.client.api.SerieApiClient - Respuesta del servidor: 1 series recibidas
+2025-04-20 10:39:57.569 [JavaFX Application Thread] DEBUG c.g.c.a.ConfiguracionSerieApiClient - Solicitando configuraciones para serie ID: 1
+2025-04-20 10:39:57.599 [JavaFX Application Thread] DEBUG c.g.c.a.ConfiguracionSerieApiClient - Recibidas 2 configuraciones
+2025-04-20 10:40:04.215 [JavaFX Application Thread] DEBUG c.g.c.a.ConfiguracionSerieApiClient - Solicitando configuración para serie ID: 1 con 2 hojas
+2025-04-20 10:40:04.242 [JavaFX Application Thread] DEBUG c.g.c.a.ConfiguracionSerieApiClient - Configuración recibida: Ventana Corredera 2 Hojas
+2025-04-20 10:40:04.242 [JavaFX Application Thread] DEBUG c.g.c.a.ConfiguracionSerieApiClient - Aplicando configuración ID: 1
+2025-04-20 10:40:04.353 [JavaFX Application Thread] DEBUG c.g.c.a.ConfiguracionSerieApiClient - Cálculo completado correctamente
+2025-04-20 10:41:06.107 [JavaFX Application Thread] DEBUG c.g.c.a.ConfiguracionSerieApiClient - Solicitando configuración para serie ID: 1 con 2 hojas
+2025-04-20 10:41:06.123 [JavaFX Application Thread] DEBUG c.g.c.a.ConfiguracionSerieApiClient - Configuración recibida: Ventana Corredera 2 Hojas
+2025-04-20 10:41:06.123 [JavaFX Application Thread] DEBUG c.g.c.a.ConfiguracionSerieApiClient - Aplicando configuración ID: 1
+2025-04-20 10:41:06.140 [JavaFX Application Thread] DEBUG c.g.c.a.ConfiguracionSerieApiClient - Cálculo completado correctamente
+2025-04-20 10:41:13.318 [JavaFX Application Thread] DEBUG c.g.c.a.ConfiguracionSerieApiClient - Solicitando configuración para serie ID: 1 con 2 hojas
+2025-04-20 10:41:13.332 [JavaFX Application Thread] DEBUG c.g.c.a.ConfiguracionSerieApiClient - Configuración recibida: Ventana Corredera 2 Hojas
+2025-04-20 10:41:13.332 [JavaFX Application Thread] DEBUG c.g.c.a.ConfiguracionSerieApiClient - Aplicando configuración ID: 1
+2025-04-20 10:41:13.348 [JavaFX Application Thread] DEBUG c.g.c.a.ConfiguracionSerieApiClient - Cálculo completado correctamente
+2025-04-20 10:53:46.084 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - Starting application using Java 21.0.4 with PID 11412 (started by Alejandro in C:\Users\Alejandro\Desktop\GestionTallerCerrajeriayAluminioApp)
+2025-04-20 10:53:46.085 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - No active profile set, falling back to 1 default profile: "default"
+2025-04-20 10:53:46.417 [JavaFX-Launcher] INFO  c.g.client.api.SerieApiClient - Inicializando API client con URL base: http://localhost:8080/api/series
+2025-04-20 10:53:46.420 [JavaFX-Launcher] INFO  c.g.c.a.ConfiguracionSerieApiClient - Inicializando API client con URL base: http://localhost:8080/api/configuraciones-serie
+2025-04-20 10:53:46.427 [JavaFX-Launcher] INFO  c.g.client.api.AuthApiClient - Inicializando API client con URL base: http://localhost:8080/api/auth
+2025-04-20 10:53:46.546 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - Started application in 0.644 seconds (process running for 1.215)
+2025-04-20 10:53:48.177 [JavaFX Application Thread] DEBUG c.g.c.controller.LoginController - Intentando login con usuario: admin
+2025-04-20 10:53:48.180 [JavaFX Application Thread] DEBUG c.g.client.api.AuthApiClient - Enviando solicitud de login para usuario: admin
+2025-04-20 10:53:48.399 [JavaFX Application Thread] INFO  c.g.client.api.AuthApiClient - Login exitoso para usuario: admin
+2025-04-20 10:53:48.399 [JavaFX Application Thread] DEBUG c.g.c.controller.LoginController - Respuesta de autenticación recibida: ID: 1, Username: admin, Rol: ADMIN
+2025-04-20 10:53:48.399 [JavaFX Application Thread] DEBUG c.g.c.controller.LoginController - Token almacenado en SessionManager: 2b374807-4dbe-4144-a4b4-4a5279f0349f
+2025-04-20 10:53:48.454 [JavaFX Application Thread] INFO  c.g.c.controller.LoginController - Dashboard abierto correctamente para usuario: admin
+2025-04-20 10:53:49.530 [JavaFX Application Thread] DEBUG c.g.client.api.SerieApiClient - Solicitando series de aluminio al servidor...
+2025-04-20 10:53:49.568 [JavaFX Application Thread] DEBUG c.g.client.api.SerieApiClient - Respuesta del servidor: 1 series recibidas
+2025-04-20 10:53:49.570 [JavaFX Application Thread] DEBUG c.g.c.a.ConfiguracionSerieApiClient - Solicitando configuraciones para serie ID: 1
+2025-04-20 10:53:49.598 [JavaFX Application Thread] DEBUG c.g.c.a.ConfiguracionSerieApiClient - Recibidas 2 configuraciones
+2025-04-20 10:54:03.147 [JavaFX Application Thread] DEBUG c.g.c.a.ConfiguracionSerieApiClient - Solicitando configuración para serie ID: 1 con 2 hojas
+2025-04-20 10:54:03.168 [JavaFX Application Thread] DEBUG c.g.c.a.ConfiguracionSerieApiClient - Configuración recibida: Ventana Corredera 2 Hojas
+2025-04-20 10:54:03.169 [JavaFX Application Thread] DEBUG c.g.c.a.ConfiguracionSerieApiClient - Aplicando configuración ID: 1
+2025-04-20 10:54:03.283 [JavaFX Application Thread] DEBUG c.g.c.a.ConfiguracionSerieApiClient - Cálculo completado correctamente
+2025-04-20 10:54:14.656 [JavaFX Application Thread] DEBUG c.g.c.a.ConfiguracionSerieApiClient - Solicitando configuración para serie ID: 1 con 2 hojas
+2025-04-20 10:54:14.672 [JavaFX Application Thread] DEBUG c.g.c.a.ConfiguracionSerieApiClient - Configuración recibida: Ventana Corredera 2 Hojas
+2025-04-20 10:54:14.672 [JavaFX Application Thread] DEBUG c.g.c.a.ConfiguracionSerieApiClient - Aplicando configuración ID: 1
+2025-04-20 10:54:14.688 [JavaFX Application Thread] DEBUG c.g.c.a.ConfiguracionSerieApiClient - Cálculo completado correctamente
+2025-04-20 10:54:26.780 [JavaFX Application Thread] DEBUG c.g.c.a.ConfiguracionSerieApiClient - Solicitando configuración para serie ID: 1 con 2 hojas
+2025-04-20 10:54:26.794 [JavaFX Application Thread] DEBUG c.g.c.a.ConfiguracionSerieApiClient - Configuración recibida: Ventana Corredera 2 Hojas
+2025-04-20 10:54:26.794 [JavaFX Application Thread] DEBUG c.g.c.a.ConfiguracionSerieApiClient - Aplicando configuración ID: 1
+2025-04-20 10:54:26.811 [JavaFX Application Thread] DEBUG c.g.c.a.ConfiguracionSerieApiClient - Cálculo completado correctamente
+2025-04-20 10:54:43.319 [JavaFX Application Thread] DEBUG c.g.c.a.ConfiguracionSerieApiClient - Solicitando configuración para serie ID: 1 con 2 hojas
+2025-04-20 10:54:43.334 [JavaFX Application Thread] DEBUG c.g.c.a.ConfiguracionSerieApiClient - Configuración recibida: Ventana Corredera 2 Hojas
+2025-04-20 10:54:43.334 [JavaFX Application Thread] DEBUG c.g.c.a.ConfiguracionSerieApiClient - Aplicando configuración ID: 1
+2025-04-20 10:54:43.348 [JavaFX Application Thread] DEBUG c.g.c.a.ConfiguracionSerieApiClient - Cálculo completado correctamente
+2025-04-20 10:56:41.879 [JavaFX Application Thread] DEBUG c.g.client.api.SerieApiClient - Solicitando series de aluminio al servidor...
+2025-04-20 10:56:41.889 [JavaFX Application Thread] DEBUG c.g.client.api.SerieApiClient - Respuesta del servidor: 1 series recibidas
+2025-04-20 10:56:47.838 [JavaFX Application Thread] DEBUG c.g.client.api.SerieApiClient - Solicitando series de aluminio al servidor...
+2025-04-20 10:56:47.846 [JavaFX Application Thread] DEBUG c.g.client.api.SerieApiClient - Respuesta del servidor: 1 series recibidas
+2025-04-20 10:56:47.846 [JavaFX Application Thread] DEBUG c.g.c.a.ConfiguracionSerieApiClient - Solicitando configuraciones para serie ID: 1
+2025-04-20 10:56:47.858 [JavaFX Application Thread] DEBUG c.g.c.a.ConfiguracionSerieApiClient - Recibidas 2 configuraciones
+2025-04-20 11:03:07.911 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - Starting application using Java 21.0.4 with PID 3316 (started by Alejandro in C:\Users\Alejandro\Desktop\GestionTallerCerrajeriayAluminioApp)
+2025-04-20 11:03:07.912 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - No active profile set, falling back to 1 default profile: "default"
+2025-04-20 11:03:08.264 [JavaFX-Launcher] INFO  c.g.client.api.SerieApiClient - Inicializando API client con URL base: http://localhost:8080/api/series
+2025-04-20 11:03:08.267 [JavaFX-Launcher] INFO  c.g.c.a.ConfiguracionSerieApiClient - Inicializando API client con URL base: http://localhost:8080/api/configuraciones-serie
+2025-04-20 11:03:08.273 [JavaFX-Launcher] INFO  c.g.client.api.AuthApiClient - Inicializando API client con URL base: http://localhost:8080/api/auth
+2025-04-20 11:03:08.398 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - Started application in 0.675 seconds (process running for 1.246)
+2025-04-20 11:03:09.914 [JavaFX Application Thread] DEBUG c.g.c.controller.LoginController - Intentando login con usuario: admin
+2025-04-20 11:03:09.917 [JavaFX Application Thread] DEBUG c.g.client.api.AuthApiClient - Enviando solicitud de login para usuario: admin
+2025-04-20 11:03:10.138 [JavaFX Application Thread] INFO  c.g.client.api.AuthApiClient - Login exitoso para usuario: admin
+2025-04-20 11:03:10.138 [JavaFX Application Thread] DEBUG c.g.c.controller.LoginController - Respuesta de autenticación recibida: ID: 1, Username: admin, Rol: ADMIN
+2025-04-20 11:03:10.138 [JavaFX Application Thread] DEBUG c.g.c.controller.LoginController - Token almacenado en SessionManager: 1bc3e148-1236-4976-b532-d3a0269d9de8
+2025-04-20 11:03:10.194 [JavaFX Application Thread] INFO  c.g.c.controller.LoginController - Dashboard abierto correctamente para usuario: admin
+2025-04-20 11:03:11.137 [JavaFX Application Thread] DEBUG c.g.client.api.SerieApiClient - Solicitando series de aluminio al servidor...
+2025-04-20 11:03:11.174 [JavaFX Application Thread] DEBUG c.g.client.api.SerieApiClient - Respuesta del servidor: 1 series recibidas
+2025-04-20 11:03:11.176 [JavaFX Application Thread] DEBUG c.g.c.a.ConfiguracionSerieApiClient - Solicitando configuraciones para serie ID: 1
+2025-04-20 11:03:11.204 [JavaFX Application Thread] DEBUG c.g.c.a.ConfiguracionSerieApiClient - Recibidas 2 configuraciones
+2025-04-20 11:03:27.119 [JavaFX Application Thread] DEBUG c.g.c.a.ConfiguracionSerieApiClient - Solicitando configuración para serie ID: 1 con 2 hojas
+2025-04-20 11:03:27.140 [JavaFX Application Thread] DEBUG c.g.c.a.ConfiguracionSerieApiClient - Configuración recibida: Ventana Corredera 2 Hojas
+2025-04-20 11:03:27.140 [JavaFX Application Thread] DEBUG c.g.c.a.ConfiguracionSerieApiClient - Aplicando configuración ID: 1
+2025-04-20 11:03:27.250 [JavaFX Application Thread] DEBUG c.g.c.a.ConfiguracionSerieApiClient - Cálculo completado correctamente
+2025-04-20 11:04:18.774 [JavaFX Application Thread] DEBUG c.g.c.a.ConfiguracionSerieApiClient - Solicitando configuración para serie ID: 1 con 4 hojas
+2025-04-20 11:04:18.789 [JavaFX Application Thread] DEBUG c.g.c.a.ConfiguracionSerieApiClient - Configuración recibida: Ventana Corredera 4 Hojas
+2025-04-20 11:04:18.789 [JavaFX Application Thread] DEBUG c.g.c.a.ConfiguracionSerieApiClient - Aplicando configuración ID: 2
+2025-04-20 11:04:18.805 [JavaFX Application Thread] DEBUG c.g.c.a.ConfiguracionSerieApiClient - Cálculo completado correctamente

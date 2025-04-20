@@ -172,17 +172,17 @@ public class ConfiguracionSerieServiceImpl implements ConfiguracionSerieService 
         List<CorteDTO> cortes = new ArrayList<>();
         List<MaterialAdicionalDTO> materialesAdicionales = new ArrayList<>();
 
-        // Variables para el contexto de evaluación
+        // Variables para el contexto de evaluación - trabajamos directamente en cm
         Map<String, Object> variables = new HashMap<>();
-        variables.put("anchoTotal", anchoTotal / 10.0); // Convertir mm a cm
-        variables.put("altoTotal", altoTotal / 10.0);
+        variables.put("anchoTotal", anchoTotal / 10.0); // mm a cm
+        variables.put("altoTotal", altoTotal / 10.0);   // mm a cm
         variables.put("numHojas", config.getNumHojas());
         variables.put("incluyePersiana", incluyePersiana);
 
         // Calcular altura efectiva considerando persiana
-        double altoVentana = altoTotal / 10.0; // cm
+        double altoVentana = altoTotal / 10.0; // mm a cm
         if (incluyePersiana && alturaCajon != null) {
-            variables.put("alturaCajon", alturaCajon / 10.0);
+            variables.put("alturaCajon", alturaCajon / 10.0); // mm a cm
             variables.put("altoVentana", altoVentana - (alturaCajon / 10.0));
         } else {
             variables.put("altoVentana", altoVentana);
@@ -210,12 +210,13 @@ public class ConfiguracionSerieServiceImpl implements ConfiguracionSerieService 
             corte.setDescripcion(perfil.getTipoPerfil());
 
             // Calcular longitud usando el evaluador de fórmulas
+            // Las fórmulas ya operan en cm, pero el resultado debe ser en mm
             Integer longitud;
             if (perfil.getFormulaCalculo() != null && !perfil.getFormulaCalculo().isEmpty()) {
                 Double valorCm = formulaEvaluator.evaluarFormula(perfil.getFormulaCalculo(), variables);
                 longitud = (int) Math.round(valorCm * 10); // Convertir cm a mm
             } else {
-                // Aplicar descuento fijo
+                // Aplicar descuento fijo en cm, pero trabajar con mm para el resultado final
                 String tipoPerfilStr = perfil.getTipoPerfil();
                 if (tipoPerfilStr.contains("LATERAL") || tipoPerfilStr.contains("CENTRAL")) {
                     // Perfiles verticales - aplicar al alto
