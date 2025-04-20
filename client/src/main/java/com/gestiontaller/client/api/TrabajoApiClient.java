@@ -145,6 +145,26 @@ public class TrabajoApiClient extends BaseApiClient {
     }
 
     /**
+     * Obtiene trabajos por código de estado
+     */
+    public List<TrabajoDTO> obtenerPorCodigoEstado(String codigoEstado) {
+        try {
+            logger.debug("Solicitando trabajos por código de estado: {}", codigoEstado);
+            ResponseEntity<List<TrabajoDTO>> response = restTemplate.exchange(
+                    baseUrl + "/estado/codigo/" + codigoEstado,
+                    HttpMethod.GET,
+                    createEntity(),
+                    new ParameterizedTypeReference<List<TrabajoDTO>>() {}
+            );
+
+            return response.getBody() != null ? response.getBody() : new ArrayList<>();
+        } catch (Exception e) {
+            logError("obtenerPorCodigoEstado", e);
+            return new ArrayList<>();
+        }
+    }
+
+    /**
      * Obtiene trabajos por usuario asignado
      */
     public List<TrabajoDTO> obtenerPorUsuarioAsignado(Long usuarioId) {
@@ -160,6 +180,59 @@ public class TrabajoApiClient extends BaseApiClient {
             return response.getBody() != null ? response.getBody() : new ArrayList<>();
         } catch (Exception e) {
             logError("obtenerPorUsuarioAsignado", e);
+            return new ArrayList<>();
+        }
+    }
+
+    /**
+     * Obtiene trabajos por fecha programada
+     */
+    public List<TrabajoDTO> obtenerPorFechaProgramada(LocalDate fecha) {
+        try {
+            logger.debug("Solicitando trabajos programados para: {}", fecha);
+
+            UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(baseUrl + "/fecha")
+                    .queryParam("fecha", fecha.toString());
+
+            String url = builder.toUriString();
+
+            ResponseEntity<List<TrabajoDTO>> response = restTemplate.exchange(
+                    url,
+                    HttpMethod.GET,
+                    createEntity(),
+                    new ParameterizedTypeReference<List<TrabajoDTO>>() {}
+            );
+
+            return response.getBody() != null ? response.getBody() : new ArrayList<>();
+        } catch (Exception e) {
+            logError("obtenerPorFechaProgramada", e);
+            return new ArrayList<>();
+        }
+    }
+
+    /**
+     * Obtiene trabajos entre dos fechas programadas
+     */
+    public List<TrabajoDTO> obtenerPorFechasProgramadas(LocalDate fechaInicio, LocalDate fechaFin) {
+        try {
+            logger.debug("Solicitando trabajos entre fechas: {} y {}", fechaInicio, fechaFin);
+
+            UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(baseUrl + "/fechas")
+                    .queryParam("fechaInicio", fechaInicio.toString())
+                    .queryParam("fechaFin", fechaFin.toString());
+
+            String url = builder.toUriString();
+
+            ResponseEntity<List<TrabajoDTO>> response = restTemplate.exchange(
+                    url,
+                    HttpMethod.GET,
+                    createEntity(),
+                    new ParameterizedTypeReference<List<TrabajoDTO>>() {}
+            );
+
+            return response.getBody() != null ? response.getBody() : new ArrayList<>();
+        } catch (Exception e) {
+            logError("obtenerPorFechasProgramadas", e);
             return new ArrayList<>();
         }
     }
@@ -332,6 +405,135 @@ public class TrabajoApiClient extends BaseApiClient {
     }
 
     /**
+     * Programa un trabajo para una fecha
+     */
+    public TrabajoDTO programarFecha(Long id, LocalDate fecha) {
+        try {
+            logger.debug("Programando trabajo ID: {} para fecha: {}", id, fecha);
+
+            Map<String, Object> datos = new HashMap<>();
+            datos.put("fecha", fecha.toString());
+
+            return restTemplate.postForObject(
+                    baseUrl + "/" + id + "/programar-fecha",
+                    createEntity(datos),
+                    TrabajoDTO.class
+            );
+        } catch (Exception e) {
+            logError("programarFecha", e);
+            throw e;
+        }
+    }
+
+    /**
+     * Actualiza las horas reales de un trabajo
+     */
+    public TrabajoDTO actualizarHorasReales(Long id, Integer horasReales) {
+        try {
+            logger.debug("Actualizando horas reales para trabajo ID: {}", id);
+
+            Map<String, Object> datos = new HashMap<>();
+            datos.put("horasReales", horasReales);
+
+            return restTemplate.postForObject(
+                    baseUrl + "/" + id + "/horas-reales",
+                    createEntity(datos),
+                    TrabajoDTO.class
+            );
+        } catch (Exception e) {
+            logError("actualizarHorasReales", e);
+            throw e;
+        }
+    }
+
+    /**
+     * Registra el inicio de un trabajo
+     */
+    public TrabajoDTO iniciarTrabajo(Long id, Long usuarioId) {
+        try {
+            logger.debug("Iniciando trabajo ID: {}", id);
+
+            Map<String, Object> datos = new HashMap<>();
+            datos.put("usuarioId", usuarioId);
+
+            return restTemplate.postForObject(
+                    baseUrl + "/" + id + "/iniciar",
+                    createEntity(datos),
+                    TrabajoDTO.class
+            );
+        } catch (Exception e) {
+            logError("iniciarTrabajo", e);
+            throw e;
+        }
+    }
+
+    /**
+     * Registra la finalización de un trabajo
+     */
+    public TrabajoDTO finalizarTrabajo(Long id, Long usuarioId, String observaciones) {
+        try {
+            logger.debug("Finalizando trabajo ID: {}", id);
+
+            Map<String, Object> datos = new HashMap<>();
+            datos.put("usuarioId", usuarioId);
+            datos.put("observaciones", observaciones);
+
+            return restTemplate.postForObject(
+                    baseUrl + "/" + id + "/finalizar",
+                    createEntity(datos),
+                    TrabajoDTO.class
+            );
+        } catch (Exception e) {
+            logError("finalizarTrabajo", e);
+            throw e;
+        }
+    }
+
+    /**
+     * Registra entrega de un trabajo a cliente
+     */
+    public TrabajoDTO entregarTrabajo(Long id, Long usuarioId, String observaciones) {
+        try {
+            logger.debug("Registrando entrega de trabajo ID: {}", id);
+
+            Map<String, Object> datos = new HashMap<>();
+            datos.put("usuarioId", usuarioId);
+            datos.put("observaciones", observaciones);
+
+            return restTemplate.postForObject(
+                    baseUrl + "/" + id + "/entregar",
+                    createEntity(datos),
+                    TrabajoDTO.class
+            );
+        } catch (Exception e) {
+            logError("entregarTrabajo", e);
+            throw e;
+        }
+    }
+
+    /**
+     * Cancela un trabajo
+     */
+    public TrabajoDTO cancelarTrabajo(Long id, Long usuarioId, String motivoCancelacion) {
+        try {
+            logger.debug("Cancelando trabajo ID: {}", id);
+
+            Map<String, Object> datos = new HashMap<>();
+            datos.put("usuarioId", usuarioId);
+            datos.put("motivoCancelacion", motivoCancelacion);
+
+            return restTemplate.postForObject(
+                    baseUrl + "/" + id + "/cancelar",
+                    createEntity(datos),
+                    TrabajoDTO.class
+            );
+        } catch (Exception e) {
+            logError("cancelarTrabajo", e);
+            throw e;
+        }
+    }
+
+    /**
      * Obtiene el historial de cambios de estado de un trabajo
      */
     public List<CambioEstadoDTO> obtenerHistorialCambios(Long trabajoId) {
@@ -407,6 +609,27 @@ public class TrabajoApiClient extends BaseApiClient {
     }
 
     /**
+     * Actualiza la cantidad usada de un material
+     */
+    public MaterialAsignadoDTO actualizarCantidadUsada(Long materialId, Integer cantidadUsada) {
+        try {
+            logger.debug("Actualizando cantidad usada para material ID: {}", materialId);
+
+            Map<String, Object> datos = new HashMap<>();
+            datos.put("cantidadUsada", cantidadUsada);
+
+            return restTemplate.postForObject(
+                    baseUrl + "/materiales/" + materialId + "/cantidad-usada",
+                    createEntity(datos),
+                    MaterialAsignadoDTO.class
+            );
+        } catch (Exception e) {
+            logError("actualizarCantidadUsada", e);
+            throw e;
+        }
+    }
+
+    /**
      * Obtiene los materiales asignados a un trabajo
      */
     public List<MaterialAsignadoDTO> obtenerMaterialesAsignados(Long trabajoId) {
@@ -443,6 +666,66 @@ public class TrabajoApiClient extends BaseApiClient {
         } catch (Exception e) {
             logError("generarCodigoTrabajo", e);
             throw e;
+        }
+    }
+
+    /**
+     * Verifica disponibilidad de materiales para un trabajo
+     */
+    public boolean verificarDisponibilidadMateriales(Long trabajoId) {
+        try {
+            logger.debug("Verificando disponibilidad de materiales para trabajo ID: {}", trabajoId);
+            ResponseEntity<Boolean> response = restTemplate.exchange(
+                    baseUrl + "/" + trabajoId + "/verificar-disponibilidad",
+                    HttpMethod.GET,
+                    createEntity(),
+                    Boolean.class
+            );
+
+            return Boolean.TRUE.equals(response.getBody());
+        } catch (Exception e) {
+            logError("verificarDisponibilidadMateriales", e);
+            return false;
+        }
+    }
+
+    /**
+     * Reserva materiales para un trabajo
+     */
+    public boolean reservarMateriales(Long trabajoId) {
+        try {
+            logger.debug("Reservando materiales para trabajo ID: {}", trabajoId);
+            ResponseEntity<Boolean> response = restTemplate.exchange(
+                    baseUrl + "/" + trabajoId + "/reservar-materiales",
+                    HttpMethod.POST,
+                    createEntity(),
+                    Boolean.class
+            );
+
+            return Boolean.TRUE.equals(response.getBody());
+        } catch (Exception e) {
+            logError("reservarMateriales", e);
+            return false;
+        }
+    }
+
+    /**
+     * Consume materiales para un trabajo
+     */
+    public boolean consumirMateriales(Long trabajoId) {
+        try {
+            logger.debug("Consumiendo materiales para trabajo ID: {}", trabajoId);
+            ResponseEntity<Boolean> response = restTemplate.exchange(
+                    baseUrl + "/" + trabajoId + "/consumir-materiales",
+                    HttpMethod.POST,
+                    createEntity(),
+                    Boolean.class
+            );
+
+            return Boolean.TRUE.equals(response.getBody());
+        } catch (Exception e) {
+            logError("consumirMateriales", e);
+            return false;
         }
     }
 }

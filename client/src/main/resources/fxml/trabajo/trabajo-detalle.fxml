@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gestiontaller.client.controller.trabajo.TrabajoDetalleController">
+    <top>
+        <VBox spacing="10.0" BorderPane.alignment="CENTER">
+            <children>
+                <Label styleClass="title" text="Detalles del Trabajo">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+                <HBox alignment="CENTER_LEFT" spacing="15.0">
+                    <children>
+                        <Label text="Código:">
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="lblCodigo" text="TRB-2023-0001" />
+                        <Label text="Cliente:">
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets left="20.0" />
+                            </HBox.margin>
+                        </Label>
+                        <Label fx:id="lblCliente" text="Cliente Ejemplo S.L." />
+                        <Label text="Estado:">
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets left="20.0" />
+                            </HBox.margin>
+                        </Label>
+                        <Label fx:id="lblEstado" style="-fx-background-color: #fff3cd; -fx-padding: 3px 8px; -fx-background-radius: 3px;" text="PENDIENTE" />
+                        <Label text="Prioridad:">
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets left="20.0" />
+                            </HBox.margin>
+                        </Label>
+                        <Label fx:id="lblPrioridad" style="-fx-background-color: #cce5ff; -fx-padding: 3px 8px; -fx-background-radius: 3px;" text="NORMAL" />
+                    </children>
+                </HBox>
+            </children>
+            <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </padding>
+        </VBox>
+    </top>
+    <center>
+        <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+            <tabs>
+                <Tab text="Información General">
+                    <content>
+                        <VBox spacing="10.0">
+                            <children>
+                                <GridPane hgap="10.0" vgap="10.0">
+                                    <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="10.0" prefWidth="150.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="10.0" prefWidth="150.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    </columnConstraints>
+                                    <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    </rowConstraints>
+                                    <children>
+                                        <Label text="Presupuesto:" />
+                                        <Label fx:id="lblPresupuesto" text="PRE-2023-0001" GridPane.columnIndex="1" />
+                                        <Label text="Fecha Creación:" GridPane.rowIndex="1" />
+                                        <Label fx:id="lblFechaCreacion" text="01/01/2023 12:00" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                        <Label text="Fecha Programada:" GridPane.rowIndex="2" />
+                                        <Label fx:id="lblFechaProgramada" text="15/01/2023" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                        <Label text="Fecha Inicio:" GridPane.rowIndex="3" />
+                                        <Label fx:id="lblFechaInicio" text="Pendiente de inicio" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                        <Label text="Fecha Finalización:" GridPane.rowIndex="4" />
+                                        <Label fx:id="lblFechaFinalizacion" text="Pendiente de finalización" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                        <Label text="Dirección:" GridPane.columnIndex="2" />
+                                        <Label fx:id="lblDireccion" text="Calle Ejemplo, 123" GridPane.columnIndex="3" />
+                                        <Label text="Asignado a:" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                        <Label fx:id="lblAsignado" text="Sin asignar" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                                        <Label text="Horas reales:" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                        <Label fx:id="lblHorasReales" text="No registradas" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                                    </children>
+                                </GridPane>
+                                <Label text="Observaciones:" />
+                                <TextArea fx:id="txtObservaciones" editable="false" prefHeight="150.0" />
+                            </children>
+                            <padding>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                            </padding>
+                        </VBox>
+                    </content>
+                </Tab>
+                <Tab text="Materiales">
+                    <content>
+                        <VBox spacing="10.0">
+                            <children>
+                                <TableView fx:id="tablaMateriales" prefHeight="500.0">
+                                    <columns>
+                                        <TableColumn fx:id="colProducto" prefWidth="250.0" text="Producto" />
+                                        <TableColumn fx:id="colCantidadAsignada" prefWidth="150.0" text="Cantidad Asignada" />
+                                        <TableColumn fx:id="colCantidadUsada" prefWidth="150.0" text="Cantidad Usada" />
+                                        <TableColumn fx:id="colObservacionesMaterial" prefWidth="250.0" text="Observaciones" />
+                                    </columns>
+                                    <placeholder>
+                                        <Label text="No hay materiales asignados" />
+                                    </placeholder>
+                                </TableView>
+                            </children>
+                            <padding>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                            </padding>
+                        </VBox>
+                    </content>
+                </Tab>
+                <Tab text="Historial">
+                    <content>
+                        <VBox spacing="10.0">
+                            <children>
+                                <TableView fx:id="tablaHistorial" prefHeight="500.0">
+                                    <columns>
+                                        <TableColumn fx:id="colFechaCambio" prefWidth="150.0" text="Fecha" />
+                                        <TableColumn fx:id="colEstadoAnterior" prefWidth="150.0" text="Estado Anterior" />
+                                        <TableColumn fx:id="colEstadoNuevo" prefWidth="150.0" text="Estado Nuevo" />
+                                        <TableColumn fx:id="colUsuario" prefWidth="150.0" text="Usuario" />
+                                        <TableColumn fx:id="colMotivoCambio" prefWidth="200.0" text="Motivo" />
+                                    </columns>
+                                    <placeholder>
+                                        <Label text="No hay historial de cambios" />
+                                    </placeholder>
+                                </TableView>
+                            </children>
+                            <padding>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                            </padding>
+                        </VBox>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </center>
+    <bottom>
+        <HBox alignment="CENTER_RIGHT" spacing="10.0" BorderPane.alignment="CENTER">
+            <children>
+                <Button fx:id="btnCambiarEstado" mnemonicParsing="false" onAction="#handleCambiarEstado" text="Cambiar Estado" />
+                <Button fx:id="btnCambiarPrioridad" mnemonicParsing="false" onAction="#handleCambiarPrioridad" text="Cambiar Prioridad" />
+                <Button fx:id="btnAsignarUsuario" mnemonicParsing="false" onAction="#handleAsignarUsuario" text="Asignar Usuario" />
+                <Button fx:id="btnIniciarTrabajo" mnemonicParsing="false" onAction="#handleIniciarTrabajo" text="Iniciar Trabajo" />
+                <Button fx:id="btnFinalizarTrabajo" mnemonicParsing="false" onAction="#handleFinalizarTrabajo" text="Finalizar Trabajo" />
+                <Button fx:id="btnCerrar" mnemonicParsing="false" onAction="#handleCerrar" text="Cerrar" />
+            </children>
+            <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </padding>
+        </HBox>
+    </bottom>
+</BorderPane>

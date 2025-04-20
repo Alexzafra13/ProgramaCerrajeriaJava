@@ -4,6 +4,8 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
@@ -13,11 +15,11 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane prefHeight="700.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gestiontaller.client.controller.cliente.ClienteFormController">
     <top>
-        <Label text="Datos del Cliente" BorderPane.alignment="CENTER">
+        <Label fx:id="lblTitulo" styleClass="title" text="Nuevo Cliente" BorderPane.alignment="CENTER">
             <font>
-                <Font name="System Bold" size="16.0" />
+                <Font name="System Bold" size="18.0" />
             </font>
             <BorderPane.margin>
                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -25,59 +27,105 @@
         </Label>
     </top>
     <center>
-        <GridPane hgap="10.0" vgap="10.0" BorderPane.alignment="CENTER">
-            <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="10.0" prefWidth="150.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            </columnConstraints>
-            <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
-            </rowConstraints>
-            <children>
-                <Label text="Código:" />
-                <Label text="Tipo Cliente:" GridPane.rowIndex="1" />
-                <Label text="Nombre:" GridPane.rowIndex="2" />
-                <Label text="Apellidos:" GridPane.rowIndex="3" />
-                <Label text="CIF/NIF:" GridPane.rowIndex="4" />
-                <Label text="Dirección:" GridPane.rowIndex="5" />
-                <Label text="Teléfono:" GridPane.rowIndex="6" />
-                <Label text="Email:" GridPane.rowIndex="7" />
-                <Label text="Descuento (%):" GridPane.rowIndex="8" />
-                <Label text="Observaciones:" GridPane.rowIndex="9" />
-                <TextField fx:id="txtCodigo" GridPane.columnIndex="1" />
-                <ComboBox fx:id="cmbTipoCliente" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                <TextField fx:id="txtNombre" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                <TextField fx:id="txtApellidos" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                <TextField fx:id="txtCifNif" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                <TextField fx:id="txtDireccion" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                <TextField fx:id="txtTelefono" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                <TextField fx:id="txtEmail" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                <TextField fx:id="txtDescuento" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                <TextArea fx:id="txtObservaciones" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-            </children>
-            <BorderPane.margin>
-                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-            </BorderPane.margin>
-        </GridPane>
+        <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+            <tabs>
+                <Tab text="Datos Básicos">
+                    <content>
+                        <GridPane hgap="10.0" vgap="10.0">
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="10.0" prefWidth="150.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="10.0" prefWidth="150.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
+                            </rowConstraints>
+                            <children>
+                                <Label text="Código:" />
+                                <TextField fx:id="txtCodigo" GridPane.columnIndex="1" />
+                                <Label text="Tipo Cliente:" GridPane.rowIndex="1" />
+                                <ComboBox fx:id="cmbTipoCliente" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                <Label text="Nombre:" GridPane.rowIndex="2" />
+                                <TextField fx:id="txtNombre" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                <Label text="Apellidos:" GridPane.rowIndex="3" />
+                                <TextField fx:id="txtApellidos" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                <Label text="Razón Social:" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                <TextField fx:id="txtRazonSocial" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                                <Label text="CIF/NIF:" GridPane.rowIndex="4" />
+                                <TextField fx:id="txtCifNif" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                <Label text="Teléfono:" GridPane.rowIndex="5" />
+                                <TextField fx:id="txtTelefono" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                <Label text="Teléfono 2:" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                                <TextField fx:id="txtTelefono2" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                                <Label text="Email:" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                                <TextField fx:id="txtEmail" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                                <Label text="Web:" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                                <TextField fx:id="txtWeb" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                                <Label text="Descuento (%):" GridPane.columnIndex="2" />
+                                <TextField fx:id="txtDescuento" GridPane.columnIndex="3" />
+                                <Label text="Observaciones:" GridPane.rowIndex="6" />
+                                <TextArea fx:id="txtObservaciones" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="6" />
+                            </children>
+                            <padding>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                            </padding>
+                        </GridPane>
+                    </content>
+                </Tab>
+                <Tab text="Dirección">
+                    <content>
+                        <GridPane hgap="10.0" vgap="10.0">
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="10.0" prefWidth="150.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="10.0" prefWidth="150.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            </rowConstraints>
+                            <children>
+                                <Label text="Dirección Fiscal:" />
+                                <TextField fx:id="txtDireccionFiscal" GridPane.columnIndex="1" GridPane.columnSpan="3" />
+                                <Label text="Dirección Envío:" GridPane.rowIndex="1" />
+                                <TextField fx:id="txtDireccionEnvio" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="1" />
+                                <Label text="Código Postal:" GridPane.rowIndex="2" />
+                                <TextField fx:id="txtCodigoPostal" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                <Label text="Localidad:" GridPane.rowIndex="3" />
+                                <TextField fx:id="txtLocalidad" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                <Label text="Provincia:" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                <TextField fx:id="txtProvincia" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                                <Label text="País:" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                                <TextField fx:id="txtPais" text="España" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                            </children>
+                            <padding>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                            </padding>
+                        </GridPane>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
     </center>
     <bottom>
         <HBox alignment="CENTER_RIGHT" spacing="10.0" BorderPane.alignment="CENTER">
             <children>
-                <Button mnemonicParsing="false" text="Guardar" />
-                <Button mnemonicParsing="false" text="Cancelar" />
+                <Button fx:id="btnGuardar" mnemonicParsing="false" onAction="#handleGuardar" text="Guardar" />
+                <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#handleCancelar" text="Cancelar" />
             </children>
-            <BorderPane.margin>
+            <padding>
                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-            </BorderPane.margin>
+            </padding>
         </HBox>
     </bottom>
 </BorderPane>

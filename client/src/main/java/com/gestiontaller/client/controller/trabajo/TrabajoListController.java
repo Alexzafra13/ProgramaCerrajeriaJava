@@ -132,12 +132,15 @@ public class TrabajoListController {
                 super.updateItem(item, empty);
                 if (empty || item == null) {
                     setText(null);
+                    setGraphic(null);
                     setStyle("");
                 } else {
                     setText(item);
 
-                    // Color de fondo según estado
-                    String color = data.getValue().getColorEstado();
+                    // Obtener el color del estado desde el objeto trabajo
+                    TrabajoDTO trabajo = getTableView().getItems().get(getIndex());
+                    String color = trabajo.getColorEstado();
+
                     if (color != null && !color.isEmpty()) {
                         setStyle("-fx-background-color: " + color + ";");
                     } else {
