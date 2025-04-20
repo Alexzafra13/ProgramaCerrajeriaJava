@@ -653,3 +653,96 @@ org.springframework.web.client.HttpServerErrorException$InternalServerError: 500
 2025-04-20 11:04:18.789 [JavaFX Application Thread] DEBUG c.g.c.a.ConfiguracionSerieApiClient - Configuración recibida: Ventana Corredera 4 Hojas
 2025-04-20 11:04:18.789 [JavaFX Application Thread] DEBUG c.g.c.a.ConfiguracionSerieApiClient - Aplicando configuración ID: 2
 2025-04-20 11:04:18.805 [JavaFX Application Thread] DEBUG c.g.c.a.ConfiguracionSerieApiClient - Cálculo completado correctamente
+2025-04-20 11:37:53.002 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - Starting application using Java 21.0.4 with PID 27628 (started by Alejandro in C:\Users\Alejandro\Desktop\GestionTallerCerrajeriayAluminioApp)
+2025-04-20 11:37:53.003 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - No active profile set, falling back to 1 default profile: "default"
+2025-04-20 11:37:53.354 [JavaFX-Launcher] INFO  c.g.client.api.SerieApiClient - Inicializando API client con URL base: http://localhost:8080/api/series
+2025-04-20 11:37:53.357 [JavaFX-Launcher] INFO  c.g.c.a.ConfiguracionSerieApiClient - Inicializando API client con URL base: http://localhost:8080/api/configuraciones-serie
+2025-04-20 11:37:53.364 [JavaFX-Launcher] INFO  c.g.c.api.ComponenteSerieApiClient - Inicializando API client con URL base: http://localhost:8080/api/componentes-serie
+2025-04-20 11:37:53.365 [JavaFX-Launcher] INFO  c.g.client.api.ProductoApiClient - Inicializando API client con URL base: http://localhost:8080/api/productos
+2025-04-20 11:37:53.370 [JavaFX-Launcher] INFO  c.g.client.api.AuthApiClient - Inicializando API client con URL base: http://localhost:8080/api/auth
+2025-04-20 11:37:53.483 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - Started application in 0.665 seconds (process running for 1.253)
+2025-04-20 11:37:54.768 [JavaFX Application Thread] DEBUG c.g.c.controller.LoginController - Intentando login con usuario: admin
+2025-04-20 11:37:54.771 [JavaFX Application Thread] DEBUG c.g.client.api.AuthApiClient - Enviando solicitud de login para usuario: admin
+2025-04-20 11:37:54.984 [JavaFX Application Thread] INFO  c.g.client.api.AuthApiClient - Login exitoso para usuario: admin
+2025-04-20 11:37:54.984 [JavaFX Application Thread] DEBUG c.g.c.controller.LoginController - Respuesta de autenticación recibida: ID: 1, Username: admin, Rol: ADMIN
+2025-04-20 11:37:54.984 [JavaFX Application Thread] DEBUG c.g.c.controller.LoginController - Token almacenado en SessionManager: eb34f397-e8d0-4376-8f78-29cdff2874f2
+2025-04-20 11:37:55.039 [JavaFX Application Thread] INFO  c.g.c.controller.LoginController - Dashboard abierto correctamente para usuario: admin
+2025-04-20 11:37:56.297 [JavaFX Application Thread] DEBUG c.g.client.api.SerieApiClient - Solicitando series de aluminio al servidor...
+2025-04-20 11:37:56.334 [JavaFX Application Thread] DEBUG c.g.client.api.SerieApiClient - Respuesta del servidor: 1 series recibidas
+2025-04-20 11:37:56.336 [JavaFX Application Thread] DEBUG c.g.c.a.ConfiguracionSerieApiClient - Solicitando configuraciones para serie ID: 1
+2025-04-20 11:37:56.365 [JavaFX Application Thread] DEBUG c.g.c.a.ConfiguracionSerieApiClient - Recibidas 2 configuraciones
+2025-04-20 11:38:09.174 [JavaFX Application Thread] DEBUG c.g.c.a.ConfiguracionSerieApiClient - Solicitando configuración para serie ID: 1 con 2 hojas
+2025-04-20 11:38:09.195 [JavaFX Application Thread] DEBUG c.g.c.a.ConfiguracionSerieApiClient - Configuración recibida: Ventana Corredera 2 Hojas
+2025-04-20 11:38:09.195 [JavaFX Application Thread] DEBUG c.g.c.a.ConfiguracionSerieApiClient - Aplicando configuración ID: 1
+2025-04-20 11:38:09.310 [JavaFX Application Thread] DEBUG c.g.c.a.ConfiguracionSerieApiClient - Cálculo completado correctamente
+2025-04-20 11:39:17.869 [JavaFX Application Thread] DEBUG c.g.c.a.ConfiguracionSerieApiClient - Solicitando configuración para serie ID: 1 con 3 hojas
+2025-04-20 11:39:17.884 [JavaFX Application Thread] ERROR c.g.c.a.ConfiguracionSerieApiClient - Error en obtenerConfiguracionPorSerieYHojas: 404 : "{"timestamp":"2025-04-20T11:39:17.8776867","status":404,"error":"Not Found","message":"Configuración no encontrada para serie ID 1 con 3 hojas","path":"/api/configuraciones-serie/serie/1/hojas/3"}"
+org.springframework.web.client.HttpClientErrorException$NotFound: 404 : "{"timestamp":"2025-04-20T11:39:17.8776867","status":404,"error":"Not Found","message":"Configuración no encontrada para serie ID 1 con 3 hojas","path":"/api/configuraciones-serie/serie/1/hojas/3"}"
+	at org.springframework.web.client.HttpClientErrorException.create(HttpClientErrorException.java:112)
+	at org.springframework.web.client.DefaultResponseErrorHandler.handleError(DefaultResponseErrorHandler.java:183)
+	at org.springframework.web.client.DefaultResponseErrorHandler.handleError(DefaultResponseErrorHandler.java:137)
+	at org.springframework.web.client.ResponseErrorHandler.handleError(ResponseErrorHandler.java:63)
+	at org.springframework.web.client.RestTemplate.handleResponse(RestTemplate.java:942)
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:891)
+	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:790)
+	at org.springframework.web.client.RestTemplate.exchange(RestTemplate.java:672)
+	at com.gestiontaller.client.api.ConfiguracionSerieApiClient.obtenerConfiguracionPorSerieYHojas(ConfiguracionSerieApiClient.java:54)
+	at com.gestiontaller.client.controller.CalculadoraVentanaController.handleCalcular(CalculadoraVentanaController.java:324)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at com.sun.javafx.reflect.Trampoline.invoke(MethodUtil.java:72)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at com.sun.javafx.reflect.MethodUtil.invoke(MethodUtil.java:270)
+	at com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:84)
+	at javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1853)
+	at javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1726)
+	at com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.scene.Node.fireEvent(Node.java:8875)
+	at javafx.scene.control.Button.fire(Button.java:203)
+	at com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:207)
+	at com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+	at com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.scene.Scene$MouseHandler.process(Scene.java:3984)
+	at javafx.scene.Scene.processMouseEvent(Scene.java:1890)
+	at javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2708)
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
+	at com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:424)
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
+	at com.sun.glass.ui.View.handleMouseEvent(View.java:551)
+	at com.sun.glass.ui.View.notifyMouse(View.java:937)
+	at com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:185)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2025-04-20 11:39:22.797 [JavaFX Application Thread] DEBUG c.g.c.a.ConfiguracionSerieApiClient - Solicitando configuración para serie ID: 1 con 4 hojas
+2025-04-20 11:39:22.813 [JavaFX Application Thread] DEBUG c.g.c.a.ConfiguracionSerieApiClient - Configuración recibida: Ventana Corredera 4 Hojas
+2025-04-20 11:39:22.813 [JavaFX Application Thread] DEBUG c.g.c.a.ConfiguracionSerieApiClient - Aplicando configuración ID: 2
+2025-04-20 11:39:22.837 [JavaFX Application Thread] DEBUG c.g.c.a.ConfiguracionSerieApiClient - Cálculo completado correctamente

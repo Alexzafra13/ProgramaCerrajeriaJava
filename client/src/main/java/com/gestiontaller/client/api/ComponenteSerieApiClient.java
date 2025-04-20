@@ -1,5 +1,7 @@
 package com.gestiontaller.client.api;
 
+import com.gestiontaller.common.dto.configuracion.MaterialConfiguracionDTO;
+import com.gestiontaller.common.dto.configuracion.PlantillaConfiguracionSerieDTO;
 import com.gestiontaller.common.dto.serie.MaterialBaseSerieDTO;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
@@ -140,6 +142,66 @@ public class ComponenteSerieApiClient extends BaseApiClient {
             );
         } catch (Exception e) {
             logError("generarConfiguracionEstandar", e);
+            throw e;
+        }
+    }
+
+    /**
+     * Obtiene una configuración específica para una serie y número de hojas
+     */
+    public PlantillaConfiguracionSerieDTO obtenerConfiguracionPorSerieYHojas(Long serieId, Integer numHojas) {
+        try {
+            logger.debug("Obteniendo configuración para serie ID: {} con {} hojas", serieId, numHojas);
+
+            String url = baseUrl + "/configuracion/serie/" + serieId + "/hojas/" + numHojas;
+
+            ResponseEntity<PlantillaConfiguracionSerieDTO> response = restTemplate.exchange(
+                    url,
+                    HttpMethod.GET,
+                    createEntity(),
+                    PlantillaConfiguracionSerieDTO.class
+            );
+
+            return response.getBody();
+        } catch (Exception e) {
+            logError("obtenerConfiguracionPorSerieYHojas", e);
+            return null;
+        }
+    }
+
+    /**
+     * Guarda un material de configuración
+     */
+    public MaterialConfiguracionDTO guardarMaterialConfiguracion(MaterialConfiguracionDTO materialDTO) {
+        try {
+            logger.debug("Guardando material de configuración: {}", materialDTO.getDescripcion());
+
+            return restTemplate.postForObject(
+                    baseUrl + "/configuracion/material",
+                    createEntity(materialDTO),
+                    MaterialConfiguracionDTO.class
+            );
+        } catch (Exception e) {
+            logError("guardarMaterialConfiguracion", e);
+            throw e;
+        }
+    }
+
+    /**
+     * Elimina un material de configuración
+     */
+    public void eliminarMaterialConfiguracion(Long id) {
+        try {
+            logger.debug("Eliminando material de configuración ID: {}", id);
+
+            restTemplate.exchange(
+                    baseUrl + "/configuracion/material/" + id,
+                    HttpMethod.DELETE,
+                    createEntity(),
+                    Void.class
+            );
+        } catch (Exception e) {
+            logError("eliminarMaterialConfiguracion", e);
             throw e;
         }
     }
