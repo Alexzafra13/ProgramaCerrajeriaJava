@@ -1,9 +1,10 @@
 package com.gestiontaller.client.controller;
 
 import com.gestiontaller.client.api.SerieApiClient;
-import com.gestiontaller.common.model.serie.TipoSerie;
-import com.gestiontaller.common.dto.serie.SerieAluminioDTO;
 import com.gestiontaller.client.util.FXMLLoaderUtil;
+import com.gestiontaller.common.dto.serie.SerieAluminioDTO;
+import com.gestiontaller.common.model.serie.TipoSerie;
+
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -16,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class SerieListController {
@@ -116,7 +118,7 @@ public class SerieListController {
                     .filter(serie -> textoBusqueda.isEmpty() ||
                             serie.getCodigo().toLowerCase().contains(textoBusqueda) ||
                             serie.getNombre().toLowerCase().contains(textoBusqueda))
-                    .toList();
+                    .collect(Collectors.toList());
 
             tablaSeries.setItems(FXCollections.observableArrayList(seriesFiltradas));
         } catch (Exception e) {

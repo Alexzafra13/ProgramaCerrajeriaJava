@@ -2,6 +2,7 @@ package com.gestiontaller.client.api;
 
 import com.gestiontaller.common.dto.serie.PerfilSerieDTO;
 import com.gestiontaller.common.dto.serie.SerieAluminioDTO;
+
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;

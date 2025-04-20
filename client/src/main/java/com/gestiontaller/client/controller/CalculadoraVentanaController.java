@@ -4,12 +4,14 @@ package com.gestiontaller.client.controller;
 
 import com.gestiontaller.client.api.ConfiguracionSerieApiClient;
 import com.gestiontaller.client.api.SerieApiClient;
-import com.gestiontaller.client.model.calculo.CorteDTO;
-import com.gestiontaller.client.model.calculo.MaterialAdicionalDTO;
-import com.gestiontaller.client.model.calculo.ResultadoCalculoDTO;
-import com.gestiontaller.client.model.configuracion.PlantillaConfiguracionSerieDTO;
-import com.gestiontaller.client.model.presupuesto.TipoPresupuesto;
-import com.gestiontaller.client.model.serie.SerieAluminioDTO;
+import com.gestiontaller.common.dto.calculo.CorteDTO;
+import com.gestiontaller.common.dto.calculo.MaterialAdicionalDTO;
+import com.gestiontaller.common.dto.calculo.ResultadoCalculoDTO;
+import com.gestiontaller.common.dto.configuracion.PlantillaConfiguracionSerieDTO;
+import com.gestiontaller.common.dto.serie.SerieAluminioDTO;
+import com.gestiontaller.common.model.presupuesto.TipoPresupuesto;
+import com.gestiontaller.common.model.ventana.TipoCristal;
+
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;

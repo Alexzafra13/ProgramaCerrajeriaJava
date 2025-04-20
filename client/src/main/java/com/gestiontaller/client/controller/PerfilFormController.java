@@ -1,7 +1,9 @@
 package com.gestiontaller.client.controller;
 
 import com.gestiontaller.client.api.SerieApiClient;
-import com.gestiontaller.client.model.serie.PerfilSerieDTO;
+import com.gestiontaller.common.dto.serie.PerfilSerieDTO;
+import com.gestiontaller.common.model.serie.TipoPerfil;
+
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;

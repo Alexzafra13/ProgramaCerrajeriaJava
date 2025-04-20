@@ -1,8 +1,12 @@
 package com.gestiontaller.client.controller;
 
 import com.gestiontaller.client.api.SerieApiClient;
-import com.gestiontaller.client.model.serie.*;
 import com.gestiontaller.client.util.FXMLLoaderUtil;
+import com.gestiontaller.common.dto.serie.DescuentoPerfilSerieDTO;
+import com.gestiontaller.common.dto.serie.PerfilSerieDTO;
+import com.gestiontaller.common.dto.serie.SerieAluminioDTO;
+import com.gestiontaller.common.model.serie.TipoSerie;
+
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -20,6 +24,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 @Component
 public class SerieFormController {
