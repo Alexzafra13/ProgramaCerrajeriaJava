@@ -1,7 +1,7 @@
 package com.gestiontaller.server.service.impl;
 
-import com.gestiontaller.server.dto.inventario.MovimientoStockDTO;
-import com.gestiontaller.server.model.inventario.TipoMovimiento;
+import com.gestiontaller.common.dto.inventario.MovimientoStockDTO;
+import com.gestiontaller.common.model.inventario.TipoMovimiento;
 import com.gestiontaller.server.model.producto.Producto;
 import com.gestiontaller.server.model.serie.SerieBase;
 import com.gestiontaller.server.repository.producto.ProductoRepository;

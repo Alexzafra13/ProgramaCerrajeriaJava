@@ -1,6 +1,6 @@
 package com.gestiontaller.server.mapper;
 
-import com.gestiontaller.server.dto.usuario.UsuarioDTO;
+import com.gestiontaller.common.dto.usuario.UsuarioDTO;
 import com.gestiontaller.server.model.usuario.Usuario;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

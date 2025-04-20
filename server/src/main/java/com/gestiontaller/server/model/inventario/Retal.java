@@ -1,6 +1,8 @@
 // src/main/java/com/gestiontaller/model/inventario/Retal.java
 package com.gestiontaller.server.model.inventario;
 
+import com.gestiontaller.common.model.inventario.EstadoRetal;
+import com.gestiontaller.common.model.inventario.MotivoDescarte;
 import com.gestiontaller.server.model.producto.Producto;
 import com.gestiontaller.server.model.trabajo.Trabajo;
 import com.gestiontaller.server.model.usuario.Usuario;

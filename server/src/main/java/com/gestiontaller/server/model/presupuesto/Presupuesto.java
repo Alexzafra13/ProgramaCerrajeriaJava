@@ -1,6 +1,7 @@
 // src/main/java/com/gestiontaller/model/presupuesto/Presupuesto.java
 package com.gestiontaller.server.model.presupuesto;
 
+import com.gestiontaller.common.model.presupuesto.EstadoPresupuesto;
 import com.gestiontaller.server.model.cliente.Cliente;
 import com.gestiontaller.server.model.usuario.Usuario;
 import jakarta.persistence.*;

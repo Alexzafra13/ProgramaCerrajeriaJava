@@ -1,4 +1,4 @@
-package com.gestiontaller.server.dto.producto;
+package com.gestiontaller.common.dto.producto;
 
 import lombok.Data;
 

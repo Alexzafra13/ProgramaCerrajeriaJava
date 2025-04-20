@@ -1,7 +1,7 @@
 package com.gestiontaller.server.repository.producto;
 
 import com.gestiontaller.server.model.producto.Producto;
-import com.gestiontaller.server.model.producto.TipoProducto;
+import com.gestiontaller.common.model.producto.TipoProducto;
 import com.gestiontaller.server.model.serie.SerieBase;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

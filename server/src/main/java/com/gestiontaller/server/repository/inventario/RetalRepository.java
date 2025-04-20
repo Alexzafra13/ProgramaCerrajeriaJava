@@ -1,6 +1,6 @@
 package com.gestiontaller.server.repository.inventario;
 
-import com.gestiontaller.server.model.inventario.EstadoRetal;
+import com.gestiontaller.common.model.inventario.EstadoRetal;
 import com.gestiontaller.server.model.inventario.Retal;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

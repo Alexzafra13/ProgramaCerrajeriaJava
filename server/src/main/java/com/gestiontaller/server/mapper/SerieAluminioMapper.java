@@ -1,6 +1,6 @@
 package com.gestiontaller.server.mapper;
 
-import com.gestiontaller.server.dto.serie.SerieAluminioDTO;
+import com.gestiontaller.common.dto.serie.SerieAluminioDTO;
 import com.gestiontaller.server.model.serie.SerieAluminio;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

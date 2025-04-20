@@ -1,6 +1,6 @@
 package com.gestiontaller.server.mapper;
 
-import com.gestiontaller.server.dto.inventario.MovimientoStockDTO;
+import com.gestiontaller.common.dto.inventario.MovimientoStockDTO;
 import com.gestiontaller.server.model.inventario.MovimientoStock;
 import com.gestiontaller.server.model.producto.Producto;
 import com.gestiontaller.server.model.usuario.Usuario;

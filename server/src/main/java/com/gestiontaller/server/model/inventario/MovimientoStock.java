@@ -1,5 +1,6 @@
 package com.gestiontaller.server.model.inventario;
 
+import com.gestiontaller.common.model.inventario.TipoMovimiento;
 import com.gestiontaller.server.model.producto.Producto;
 import com.gestiontaller.server.model.usuario.Usuario;
 import jakarta.persistence.*;

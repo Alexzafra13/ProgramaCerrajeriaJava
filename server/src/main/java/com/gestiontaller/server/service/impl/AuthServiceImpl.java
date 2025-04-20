@@ -1,7 +1,8 @@
 package com.gestiontaller.server.service.impl;
 
-import com.gestiontaller.server.dto.auth.LoginRequest;
-import com.gestiontaller.server.dto.auth.LoginResponse;
+import com.gestiontaller.common.dto.auth.LoginRequest;
+import com.gestiontaller.common.dto.auth.LoginResponse;
+import com.gestiontaller.common.model.usuario.Rol;
 import com.gestiontaller.server.model.usuario.Usuario;
 import com.gestiontaller.server.repository.usuario.UsuarioRepository;
 import com.gestiontaller.server.service.interfaces.AuthService;

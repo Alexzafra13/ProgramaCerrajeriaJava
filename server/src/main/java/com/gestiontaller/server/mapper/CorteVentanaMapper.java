@@ -1,5 +1,6 @@
 package com.gestiontaller.server.mapper;
 
+import com.gestiontaller.common.dto.calculo.CorteDTO;
 import com.gestiontaller.server.model.calculo.CorteVentana;
 import com.gestiontaller.server.model.producto.Producto;
 import org.mapstruct.Mapper;

@@ -1,9 +1,11 @@
 package com.gestiontaller.server.service.impl;
 
-import com.gestiontaller.server.dto.serie.DescuentoPerfilSerieDTO;
-import com.gestiontaller.server.dto.serie.PerfilSerieDTO;
-import com.gestiontaller.server.dto.serie.SerieAluminioDTO;
-import com.gestiontaller.server.dto.serie.SerieBaseDTO;
+import com.gestiontaller.common.dto.serie.DescuentoPerfilSerieDTO;
+import com.gestiontaller.common.dto.serie.PerfilSerieDTO;
+import com.gestiontaller.common.dto.serie.SerieAluminioDTO;
+import com.gestiontaller.common.dto.serie.SerieBaseDTO;
+import com.gestiontaller.common.model.material.TipoMaterial;
+import com.gestiontaller.common.model.serie.TipoSerie;
 import com.gestiontaller.server.exception.DuplicateEntityException;
 import com.gestiontaller.server.exception.SerieNotFoundException;
 import com.gestiontaller.server.mapper.DescuentoPerfilSerieMapper;
@@ -14,7 +16,6 @@ import com.gestiontaller.server.model.serie.DescuentoPerfilSerie;
 import com.gestiontaller.server.model.serie.PerfilSerie;
 import com.gestiontaller.server.model.serie.SerieAluminio;
 import com.gestiontaller.server.model.serie.SerieBase;
-import com.gestiontaller.server.model.serie.TipoSerie;
 import com.gestiontaller.server.repository.serie.DescuentoPerfilSerieRepository;
 import com.gestiontaller.server.repository.serie.PerfilSerieRepository;
 import com.gestiontaller.server.repository.serie.SerieAluminioRepository;

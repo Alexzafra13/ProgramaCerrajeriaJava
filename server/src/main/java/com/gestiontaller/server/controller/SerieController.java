@@ -4,7 +4,7 @@ import com.gestiontaller.common.dto.serie.DescuentoPerfilSerieDTO;
 import com.gestiontaller.common.dto.serie.PerfilSerieDTO;
 import com.gestiontaller.common.dto.serie.SerieAluminioDTO;
 import com.gestiontaller.common.dto.serie.SerieBaseDTO;
-import com.gestiontaller.common.model.TipoMaterial;
+import com.gestiontaller.common.model.material.TipoMaterial;
 import com.gestiontaller.common.model.serie.TipoSerie;
 import com.gestiontaller.server.service.interfaces.SerieService;
 import org.slf4j.Logger;

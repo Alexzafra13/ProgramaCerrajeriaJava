@@ -1,7 +1,7 @@
 package com.gestiontaller.server.service.interfaces;
 
-import com.gestiontaller.server.dto.calculo.CalculoVentanaDTO;
-import com.gestiontaller.server.dto.calculo.ParametrosCalculoDTO;
+import com.gestiontaller.common.dto.calculo.CalculoVentanaDTO;
+import com.gestiontaller.common.dto.calculo.ParametrosCalculoDTO;
 
 public interface CalculoVentanaService {
 

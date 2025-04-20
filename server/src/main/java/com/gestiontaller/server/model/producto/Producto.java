@@ -1,6 +1,8 @@
 // src/main/java/com/gestiontaller/model/producto/Producto.java
 package com.gestiontaller.server.model.producto;
 
+import com.gestiontaller.common.model.producto.TipoProducto;
+import com.gestiontaller.common.model.producto.UnidadMedida;
 import com.gestiontaller.server.model.serie.SerieBase;
 import jakarta.persistence.*;
 import lombok.Getter;

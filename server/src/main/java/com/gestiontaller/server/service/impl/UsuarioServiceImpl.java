@@ -1,6 +1,6 @@
 package com.gestiontaller.server.service.impl;
 
-import com.gestiontaller.server.dto.usuario.UsuarioDTO;
+import com.gestiontaller.common.dto.usuario.UsuarioDTO;
 import com.gestiontaller.server.mapper.UsuarioMapper;
 import com.gestiontaller.server.model.usuario.Usuario;
 import com.gestiontaller.server.repository.usuario.UsuarioRepository;

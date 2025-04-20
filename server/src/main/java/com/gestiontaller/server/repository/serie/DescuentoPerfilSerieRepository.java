@@ -1,7 +1,7 @@
 package com.gestiontaller.server.repository.serie;
 
+import com.gestiontaller.common.model.serie.TipoPerfil;
 import com.gestiontaller.server.model.serie.DescuentoPerfilSerie;
-import com.gestiontaller.server.model.serie.TipoPerfil;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

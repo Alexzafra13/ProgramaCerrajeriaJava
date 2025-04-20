@@ -1,6 +1,6 @@
-package com.gestiontaller.server.dto.inventario;
+package com.gestiontaller.common.dto.inventario;
 
-import com.gestiontaller.server.model.inventario.TipoMovimiento;
+import com.gestiontaller.common.model.inventario.TipoMovimiento;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -19,5 +19,4 @@ public class MovimientoStockDTO {
     private Long usuarioId;
     private String nombreUsuario;
     private String observaciones;
-
 }

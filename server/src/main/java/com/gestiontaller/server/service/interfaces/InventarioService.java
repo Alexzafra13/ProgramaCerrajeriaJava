@@ -1,9 +1,9 @@
 package com.gestiontaller.server.service.interfaces;
 
-import com.gestiontaller.server.dto.inventario.MovimientoStockDTO;
-import com.gestiontaller.server.dto.inventario.RetalDTO;
-import com.gestiontaller.server.model.inventario.EstadoRetal;
-import com.gestiontaller.server.model.inventario.TipoMovimiento;
+import com.gestiontaller.common.dto.inventario.MovimientoStockDTO;
+import com.gestiontaller.common.dto.inventario.RetalDTO;
+import com.gestiontaller.common.model.inventario.EstadoRetal;
+import com.gestiontaller.common.model.inventario.TipoMovimiento;
 
 import java.time.LocalDateTime;
 import java.util.List;

@@ -1,6 +1,6 @@
 package com.gestiontaller.server.service.interfaces;
 
-import com.gestiontaller.server.dto.usuario.UsuarioDTO;
+import com.gestiontaller.common.dto.usuario.UsuarioDTO;
 
 import java.util.List;
 

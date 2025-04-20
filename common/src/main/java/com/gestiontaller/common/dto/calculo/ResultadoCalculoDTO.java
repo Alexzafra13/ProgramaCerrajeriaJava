@@ -1,6 +1,6 @@
 package com.gestiontaller.common.dto.calculo;
 
-import com.gestiontaller.common.model.TipoCristal;
+import com.gestiontaller.common.model.ventana.TipoCristal;
 import com.gestiontaller.common.model.presupuesto.TipoPresupuesto;
 import lombok.Data;
 

@@ -1,5 +1,6 @@
 package com.gestiontaller.server.model.cliente;
 
+import com.gestiontaller.common.model.cliente.TipoCliente;
 import jakarta.persistence.*;
 import lombok.Data;
 

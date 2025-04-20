@@ -1,5 +1,6 @@
-package com.gestiontaller.server.dto.calculo;
+package com.gestiontaller.common.dto.calculo;
 
+import com.gestiontaller.common.model.presupuesto.TipoPresupuesto;
 import lombok.Data;
 
 import java.time.LocalDateTime;

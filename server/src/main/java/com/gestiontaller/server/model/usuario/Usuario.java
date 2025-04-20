@@ -1,5 +1,6 @@
 package com.gestiontaller.server.model.usuario;
 
+import com.gestiontaller.common.model.usuario.Rol;
 import jakarta.persistence.*;
 import lombok.Data;
 

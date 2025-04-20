@@ -1,6 +1,6 @@
 package com.gestiontaller.server.mapper;
 
-import com.gestiontaller.server.dto.calculo.CalculoVentanaDTO;
+import com.gestiontaller.common.dto.calculo.CalculoVentanaDTO;
 import com.gestiontaller.server.model.calculo.CalculoVentana;
 import com.gestiontaller.server.model.presupuesto.LineaPresupuesto;
 import com.gestiontaller.server.model.serie.SerieBase;

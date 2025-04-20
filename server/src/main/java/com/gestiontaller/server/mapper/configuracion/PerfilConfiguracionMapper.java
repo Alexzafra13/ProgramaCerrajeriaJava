@@ -1,6 +1,6 @@
 package com.gestiontaller.server.mapper.configuracion;
 
-import com.gestiontaller.server.dto.configuracion.PerfilConfiguracionDTO;
+import com.gestiontaller.common.dto.configuracion.PerfilConfiguracionDTO;
 import com.gestiontaller.server.model.configuracion.PerfilConfiguracion;
 import com.gestiontaller.server.model.configuracion.PlantillaConfiguracionSerie;
 import com.gestiontaller.server.model.serie.PerfilSerie;

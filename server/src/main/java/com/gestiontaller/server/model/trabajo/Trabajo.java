@@ -1,6 +1,7 @@
 // src/main/java/com/gestiontaller/model/trabajo/Trabajo.java
 package com.gestiontaller.server.model.trabajo;
 
+import com.gestiontaller.common.model.trabajo.PrioridadTrabajo;
 import com.gestiontaller.server.model.cliente.Cliente;
 import com.gestiontaller.server.model.presupuesto.Presupuesto;
 import com.gestiontaller.server.model.usuario.Usuario;

@@ -1,5 +1,6 @@
 package com.gestiontaller.server.repository.presupuesto;
 
+import com.gestiontaller.common.model.presupuesto.TipoPresupuesto;
 import com.gestiontaller.server.model.presupuesto.LineaPresupuesto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

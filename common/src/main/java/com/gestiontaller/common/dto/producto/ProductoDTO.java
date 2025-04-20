@@ -1,7 +1,7 @@
-package com.gestiontaller.server.dto.producto;
+package com.gestiontaller.common.dto.producto;
 
-import com.gestiontaller.server.model.producto.TipoProducto;
-import com.gestiontaller.server.model.producto.UnidadMedida;
+import com.gestiontaller.common.model.producto.TipoProducto;
+import com.gestiontaller.common.model.producto.UnidadMedida;
 import lombok.Data;
 
 @Data

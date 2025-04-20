@@ -1,7 +1,7 @@
-package com.gestiontaller.server.dto.inventario;
+package com.gestiontaller.common.dto.inventario;
 
-import com.gestiontaller.server.model.inventario.EstadoRetal;
-import com.gestiontaller.server.model.inventario.MotivoDescarte;
+import com.gestiontaller.common.model.inventario.EstadoRetal;
+import com.gestiontaller.common.model.inventario.MotivoDescarte;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -22,5 +22,4 @@ public class RetalDTO {
     private Long usuarioRegistroId;
     private String nombreUsuarioRegistro;
     private String observaciones;
-
 }

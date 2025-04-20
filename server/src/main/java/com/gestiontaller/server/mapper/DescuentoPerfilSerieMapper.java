@@ -1,6 +1,6 @@
 package com.gestiontaller.server.mapper;
 
-import com.gestiontaller.server.dto.serie.DescuentoPerfilSerieDTO;
+import com.gestiontaller.common.dto.serie.DescuentoPerfilSerieDTO;
 import com.gestiontaller.server.model.serie.DescuentoPerfilSerie;
 import com.gestiontaller.server.model.serie.SerieBase;
 import org.mapstruct.Mapper;

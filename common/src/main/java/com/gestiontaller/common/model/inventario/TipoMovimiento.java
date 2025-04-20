@@ -1,4 +1,4 @@
-package com.gestiontaller.server.model.inventario;
+package com.gestiontaller.common.model.inventario;
 
 public enum TipoMovimiento {
     ENTRADA,

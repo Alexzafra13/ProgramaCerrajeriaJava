@@ -1,9 +1,9 @@
 package com.gestiontaller.server.repository.serie;
 
 import com.gestiontaller.server.model.serie.PerfilSerie;
-import com.gestiontaller.server.model.serie.TipoPerfil;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import com.gestiontaller.common.model.serie.TipoPerfil;
 
 import java.util.List;
 import java.util.Optional;

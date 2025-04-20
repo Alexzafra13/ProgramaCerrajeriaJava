@@ -1,7 +1,7 @@
 package com.gestiontaller.server.controller;
 
-import com.gestiontaller.server.dto.auth.LoginRequest;
-import com.gestiontaller.server.dto.auth.LoginResponse;
+import com.gestiontaller.common.dto.auth.LoginRequest;
+import com.gestiontaller.common.dto.auth.LoginResponse;
 import com.gestiontaller.server.service.interfaces.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

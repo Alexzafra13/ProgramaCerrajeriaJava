@@ -1,4 +1,4 @@
-package com.gestiontaller.server.model.producto;
+package com.gestiontaller.common.model.producto;
 
 public enum UnidadMedida {
     METROS,

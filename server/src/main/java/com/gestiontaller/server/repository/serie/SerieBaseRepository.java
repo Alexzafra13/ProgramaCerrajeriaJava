@@ -1,5 +1,6 @@
 package com.gestiontaller.server.repository.serie;
 
+import com.gestiontaller.common.model.material.TipoMaterial;
 import com.gestiontaller.server.model.serie.SerieBase;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

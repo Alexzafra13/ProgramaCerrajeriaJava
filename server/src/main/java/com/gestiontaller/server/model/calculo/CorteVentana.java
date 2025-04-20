@@ -1,8 +1,8 @@
 // src/main/java/com/gestiontaller/model/calculo/CorteVentana.java
 package com.gestiontaller.server.model.calculo;
 
+import com.gestiontaller.common.model.serie.TipoPerfil;
 import com.gestiontaller.server.model.producto.Producto;
-import com.gestiontaller.server.model.serie.TipoPerfil;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

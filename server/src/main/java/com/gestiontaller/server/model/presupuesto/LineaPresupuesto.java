@@ -1,6 +1,7 @@
 // src/main/java/com/gestiontaller/model/presupuesto/LineaPresupuesto.java
 package com.gestiontaller.server.model.presupuesto;
 
+import com.gestiontaller.common.model.presupuesto.TipoPresupuesto;
 import com.gestiontaller.server.model.calculo.CalculoVentana;
 import com.gestiontaller.server.model.serie.SerieBase;
 import jakarta.persistence.*;

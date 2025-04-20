@@ -1,6 +1,6 @@
 package com.gestiontaller.common.dto.serie;
 
-import com.gestiontaller.common.model.TipoMaterial;
+import com.gestiontaller.common.model.material.TipoMaterial;
 import lombok.Data;
 
 @Data

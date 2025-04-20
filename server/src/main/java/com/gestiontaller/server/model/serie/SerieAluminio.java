@@ -1,5 +1,6 @@
 package com.gestiontaller.server.model.serie;
 
+import com.gestiontaller.common.model.serie.TipoSerie;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

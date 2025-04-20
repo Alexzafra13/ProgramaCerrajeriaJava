@@ -1,4 +1,4 @@
-package com.gestiontaller.server.model.cliente;
+package com.gestiontaller.common.model.cliente;
 
 public enum TipoCliente {
     PARTICULAR,

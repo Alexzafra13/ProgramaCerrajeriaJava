@@ -1,4 +1,4 @@
-package com.gestiontaller.server.model.trabajo;
+package com.gestiontaller.common.model.trabajo;
 
 public enum PrioridadTrabajo {
     BAJA,

@@ -1,15 +1,15 @@
 // src/main/java/com/gestiontaller/server/service/impl/InventarioServiceImpl.java
 package com.gestiontaller.server.service.impl;
 
-import com.gestiontaller.server.dto.inventario.MovimientoStockDTO;
-import com.gestiontaller.server.dto.inventario.RetalDTO;
+import com.gestiontaller.common.dto.inventario.MovimientoStockDTO;
+import com.gestiontaller.common.dto.inventario.RetalDTO;
 import com.gestiontaller.server.mapper.MovimientoStockMapper;
 import com.gestiontaller.server.mapper.RetalMapper;
-import com.gestiontaller.server.model.inventario.EstadoRetal;
-import com.gestiontaller.server.model.inventario.MotivoDescarte;
+import com.gestiontaller.common.model.inventario.EstadoRetal;
+import com.gestiontaller.common.model.inventario.MotivoDescarte;
 import com.gestiontaller.server.model.inventario.MovimientoStock;
 import com.gestiontaller.server.model.inventario.Retal;
-import com.gestiontaller.server.model.inventario.TipoMovimiento;
+import com.gestiontaller.common.model.inventario.TipoMovimiento;
 import com.gestiontaller.server.model.producto.Producto;
 import com.gestiontaller.server.repository.inventario.MovimientoStockRepository;
 import com.gestiontaller.server.repository.inventario.RetalRepository;

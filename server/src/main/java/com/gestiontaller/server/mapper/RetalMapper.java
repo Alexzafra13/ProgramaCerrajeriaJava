@@ -1,6 +1,6 @@
 package com.gestiontaller.server.mapper;
 
-import com.gestiontaller.server.dto.inventario.RetalDTO;
+import com.gestiontaller.common.dto.inventario.RetalDTO;
 import com.gestiontaller.server.model.inventario.Retal;
 import com.gestiontaller.server.model.producto.Producto;
 import com.gestiontaller.server.model.trabajo.Trabajo;

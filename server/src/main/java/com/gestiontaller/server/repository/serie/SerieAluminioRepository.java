@@ -1,7 +1,7 @@
 package com.gestiontaller.server.repository.serie;
 
+import com.gestiontaller.common.model.serie.TipoSerie;
 import com.gestiontaller.server.model.serie.SerieAluminio;
-import com.gestiontaller.server.model.serie.TipoSerie;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
