@@ -27,7 +27,7 @@ public class ClienteFormController {
     @FXML private TextField txtNombre;
     @FXML private TextField txtApellidos;
     @FXML private TextField txtCifNif;
-    @FXML private TextField txtDireccion;
+    @FXML private TextField txtDireccionFiscal; // Cambiado de txtDireccion a txtDireccionFiscal
     @FXML private TextField txtTelefono;
     @FXML private TextField txtEmail;
     @FXML private TextField txtDescuento;
@@ -118,7 +118,7 @@ public class ClienteFormController {
         txtNombre.setText(cliente.getNombre() != null ? cliente.getNombre() : "");
         txtApellidos.setText(cliente.getApellidos() != null ? cliente.getApellidos() : "");
         txtCifNif.setText(cliente.getNifCif() != null ? cliente.getNifCif() : "");
-        txtDireccion.setText(cliente.getDireccionFiscal() != null ? cliente.getDireccionFiscal() : "");
+        txtDireccionFiscal.setText(cliente.getDireccionFiscal() != null ? cliente.getDireccionFiscal() : ""); // Actualizado
         txtTelefono.setText(cliente.getTelefono1() != null ? cliente.getTelefono1() : "");
         txtEmail.setText(cliente.getEmail() != null ? cliente.getEmail() : "");
 
@@ -271,7 +271,7 @@ public class ClienteFormController {
         clienteActual.setNombre(txtNombre.getText().trim());
         clienteActual.setApellidos(txtApellidos.getText().trim());
         clienteActual.setNifCif(txtCifNif.getText().trim());
-        clienteActual.setDireccionFiscal(txtDireccion.getText().trim());
+        clienteActual.setDireccionFiscal(txtDireccionFiscal.getText().trim()); // Actualizado
         clienteActual.setTelefono1(txtTelefono.getText().trim());
         clienteActual.setEmail(txtEmail.getText().trim());
 

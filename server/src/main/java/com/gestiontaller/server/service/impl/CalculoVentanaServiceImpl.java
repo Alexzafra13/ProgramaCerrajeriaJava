@@ -1,6 +1,7 @@
 package com.gestiontaller.server.service.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.gestiontaller.server.repository.trabajo.TrabajoRepository;
 import com.gestiontaller.common.dto.calculo.CalculoVentanaDTO;
 import com.gestiontaller.common.dto.calculo.CorteDTO;
 import com.gestiontaller.common.dto.calculo.MaterialAdicionalDTO;

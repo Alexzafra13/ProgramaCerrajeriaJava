@@ -9,11 +9,11 @@ import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.Named;
 
-@Mapper(componentModel = "spring", uses = {LineaPresupuestoMapper.class})
+@Mapper(componentModel = "spring", uses = {LineaPresupuestoMapper.class, ClienteMapper.class})
 public interface PresupuestoMapper {
 
     @Mapping(source = "cliente.id", target = "clienteId")
-    @Mapping(source = "cliente.nombre", target = "nombreCliente", qualifiedByName = "getNombreClienteCompleto")
+    @Mapping(source = "cliente", target = "nombreCliente", qualifiedByName = "getNombreClienteCompleto")
     @Mapping(source = "usuario.id", target = "usuarioId")
     @Mapping(source = "usuario.nombre", target = "nombreUsuario")
     PresupuestoDTO toDto(Presupuesto entity);
@@ -44,29 +44,5 @@ public interface PresupuestoMapper {
         Usuario usuario = new Usuario();
         usuario.setId(id);
         return usuario;
-    }
-
-    @Named("getNombreClienteCompleto")
-    default String getNombreClienteCompleto(Cliente cliente) {
-        if (cliente == null) {
-            return "";
-        }
-
-        if (cliente.getTipoCliente() != null) {
-            switch (cliente.getTipoCliente()) {
-                case PARTICULAR:
-                case AUTONOMO:
-                    return (cliente.getNombre() != null ? cliente.getNombre() : "") +
-                            " " +
-                            (cliente.getApellidos() != null ? cliente.getApellidos() : "");
-                case EMPRESA:
-                case ADMINISTRACION:
-                    return cliente.getRazonSocial() != null ? cliente.getRazonSocial() : "";
-                default:
-                    return cliente.getNombre() != null ? cliente.getNombre() : "";
-            }
-        }
-
-        return cliente.getNombre() != null ? cliente.getNombre() : "";
     }
 }

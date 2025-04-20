@@ -11,13 +11,13 @@ import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.Named;
 
-@Mapper(componentModel = "spring", uses = {MaterialAsignadoMapper.class, CambioEstadoMapper.class})
+@Mapper(componentModel = "spring", uses = {MaterialAsignadoMapper.class, CambioEstadoMapper.class, ClienteMapper.class})
 public interface TrabajoMapper {
 
     @Mapping(source = "presupuesto.id", target = "presupuestoId")
     @Mapping(source = "presupuesto.numero", target = "numeroPresupuesto")
     @Mapping(source = "cliente.id", target = "clienteId")
-    @Mapping(source = "cliente.nombre", target = "nombreCliente", qualifiedByName = "getNombreClienteCompleto")
+    @Mapping(source = "cliente", target = "nombreCliente", qualifiedByName = "getNombreClienteCompleto")
     @Mapping(source = "estado.id", target = "estadoId")
     @Mapping(source = "estado.nombre", target = "nombreEstado")
     @Mapping(source = "estado.color", target = "colorEstado")
@@ -25,19 +25,19 @@ public interface TrabajoMapper {
     @Mapping(source = "usuarioAsignado.nombre", target = "nombreUsuarioAsignado")
     TrabajoDTO toDto(Trabajo entity);
 
-    @Mapping(source = "presupuestoId", target = "presupuesto", qualifiedByName = "idToPresupuesto")
-    @Mapping(source = "clienteId", target = "cliente", qualifiedByName = "idToCliente")
-    @Mapping(source = "estadoId", target = "estado", qualifiedByName = "idToEstado")
-    @Mapping(source = "usuarioAsignadoId", target = "usuarioAsignado", qualifiedByName = "idToUsuario")
+    @Mapping(source = "presupuestoId", target = "presupuesto", qualifiedByName = "trabajoIdToPresupuesto")
+    @Mapping(source = "clienteId", target = "cliente", qualifiedByName = "trabajoIdToCliente")
+    @Mapping(source = "estadoId", target = "estado", qualifiedByName = "trabajoIdToEstado")
+    @Mapping(source = "usuarioAsignadoId", target = "usuarioAsignado", qualifiedByName = "trabajoIdToUsuario")
     Trabajo toEntity(TrabajoDTO dto);
 
-    @Mapping(source = "presupuestoId", target = "presupuesto", qualifiedByName = "idToPresupuesto")
-    @Mapping(source = "clienteId", target = "cliente", qualifiedByName = "idToCliente")
-    @Mapping(source = "estadoId", target = "estado", qualifiedByName = "idToEstado")
-    @Mapping(source = "usuarioAsignadoId", target = "usuarioAsignado", qualifiedByName = "idToUsuario")
+    @Mapping(source = "presupuestoId", target = "presupuesto", qualifiedByName = "trabajoIdToPresupuesto")
+    @Mapping(source = "clienteId", target = "cliente", qualifiedByName = "trabajoIdToCliente")
+    @Mapping(source = "estadoId", target = "estado", qualifiedByName = "trabajoIdToEstado")
+    @Mapping(source = "usuarioAsignadoId", target = "usuarioAsignado", qualifiedByName = "trabajoIdToUsuario")
     void updateEntityFromDto(TrabajoDTO dto, @MappingTarget Trabajo entity);
 
-    @Named("idToPresupuesto")
+    @Named("trabajoIdToPresupuesto")
     default Presupuesto idToPresupuesto(Long id) {
         if (id == null) {
             return null;
@@ -47,7 +47,7 @@ public interface TrabajoMapper {
         return presupuesto;
     }
 
-    @Named("idToCliente")
+    @Named("trabajoIdToCliente")
     default Cliente idToCliente(Long id) {
         if (id == null) {
             return null;
@@ -57,7 +57,7 @@ public interface TrabajoMapper {
         return cliente;
     }
 
-    @Named("idToEstado")
+    @Named("trabajoIdToEstado")
     default EstadoTrabajo idToEstado(Long id) {
         if (id == null) {
             return null;
@@ -67,7 +67,7 @@ public interface TrabajoMapper {
         return estado;
     }
 
-    @Named("idToUsuario")
+    @Named("trabajoIdToUsuario")
     default Usuario idToUsuario(Long id) {
         if (id == null) {
             return null;
@@ -75,29 +75,5 @@ public interface TrabajoMapper {
         Usuario usuario = new Usuario();
         usuario.setId(id);
         return usuario;
-    }
-
-    @Named("getNombreClienteCompleto")
-    default String getNombreClienteCompleto(Cliente cliente) {
-        if (cliente == null) {
-            return "";
-        }
-
-        if (cliente.getTipoCliente() != null) {
-            switch (cliente.getTipoCliente()) {
-                case PARTICULAR:
-                case AUTONOMO:
-                    return (cliente.getNombre() != null ? cliente.getNombre() : "") +
-                            " " +
-                            (cliente.getApellidos() != null ? cliente.getApellidos() : "");
-                case EMPRESA:
-                case ADMINISTRACION:
-                    return cliente.getRazonSocial() != null ? cliente.getRazonSocial() : "";
-                default:
-                    return cliente.getNombre() != null ? cliente.getNombre() : "";
-            }
-        }
-
-        return cliente.getNombre() != null ? cliente.getNombre() : "";
     }
 }

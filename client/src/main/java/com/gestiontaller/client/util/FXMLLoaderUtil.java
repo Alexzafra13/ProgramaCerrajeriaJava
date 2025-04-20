@@ -27,7 +27,14 @@ public class FXMLLoaderUtil {
 
             FXMLLoader loader = new FXMLLoader(resource);
             loader.setControllerFactory(applicationContext::getBean);
-            return loader.load();
+            T root = loader.load();
+
+            // Guardar el controlador en userData del nodo raíz
+            if (root instanceof javafx.scene.Parent) {
+                ((javafx.scene.Parent) root).setUserData(loader.getController());
+            }
+
+            return root;
         } catch (IOException e) {
             throw new RuntimeException("Error loading FXML: " + fxmlPath, e);
         }
