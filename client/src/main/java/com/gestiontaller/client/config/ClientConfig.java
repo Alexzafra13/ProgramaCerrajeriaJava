@@ -1,8 +1,6 @@
 package com.gestiontaller.client.config;
 
-import com.gestiontaller.client.api.AuthApiClient;
-import com.gestiontaller.client.api.ConfiguracionSerieApiClient;
-import com.gestiontaller.client.api.SerieApiClient;
+import com.gestiontaller.client.api.*;
 import com.gestiontaller.client.util.FXMLLoaderUtil;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
@@ -44,5 +42,17 @@ public class ClientConfig {
     public ConfiguracionSerieApiClient configuracionSerieApiClient() {
         System.out.println("Creando ConfiguracionSerieApiClient con URL base: " + apiBaseUrl);
         return new ConfiguracionSerieApiClient(apiBaseUrl);
+    }
+
+    @Bean
+    public ComponenteSerieApiClient componenteSerieApiClient() {
+        System.out.println("Creando ComponenteSerieApiClient con URL base: " + apiBaseUrl);
+        return new ComponenteSerieApiClient(apiBaseUrl);
+    }
+
+    @Bean
+    public ProductoApiClient productoApiClient() {
+        System.out.println("Creando ProductoApiClient con URL base: " + apiBaseUrl);
+        return new ProductoApiClient(apiBaseUrl);
     }
 }

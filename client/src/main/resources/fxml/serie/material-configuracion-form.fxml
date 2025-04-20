@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gestiontaller.client.controller.MaterialConfiguracionFormController">
+    <top>
+        <Label text="Material para Configuración de Ventana" BorderPane.alignment="CENTER">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+            <BorderPane.margin>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </BorderPane.margin>
+        </Label>
+    </top>
+    <center>
+        <GridPane hgap="10.0" vgap="10.0" BorderPane.alignment="CENTER">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="150.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <Label text="Configuración:" />
+                <TextField fx:id="txtConfiguracion" editable="false" GridPane.columnIndex="1" />
+                <Label text="Producto:" GridPane.rowIndex="1" />
+                <HBox alignment="CENTER_LEFT" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <children>
+                        <TextField fx:id="txtProducto" prefHeight="25.0" prefWidth="250.0" promptText="Seleccione un producto" />
+                        <Button fx:id="btnBuscarProducto" mnemonicParsing="false" onAction="#handleBuscarProducto" text="Buscar" />
+                    </children>
+                </HBox>
+                <Label text="Descripción:" GridPane.rowIndex="2" />
+                <TextField fx:id="txtDescripcion" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <Label text="Cantidad Base:" GridPane.rowIndex="3" />
+                <TextField fx:id="txtCantidadBase" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                <Label text="Precio Unitario:" GridPane.rowIndex="4" />
+                <TextField fx:id="txtPrecioUnitario" disable="true" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                <Label text="Fórmula Cantidad:" GridPane.rowIndex="5" />
+                <TextArea fx:id="txtFormulaCantidad" prefHeight="200.0" prefWidth="200.0" promptText="Ej: Math.ceil(anchoTotal / 150)" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            </children>
+            <BorderPane.margin>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </BorderPane.margin>
+        </GridPane>
+    </center>
+    <bottom>
+        <VBox spacing="10.0" BorderPane.alignment="CENTER">
+            <children>
+                <Label text="Variables disponibles: anchoTotal, altoTotal, numHojas, altoVentana, incluyePersiana (cm)">
+                    <font>
+                        <Font name="System Italic" size="12.0" />
+                    </font>
+                </Label>
+                <HBox alignment="CENTER_RIGHT" spacing="10.0">
+                    <children>
+                        <Button fx:id="btnGuardar" defaultButton="true" mnemonicParsing="false" onAction="#handleGuardar" text="Guardar" />
+                        <Button fx:id="btnCancelar" cancelButton="true" mnemonicParsing="false" onAction="#handleCancelar" text="Cancelar" />
+                    </children>
+                </HBox>
+            </children>
+            <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </padding>
+        </VBox>
+    </bottom>
+</BorderPane>

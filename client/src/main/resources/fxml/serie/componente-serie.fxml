@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gestiontaller.client.controller.ComponenteSerieController">
+    <top>
+        <VBox spacing="10.0" BorderPane.alignment="CENTER">
+            <children>
+                <Label text="Componentes Estándar para Series">
+                    <font>
+                        <Font name="System Bold" size="16.0" />
+                    </font>
+                </Label>
+                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                    <children>
+                        <Label text="Serie:">
+                            <HBox.margin>
+                                <Insets right="5.0" />
+                            </HBox.margin>
+                        </Label>
+                        <ComboBox fx:id="cmbSerie" prefWidth="200.0" />
+                        <Label text="Tipo:">
+                            <HBox.margin>
+                                <Insets left="20.0" right="5.0" />
+                            </HBox.margin>
+                        </Label>
+                        <ComboBox fx:id="cmbTipoComponente" prefWidth="150.0" />
+                        <Button fx:id="btnFiltrar" mnemonicParsing="false" onAction="#handleFiltrar" text="Filtrar" />
+                    </children>
+                </HBox>
+            </children>
+            <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </padding>
+        </VBox>
+    </top>
+    <center>
+        <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+            <tabs>
+                <Tab text="Componentes de Serie">
+                    <content>
+                        <BorderPane prefHeight="200.0" prefWidth="200.0">
+                            <center>
+                                <TableView fx:id="tablaComponentes" BorderPane.alignment="CENTER">
+                                    <columns>
+                                        <TableColumn fx:id="colCodigo" prefWidth="100.0" text="Código" />
+                                        <TableColumn fx:id="colNombre" prefWidth="200.0" text="Nombre" />
+                                        <TableColumn fx:id="colTipoMaterial" prefWidth="120.0" text="Tipo" />
+                                        <TableColumn fx:id="colDescripcion" prefWidth="250.0" text="Descripción" />
+                                        <TableColumn fx:id="colPredeterminado" prefWidth="80.0" text="Predeterminado" />
+                                    </columns>
+                                </TableView>
+                            </center>
+                            <bottom>
+                                <HBox alignment="CENTER_RIGHT" spacing="10.0" BorderPane.alignment="CENTER">
+                                    <children>
+                                        <Button fx:id="btnAgregarComponente" mnemonicParsing="false" onAction="#handleAgregarComponente" text="Agregar" />
+                                        <Button fx:id="btnEditarComponente" mnemonicParsing="false" onAction="#handleEditarComponente" text="Editar" />
+                                        <Button fx:id="btnEliminarComponente" mnemonicParsing="false" onAction="#handleEliminarComponente" text="Eliminar" />
+                                    </children>
+                                    <padding>
+                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                    </padding>
+                                </HBox>
+                            </bottom>
+                        </BorderPane>
+                    </content>
+                </Tab>
+                <Tab text="Configuraciones de Ventanas">
+                    <content>
+                        <BorderPane prefHeight="200.0" prefWidth="200.0">
+                            <top>
+                                <HBox alignment="CENTER_LEFT" spacing="10.0" BorderPane.alignment="CENTER">
+                                    <children>
+                                        <Label text="Número de Hojas:" />
+                                        <ComboBox fx:id="cmbNumHojas" prefWidth="100.0" />
+                                        <Button fx:id="btnCargarConfiguracion" mnemonicParsing="false" onAction="#handleCargarConfiguracion" text="Cargar" />
+                                    </children>
+                                    <padding>
+                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                    </padding>
+                                </HBox>
+                            </top>
+                            <center>
+                                <TableView fx:id="tablaMaterialesConfiguracion" BorderPane.alignment="CENTER">
+                                    <columns>
+                                        <TableColumn fx:id="colCodigoConfig" prefWidth="100.0" text="Código" />
+                                        <TableColumn fx:id="colDescripcionConfig" prefWidth="250.0" text="Descripción" />
+                                        <TableColumn fx:id="colCantidadBase" prefWidth="100.0" text="Cantidad Base" />
+                                        <TableColumn fx:id="colFormula" prefWidth="300.0" text="Fórmula Cantidad" />
+                                    </columns>
+                                </TableView>
+                            </center>
+                            <bottom>
+                                <HBox alignment="CENTER_RIGHT" spacing="10.0" BorderPane.alignment="CENTER">
+                                    <children>
+                                        <Button fx:id="btnAgregarMaterial" mnemonicParsing="false" onAction="#handleAgregarMaterial" text="Agregar Material" />
+                                        <Button fx:id="btnEditarMaterial" mnemonicParsing="false" onAction="#handleEditarMaterial" text="Editar Material" />
+                                        <Button fx:id="btnEliminarMaterial" mnemonicParsing="false" onAction="#handleEliminarMaterial" text="Eliminar Material" />
+                                    </children>
+                                    <padding>
+                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                    </padding>
+                                </HBox>
+                            </bottom>
+                        </BorderPane>
+                    </content>
+                </Tab>
+                <Tab text="Generación Automática">
+                    <content>
+                        <VBox spacing="20.0">
+                            <children>
+                                <Label text="Generar Componentes Estándar para la Serie">
+                                    <font>
+                                        <Font size="14.0" />
+                                    </font>
+                                </Label>
+                                <GridPane hgap="10.0" vgap="10.0">
+                                    <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0" />
+                                    </columnConstraints>
+                                    <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    </rowConstraints>
+                                    <children>
+                                        <Label text="Tipo de Serie:" />
+                                        <ComboBox fx:id="cmbTipoSerieGenerar" prefWidth="200.0" GridPane.columnIndex="1" />
+                                        <Label text="Incluir Componentes:" GridPane.rowIndex="1" />
+                                        <VBox spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                            <children>
+                                                <CheckBox fx:id="chkHerrajesBasicos" mnemonicParsing="false" text="Herrajes Básicos" selected="true" />
+                                                <CheckBox fx:id="chkTornilleria" mnemonicParsing="false" text="Tornillería" selected="true" />
+                                                <CheckBox fx:id="chkAccesorios" mnemonicParsing="false" text="Accesorios (Felpa, Gomas)" selected="true" />
+                                            </children>
+                                        </VBox>
+                                    </children>
+                                </GridPane>
+                                <HBox alignment="CENTER_RIGHT" spacing="10.0">
+                                    <children>
+                                        <Button fx:id="btnGenerarComponentes" mnemonicParsing="false" onAction="#handleGenerarComponentes" text="Generar Componentes Estándar" />
+                                    </children>
+                                </HBox>
+                            </children>
+                            <padding>
+                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                            </padding>
+                        </VBox>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </center>
+</BorderPane>
