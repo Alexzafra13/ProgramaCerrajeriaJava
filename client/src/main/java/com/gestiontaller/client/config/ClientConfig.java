@@ -55,4 +55,22 @@ public class ClientConfig {
         System.out.println("Creando ProductoApiClient con URL base: " + apiBaseUrl);
         return new ProductoApiClient(apiBaseUrl);
     }
+
+    @Bean
+    public ClienteApiClient clienteApiClient() {
+        System.out.println("Creando ClienteApiClient con URL base: " + apiBaseUrl);
+        return new ClienteApiClient(apiBaseUrl);
+    }
+
+    @Bean
+    public PresupuestoApiClient presupuestoApiClient() {
+        System.out.println("Creando PresupuestoApiClient con URL base: " + apiBaseUrl);
+        return new PresupuestoApiClient(apiBaseUrl);
+    }
+
+    @Bean
+    public TrabajoApiClient trabajoApiClient() {
+        System.out.println("Creando TrabajoApiClient con URL base: " + apiBaseUrl);
+        return new TrabajoApiClient(apiBaseUrl);
+    }
 }
