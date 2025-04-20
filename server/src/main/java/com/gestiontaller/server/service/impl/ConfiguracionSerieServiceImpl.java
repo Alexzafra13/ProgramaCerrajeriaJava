@@ -26,8 +26,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -71,18 +73,40 @@ public class ConfiguracionSerieServiceImpl implements ConfiguracionSerieService 
     @Transactional(readOnly = true)
     public PlantillaConfiguracionSerieDTO obtenerConfiguracionPorId(Long id) {
         logger.debug("Obteniendo configuración con ID: {}", id);
-        return configRepo.findByIdWithDetails(id)
-                .map(configMapper::toDto)
+        PlantillaConfiguracionSerie config = configRepo.findByIdBasic(id)
                 .orElseThrow(() -> new ConfiguracionNotFoundException(id));
+
+        // Cargar perfiles y materiales de forma individual
+        List<PerfilConfiguracion> perfiles = perfilConfigRepo.findByConfiguracionId(id);
+        List<MaterialConfiguracion> materiales = materialConfigRepo.findByConfiguracionId(id);
+
+        // Convertir a Set y establecer en la entidad
+        Set<PerfilConfiguracion> perfilesSet = new HashSet<>(perfiles);
+        Set<MaterialConfiguracion> materialesSet = new HashSet<>(materiales);
+        config.setPerfiles(perfilesSet);
+        config.setMateriales(materialesSet);
+
+        return configMapper.toDto(config);
     }
 
     @Override
     @Transactional(readOnly = true)
     public PlantillaConfiguracionSerieDTO obtenerConfiguracionPorSerieYHojas(Long serieId, Integer numHojas) {
         logger.debug("Obteniendo configuración para serie ID: {} con {} hojas", serieId, numHojas);
-        return configRepo.findBySerieIdAndNumHojas(serieId, numHojas)
-                .map(configMapper::toDto)
+        PlantillaConfiguracionSerie config = configRepo.findBySerieIdAndNumHojas(serieId, numHojas)
                 .orElseThrow(() -> new ConfiguracionNotFoundException(serieId, numHojas));
+
+        // Cargar perfiles y materiales de forma individual
+        List<PerfilConfiguracion> perfiles = perfilConfigRepo.findByConfiguracionId(config.getId());
+        List<MaterialConfiguracion> materiales = materialConfigRepo.findByConfiguracionId(config.getId());
+
+        // Convertir a Set y establecer en la entidad
+        Set<PerfilConfiguracion> perfilesSet = new HashSet<>(perfiles);
+        Set<MaterialConfiguracion> materialesSet = new HashSet<>(materiales);
+        config.setPerfiles(perfilesSet);
+        config.setMateriales(materialesSet);
+
+        return configMapper.toDto(config);
     }
 
     @Override
@@ -130,12 +154,23 @@ public class ConfiguracionSerieServiceImpl implements ConfiguracionSerieService 
         logger.debug("Aplicando configuración ID: {} para ventana de {}x{} mm",
                 configuracionId, anchoTotal, altoTotal);
 
-        PlantillaConfiguracionSerie config = configRepo.findByIdWithDetails(configuracionId)
+        // Cargar la configuración básica
+        PlantillaConfiguracionSerie config = configRepo.findByIdBasic(configuracionId)
                 .orElseThrow(() -> new ConfiguracionNotFoundException(configuracionId));
+
+        // Cargar perfiles y materiales de forma individual
+        List<PerfilConfiguracion> perfiles = perfilConfigRepo.findByConfiguracionId(configuracionId);
+        List<MaterialConfiguracion> materiales = materialConfigRepo.findByConfiguracionId(configuracionId);
+
+        // Convertir a Set y establecer en la entidad
+        Set<PerfilConfiguracion> perfilesSet = new HashSet<>(perfiles);
+        Set<MaterialConfiguracion> materialesSet = new HashSet<>(materiales);
+        config.setPerfiles(perfilesSet);
+        config.setMateriales(materialesSet);
 
         ResultadoCalculoDTO resultado = new ResultadoCalculoDTO();
         List<CorteDTO> cortes = new ArrayList<>();
-        List<MaterialAdicionalDTO> materiales = new ArrayList<>();
+        List<MaterialAdicionalDTO> materialesAdicionales = new ArrayList<>();
 
         // Variables para el contexto de evaluación
         Map<String, Object> variables = new HashMap<>();
@@ -229,7 +264,7 @@ public class ConfiguracionSerieServiceImpl implements ConfiguracionSerieService 
             // Calcular precio total
             materialDTO.setPrecioTotal(materialDTO.getCantidad() * materialDTO.getPrecioUnitario());
 
-            materiales.add(materialDTO);
+            materialesAdicionales.add(materialDTO);
         }
 
         // Configurar resultado
@@ -250,7 +285,7 @@ public class ConfiguracionSerieServiceImpl implements ConfiguracionSerieService 
         resultado.setIncluyePersiana(incluyePersiana);
         resultado.setAlturaCajon(alturaCajon);
         resultado.setCortes(cortes);
-        resultado.setMaterialesAdicionales(materiales);
+        resultado.setMaterialesAdicionales(materialesAdicionales);
         resultado.setTipoCristal(tipoCristal);
 
         // Calcular precio total
@@ -258,7 +293,7 @@ public class ConfiguracionSerieServiceImpl implements ConfiguracionSerieService 
                 .mapToDouble(c -> (c.getLongitud() / 1000.0) * c.getCantidad() * 15.0) // Precio base por metro
                 .sum();
 
-        precioTotal += materiales.stream()
+        precioTotal += materialesAdicionales.stream()
                 .mapToDouble(m -> m.getPrecioTotal() != null ? m.getPrecioTotal() : 0.0)
                 .sum();
 

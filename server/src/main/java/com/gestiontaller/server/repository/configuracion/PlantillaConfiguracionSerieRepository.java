@@ -14,6 +14,15 @@ public interface PlantillaConfiguracionSerieRepository extends JpaRepository<Pla
 
     Optional<PlantillaConfiguracionSerie> findBySerieIdAndNumHojas(Long serieId, Integer numHojas);
 
-    @Query("SELECT p FROM PlantillaConfiguracionSerie p LEFT JOIN FETCH p.perfiles LEFT JOIN FETCH p.materiales WHERE p.id = :id")
-    Optional<PlantillaConfiguracionSerie> findByIdWithDetails(Long id);
+    // Método para cargar solo la entidad básica
+    @Query("SELECT p FROM PlantillaConfiguracionSerie p WHERE p.id = :id")
+    Optional<PlantillaConfiguracionSerie> findByIdBasic(Long id);
+
+    // Método para cargar con perfiles
+    @Query("SELECT p FROM PlantillaConfiguracionSerie p LEFT JOIN FETCH p.perfiles WHERE p.id = :id")
+    Optional<PlantillaConfiguracionSerie> findByIdWithPerfiles(Long id);
+
+    // Método para cargar con materiales
+    @Query("SELECT p FROM PlantillaConfiguracionSerie p LEFT JOIN FETCH p.materiales WHERE p.id = :id")
+    Optional<PlantillaConfiguracionSerie> findByIdWithMateriales(Long id);
 }

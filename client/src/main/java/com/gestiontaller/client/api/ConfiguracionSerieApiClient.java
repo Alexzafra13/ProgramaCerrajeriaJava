@@ -100,7 +100,7 @@ public class ConfiguracionSerieApiClient extends BaseApiClient {
 
             ResponseEntity<ResultadoCalculoDTO> response = restTemplate.exchange(
                     url,
-                    HttpMethod.POST,
+                    HttpMethod.GET,
                     createEntity(),
                     ResultadoCalculoDTO.class
             );

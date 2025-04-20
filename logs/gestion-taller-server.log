@@ -404,3 +404,715 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
 2025-04-20 10:01:52.769 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
 2025-04-20 10:01:52.770 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
 2025-04-20 10:01:52.773 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-04-20 10:03:30.587 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2025-04-20 10:03:30.615 [main] INFO  c.g.s.GestionTallerServerApplication - Starting GestionTallerServerApplication using Java 21.0.4 with PID 19652 (C:\Users\Alejandro\Desktop\GestionTallerCerrajeriayAluminioApp\server\target\classes started by Alejandro in C:\Users\Alejandro\Desktop\GestionTallerCerrajeriayAluminioApp)
+2025-04-20 10:03:30.615 [main] DEBUG c.g.s.GestionTallerServerApplication - Running with Spring Boot v3.2.4, Spring v6.1.5
+2025-04-20 10:03:30.615 [main] INFO  c.g.s.GestionTallerServerApplication - No active profile set, falling back to 1 default profile: "default"
+2025-04-20 10:03:31.217 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-04-20 10:03:31.289 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 66 ms. Found 15 JPA repository interfaces.
+2025-04-20 10:03:31.895 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-04-20 10:03:31.902 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-04-20 10:03:31.903 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-04-20 10:03:31.903 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.19]
+2025-04-20 10:03:31.940 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-04-20 10:03:31.940 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1298 ms
+2025-04-20 10:03:31.988 [main] DEBUG c.g.server.config.SecurityConfig$1 - Filter 'debugFilter' configured for use
+2025-04-20 10:03:32.056 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-04-20 10:03:32.250 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7a31ca20
+2025-04-20 10:03:32.251 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-04-20 10:03:32.317 [main] INFO  o.f.c.i.license.VersionPrinter - Flyway Community Edition 9.22.3 by Redgate
+2025-04-20 10:03:32.317 [main] INFO  o.f.c.i.license.VersionPrinter - See release notes here: https://rd.gt/416ObMi
+2025-04-20 10:03:32.317 [main] INFO  o.f.c.i.license.VersionPrinter - 
+2025-04-20 10:03:32.326 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:mysql://localhost:3306/gestiontaller (MySQL 8.0)
+2025-04-20 10:03:32.352 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 6 migrations (execution time 00:00.016s)
+2025-04-20 10:03:32.360 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema `gestiontaller`: 5
+2025-04-20 10:03:32.364 [main] INFO  o.f.core.internal.command.DbMigrate - Schema `gestiontaller` is up to date. No migration necessary.
+2025-04-20 10:03:32.429 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-04-20 10:03:32.508 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.4.Final
+2025-04-20 10:03:32.536 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-04-20 10:03:32.663 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-04-20 10:03:32.699 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-04-20 10:03:33.508 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-04-20 10:03:33.509 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-04-20 10:03:33.857 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-04-20 10:03:34.844 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-04-20 10:03:34.867 [main] WARN  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 00abc731-4ce5-4a63-8fd6-5e9ee61a3bea
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-04-20 10:03:35.002 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 25 mappings in 'requestMappingHandlerMapping'
+2025-04-20 10:03:35.046 [main] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2025-04-20 10:03:35.098 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@4b5fc36d, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2e706bc6, org.springframework.security.web.context.SecurityContextHolderFilter@6c23667e, org.springframework.security.web.header.HeaderWriterFilter@e937569, org.springframework.web.filter.CorsFilter@653bfc3d, org.springframework.security.web.authentication.logout.LogoutFilter@22265a2d, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2e48f0a1, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7e762feb, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@16415241, org.springframework.security.web.access.ExceptionTranslationFilter@fcaf12a, org.springframework.security.web.access.intercept.AuthorizationFilter@58d7a3bb]
+2025-04-20 10:03:35.205 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-04-20 10:03:35.242 [main] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-04-20 10:03:35.349 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-04-20 10:03:35.375 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+2025-04-20 10:03:35.391 [main] INFO  c.g.s.GestionTallerServerApplication - Started GestionTallerServerApplication in 5.0 seconds (process running for 5.348)
+2025-04-20 10:03:40.566 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-04-20 10:03:40.566 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-04-20 10:03:40.566 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected StandardServletMultipartResolver
+2025-04-20 10:03:40.566 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected AcceptHeaderLocaleResolver
+2025-04-20 10:03:40.566 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected FixedThemeResolver
+2025-04-20 10:03:40.566 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@23ccdee9
+2025-04-20 10:03:40.567 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.servlet.support.SessionFlashMapManager@323b4e2a
+2025-04-20 10:03:40.567 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2025-04-20 10:03:40.567 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2025-04-20 10:03:40.575 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/auth/login
+2025-04-20 10:03:40.582 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/auth/login
+2025-04-20 10:03:40.583 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - POST "/api/auth/login", parameters={}
+2025-04-20 10:03:40.584 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.gestiontaller.server.controller.AuthController#login(LoginRequest)
+2025-04-20 10:03:40.622 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [LoginRequest(username=admin, password=admin)]
+2025-04-20 10:03:40.702 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [application/json] and supported [application/json, application/*+json]
+2025-04-20 10:03:40.702 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [LoginResponse(id=1, username=admin, nombre=Administrador, token=ea013a66-77c9-4dec-be0c-e4ae936d9924 (truncated)...]
+2025-04-20 10:03:40.708 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2025-04-20 10:03:40.708 [http-nio-8080-exec-1] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-04-20 10:03:52.897 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/series/aluminio
+2025-04-20 10:03:52.898 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/series/aluminio
+2025-04-20 10:03:52.898 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - GET "/api/series/aluminio", parameters={}
+2025-04-20 10:03:52.898 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.gestiontaller.server.controller.SerieController#obtenerSeriesAluminio()
+2025-04-20 10:03:52.899 [http-nio-8080-exec-2] DEBUG c.g.s.controller.SerieController - REST - Obteniendo todas las series de aluminio
+2025-04-20 10:03:52.900 [http-nio-8080-exec-2] DEBUG c.g.s.service.impl.SerieServiceImpl - Obteniendo todas las series de aluminio
+2025-04-20 10:03:52.908 [http-nio-8080-exec-2] DEBUG c.g.s.service.impl.SerieServiceImpl - Obteniendo perfiles para serie ID: 1
+2025-04-20 10:03:52.912 [http-nio-8080-exec-2] DEBUG c.g.s.service.impl.SerieServiceImpl - Obteniendo descuentos para serie ID: 1
+2025-04-20 10:03:52.915 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [application/json] and supported [application/json, application/*+json]
+2025-04-20 10:03:52.918 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [[SerieAluminioDTO(tipoSerie=CORREDERA, espesorMinimo=1.5, espesorMaximo=1.8, color=BLANCO, roturaPue (truncated)...]
+2025-04-20 10:03:52.923 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2025-04-20 10:03:52.923 [http-nio-8080-exec-2] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-04-20 10:04:01.953 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/series/aluminio
+2025-04-20 10:04:01.954 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/series/aluminio
+2025-04-20 10:04:01.954 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - GET "/api/series/aluminio", parameters={}
+2025-04-20 10:04:01.954 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.gestiontaller.server.controller.SerieController#obtenerSeriesAluminio()
+2025-04-20 10:04:01.954 [http-nio-8080-exec-3] DEBUG c.g.s.controller.SerieController - REST - Obteniendo todas las series de aluminio
+2025-04-20 10:04:01.955 [http-nio-8080-exec-3] DEBUG c.g.s.service.impl.SerieServiceImpl - Obteniendo todas las series de aluminio
+2025-04-20 10:04:01.957 [http-nio-8080-exec-3] DEBUG c.g.s.service.impl.SerieServiceImpl - Obteniendo perfiles para serie ID: 1
+2025-04-20 10:04:01.959 [http-nio-8080-exec-3] DEBUG c.g.s.service.impl.SerieServiceImpl - Obteniendo descuentos para serie ID: 1
+2025-04-20 10:04:01.961 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [application/json] and supported [application/json, application/*+json]
+2025-04-20 10:04:01.961 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [[SerieAluminioDTO(tipoSerie=CORREDERA, espesorMinimo=1.5, espesorMaximo=1.8, color=BLANCO, roturaPue (truncated)...]
+2025-04-20 10:04:01.962 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2025-04-20 10:04:01.962 [http-nio-8080-exec-3] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-04-20 10:04:01.964 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/configuraciones-serie/serie/1
+2025-04-20 10:04:01.964 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/configuraciones-serie/serie/1
+2025-04-20 10:04:01.964 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - GET "/api/configuraciones-serie/serie/1", parameters={}
+2025-04-20 10:04:01.965 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.gestiontaller.server.controller.ConfiguracionSerieController#obtenerConfiguracionesPorSerie(Long)
+2025-04-20 10:04:01.966 [http-nio-8080-exec-4] DEBUG c.g.s.s.i.ConfiguracionSerieServiceImpl - Obteniendo configuraciones para serie ID: 1
+2025-04-20 10:04:01.987 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [application/json] and supported [application/json, application/*+json]
+2025-04-20 10:04:01.990 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [[PlantillaConfiguracionSerieDTO(id=1, serieId=1, nombreSerie=Serie ALUPROM 21, nombre=Ventana Corred (truncated)...]
+2025-04-20 10:04:01.996 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2025-04-20 10:04:01.996 [http-nio-8080-exec-4] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-04-20 10:04:15.803 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/configuraciones-serie/serie/1/hojas/2
+2025-04-20 10:04:15.803 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/configuraciones-serie/serie/1/hojas/2
+2025-04-20 10:04:15.803 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - GET "/api/configuraciones-serie/serie/1/hojas/2", parameters={}
+2025-04-20 10:04:15.803 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.gestiontaller.server.controller.ConfiguracionSerieController#obtenerConfiguracionPorSerieYHojas(Long, Integer)
+2025-04-20 10:04:15.805 [http-nio-8080-exec-5] DEBUG c.g.s.s.i.ConfiguracionSerieServiceImpl - Obteniendo configuración para serie ID: 1 con 2 hojas
+2025-04-20 10:04:15.816 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [application/json] and supported [application/json, application/*+json]
+2025-04-20 10:04:15.816 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [PlantillaConfiguracionSerieDTO(id=1, serieId=1, nombreSerie=Serie ALUPROM 21, nombre=Ventana Correde (truncated)...]
+2025-04-20 10:04:15.816 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2025-04-20 10:04:15.816 [http-nio-8080-exec-5] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-04-20 10:04:15.827 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/configuraciones-serie/1/aplicar?ancho=1600&alto=1200&incluyePersiana=false&tipoCristal=SIMPLE
+2025-04-20 10:04:15.830 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/configuraciones-serie/1/aplicar?ancho=1600&alto=1200&incluyePersiana=false&tipoCristal=SIMPLE
+2025-04-20 10:04:15.830 [http-nio-8080-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - POST "/api/configuraciones-serie/1/aplicar?ancho=1600&alto=1200&incluyePersiana=false&tipoCristal=SIMPLE", parameters={masked}
+2025-04-20 10:04:15.831 [http-nio-8080-exec-6] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Using @ExceptionHandler com.gestiontaller.server.exception.GlobalExceptionHandler#handleGenericException(Exception, WebRequest)
+2025-04-20 10:04:15.831 [http-nio-8080-exec-6] ERROR c.g.s.e.GlobalExceptionHandler - Error no manejado: 
+org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' is not supported
+	at org.springframework.web.servlet.mvc.method.RequestMappingInfoHandlerMapping.handleNoMatch(RequestMappingInfoHandlerMapping.java:265)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.lookupHandlerMethod(AbstractHandlerMethodMapping.java:441)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.getHandlerInternal(AbstractHandlerMethodMapping.java:382)
+	at org.springframework.web.servlet.mvc.method.RequestMappingInfoHandlerMapping.getHandlerInternal(RequestMappingInfoHandlerMapping.java:126)
+	at org.springframework.web.servlet.mvc.method.RequestMappingInfoHandlerMapping.getHandlerInternal(RequestMappingInfoHandlerMapping.java:68)
+	at org.springframework.web.servlet.handler.AbstractHandlerMapping.getHandler(AbstractHandlerMapping.java:507)
+	at org.springframework.web.servlet.DispatcherServlet.getHandler(DispatcherServlet.java:1283)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1065)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108)
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:365)
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:100)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:195)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:230)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:352)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:268)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at com.gestiontaller.server.config.SecurityConfig$1.doFilterInternal(SecurityConfig.java:70)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1744)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2025-04-20 10:04:15.834 [http-nio-8080-exec-6] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [application/json] and supported [application/json, application/*+json]
+2025-04-20 10:04:15.834 [http-nio-8080-exec-6] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [{timestamp=2025-04-20T10:04:15.833414700, status=500, error=Internal Server Error, message=Request m (truncated)...]
+2025-04-20 10:04:15.836 [http-nio-8080-exec-6] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' is not supported]
+2025-04-20 10:04:15.837 [http-nio-8080-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - Completed 500 INTERNAL_SERVER_ERROR
+2025-04-20 10:04:15.837 [http-nio-8080-exec-6] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-04-20 10:06:08.632 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-04-20 10:06:08.633 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-04-20 10:06:08.637 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-04-20 10:06:37.684 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2025-04-20 10:06:37.713 [main] INFO  c.g.s.GestionTallerServerApplication - Starting GestionTallerServerApplication using Java 21.0.4 with PID 23808 (C:\Users\Alejandro\Desktop\GestionTallerCerrajeriayAluminioApp\server\target\classes started by Alejandro in C:\Users\Alejandro\Desktop\GestionTallerCerrajeriayAluminioApp)
+2025-04-20 10:06:37.713 [main] DEBUG c.g.s.GestionTallerServerApplication - Running with Spring Boot v3.2.4, Spring v6.1.5
+2025-04-20 10:06:37.713 [main] INFO  c.g.s.GestionTallerServerApplication - No active profile set, falling back to 1 default profile: "default"
+2025-04-20 10:06:38.280 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-04-20 10:06:38.367 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 78 ms. Found 15 JPA repository interfaces.
+2025-04-20 10:06:38.902 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-04-20 10:06:38.909 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-04-20 10:06:38.911 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-04-20 10:06:38.911 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.19]
+2025-04-20 10:06:38.949 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-04-20 10:06:38.949 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1209 ms
+2025-04-20 10:06:38.999 [main] DEBUG c.g.server.config.SecurityConfig$1 - Filter 'debugFilter' configured for use
+2025-04-20 10:06:39.068 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-04-20 10:06:39.244 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7a31ca20
+2025-04-20 10:06:39.245 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-04-20 10:06:39.312 [main] INFO  o.f.c.i.license.VersionPrinter - Flyway Community Edition 9.22.3 by Redgate
+2025-04-20 10:06:39.312 [main] INFO  o.f.c.i.license.VersionPrinter - See release notes here: https://rd.gt/416ObMi
+2025-04-20 10:06:39.312 [main] INFO  o.f.c.i.license.VersionPrinter - 
+2025-04-20 10:06:39.323 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:mysql://localhost:3306/gestiontaller (MySQL 8.0)
+2025-04-20 10:06:39.351 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 6 migrations (execution time 00:00.017s)
+2025-04-20 10:06:39.360 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema `gestiontaller`: 5
+2025-04-20 10:06:39.362 [main] INFO  o.f.core.internal.command.DbMigrate - Schema `gestiontaller` is up to date. No migration necessary.
+2025-04-20 10:06:39.430 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-04-20 10:06:39.489 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.4.Final
+2025-04-20 10:06:39.517 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-04-20 10:06:39.652 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-04-20 10:06:39.696 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-04-20 10:06:40.503 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-04-20 10:06:40.504 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-04-20 10:06:40.862 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-04-20 10:06:41.833 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-04-20 10:06:41.855 [main] WARN  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 9bddc0ca-25d5-4edd-bd62-c75942cdbd76
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-04-20 10:06:42.044 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 25 mappings in 'requestMappingHandlerMapping'
+2025-04-20 10:06:42.082 [main] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2025-04-20 10:06:42.131 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@66b962b4, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5e6dcfa, org.springframework.security.web.context.SecurityContextHolderFilter@229762ab, org.springframework.security.web.header.HeaderWriterFilter@105b12e7, org.springframework.web.filter.CorsFilter@705b4359, org.springframework.security.web.authentication.logout.LogoutFilter@7cc7a0ca, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@27d40ca5, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@10de92aa, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@734df10b, org.springframework.security.web.access.ExceptionTranslationFilter@13ea4f97, org.springframework.security.web.access.intercept.AuthorizationFilter@60ca607]
+2025-04-20 10:06:42.249 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-04-20 10:06:42.301 [main] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-04-20 10:06:42.435 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-04-20 10:06:42.450 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+2025-04-20 10:06:42.459 [main] INFO  c.g.s.GestionTallerServerApplication - Started GestionTallerServerApplication in 4.969 seconds (process running for 5.312)
+2025-04-20 10:06:50.309 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-04-20 10:06:50.309 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-04-20 10:06:50.309 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected StandardServletMultipartResolver
+2025-04-20 10:06:50.309 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected AcceptHeaderLocaleResolver
+2025-04-20 10:06:50.309 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected FixedThemeResolver
+2025-04-20 10:06:50.310 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@71ebb8e1
+2025-04-20 10:06:50.310 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.servlet.support.SessionFlashMapManager@705a793a
+2025-04-20 10:06:50.310 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2025-04-20 10:06:50.310 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2025-04-20 10:06:50.318 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/auth/login
+2025-04-20 10:06:50.322 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/auth/login
+2025-04-20 10:06:50.323 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - POST "/api/auth/login", parameters={}
+2025-04-20 10:06:50.324 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.gestiontaller.server.controller.AuthController#login(LoginRequest)
+2025-04-20 10:06:50.356 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [LoginRequest(username=admin, password=admin)]
+2025-04-20 10:06:50.431 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [application/json] and supported [application/json, application/*+json]
+2025-04-20 10:06:50.432 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [LoginResponse(id=1, username=admin, nombre=Administrador, token=3e1cd523-f17f-4e18-9de3-ecee9e9e5cd0 (truncated)...]
+2025-04-20 10:06:50.438 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2025-04-20 10:06:50.438 [http-nio-8080-exec-1] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-04-20 10:06:51.574 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/series/aluminio
+2025-04-20 10:06:51.574 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/series/aluminio
+2025-04-20 10:06:51.574 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - GET "/api/series/aluminio", parameters={}
+2025-04-20 10:06:51.575 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.gestiontaller.server.controller.SerieController#obtenerSeriesAluminio()
+2025-04-20 10:06:51.575 [http-nio-8080-exec-2] DEBUG c.g.s.controller.SerieController - REST - Obteniendo todas las series de aluminio
+2025-04-20 10:06:51.576 [http-nio-8080-exec-2] DEBUG c.g.s.service.impl.SerieServiceImpl - Obteniendo todas las series de aluminio
+2025-04-20 10:06:51.584 [http-nio-8080-exec-2] DEBUG c.g.s.service.impl.SerieServiceImpl - Obteniendo perfiles para serie ID: 1
+2025-04-20 10:06:51.587 [http-nio-8080-exec-2] DEBUG c.g.s.service.impl.SerieServiceImpl - Obteniendo descuentos para serie ID: 1
+2025-04-20 10:06:51.590 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [application/json] and supported [application/json, application/*+json]
+2025-04-20 10:06:51.593 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [[SerieAluminioDTO(tipoSerie=CORREDERA, espesorMinimo=1.5, espesorMaximo=1.8, color=BLANCO, roturaPue (truncated)...]
+2025-04-20 10:06:51.597 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2025-04-20 10:06:51.597 [http-nio-8080-exec-2] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-04-20 10:06:51.605 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/configuraciones-serie/serie/1
+2025-04-20 10:06:51.605 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/configuraciones-serie/serie/1
+2025-04-20 10:06:51.605 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - GET "/api/configuraciones-serie/serie/1", parameters={}
+2025-04-20 10:06:51.605 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.gestiontaller.server.controller.ConfiguracionSerieController#obtenerConfiguracionesPorSerie(Long)
+2025-04-20 10:06:51.606 [http-nio-8080-exec-3] DEBUG c.g.s.s.i.ConfiguracionSerieServiceImpl - Obteniendo configuraciones para serie ID: 1
+2025-04-20 10:06:51.623 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [application/json] and supported [application/json, application/*+json]
+2025-04-20 10:06:51.626 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [[PlantillaConfiguracionSerieDTO(id=1, serieId=1, nombreSerie=Serie ALUPROM 21, nombre=Ventana Corred (truncated)...]
+2025-04-20 10:06:51.630 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2025-04-20 10:06:51.630 [http-nio-8080-exec-3] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-04-20 10:06:57.685 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/configuraciones-serie/serie/1/hojas/2
+2025-04-20 10:06:57.685 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/configuraciones-serie/serie/1/hojas/2
+2025-04-20 10:06:57.686 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - GET "/api/configuraciones-serie/serie/1/hojas/2", parameters={}
+2025-04-20 10:06:57.686 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.gestiontaller.server.controller.ConfiguracionSerieController#obtenerConfiguracionPorSerieYHojas(Long, Integer)
+2025-04-20 10:06:57.687 [http-nio-8080-exec-4] DEBUG c.g.s.s.i.ConfiguracionSerieServiceImpl - Obteniendo configuración para serie ID: 1 con 2 hojas
+2025-04-20 10:06:57.698 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [application/json] and supported [application/json, application/*+json]
+2025-04-20 10:06:57.698 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [PlantillaConfiguracionSerieDTO(id=1, serieId=1, nombreSerie=Serie ALUPROM 21, nombre=Ventana Correde (truncated)...]
+2025-04-20 10:06:57.699 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2025-04-20 10:06:57.699 [http-nio-8080-exec-4] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-04-20 10:06:57.705 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/configuraciones-serie/1/aplicar?ancho=1600&alto=1200&incluyePersiana=false&tipoCristal=SIMPLE
+2025-04-20 10:06:57.707 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/configuraciones-serie/1/aplicar?ancho=1600&alto=1200&incluyePersiana=false&tipoCristal=SIMPLE
+2025-04-20 10:06:57.708 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - GET "/api/configuraciones-serie/1/aplicar?ancho=1600&alto=1200&incluyePersiana=false&tipoCristal=SIMPLE", parameters={masked}
+2025-04-20 10:06:57.708 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.gestiontaller.server.controller.ConfiguracionSerieController#aplicarConfiguracion(Long, Integer, Integer, Boolean, Integer, TipoCristal)
+2025-04-20 10:06:57.711 [http-nio-8080-exec-5] DEBUG c.g.s.s.i.ConfiguracionSerieServiceImpl - Aplicando configuración ID: 1 para ventana de 1600x1200 mm
+2025-04-20 10:06:57.720 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Using @ExceptionHandler com.gestiontaller.server.exception.GlobalExceptionHandler#handleGenericException(Exception, WebRequest)
+2025-04-20 10:06:57.720 [http-nio-8080-exec-5] ERROR c.g.s.e.GlobalExceptionHandler - Error no manejado: 
+org.springframework.dao.InvalidDataAccessApiUsageException: org.hibernate.loader.MultipleBagFetchException: cannot simultaneously fetch multiple bags: [com.gestiontaller.server.model.configuracion.PlantillaConfiguracionSerie.materiales, com.gestiontaller.server.model.configuracion.PlantillaConfiguracionSerie.perfiles]
+	at org.springframework.orm.jpa.EntityManagerFactoryUtils.convertJpaAccessExceptionIfPossible(EntityManagerFactoryUtils.java:371)
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.translateExceptionIfPossible(HibernateJpaDialect.java:246)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.translateExceptionIfPossible(AbstractEntityManagerFactoryBean.java:550)
+	at org.springframework.dao.support.ChainedPersistenceExceptionTranslator.translateExceptionIfPossible(ChainedPersistenceExceptionTranslator.java:61)
+	at org.springframework.dao.support.DataAccessUtils.translateIfNecessary(DataAccessUtils.java:335)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:152)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:135)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:220)
+	at jdk.proxy2/jdk.proxy2.$Proxy137.findByIdWithDetails(Unknown Source)
+	at com.gestiontaller.server.service.impl.ConfiguracionSerieServiceImpl.aplicarConfiguracion(ConfiguracionSerieServiceImpl.java:133)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:351)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:765)
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:123)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:392)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:765)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:717)
+	at com.gestiontaller.server.service.impl.ConfiguracionSerieServiceImpl$$SpringCGLIB$$0.aplicarConfiguracion(<generated>)
+	at com.gestiontaller.server.controller.ConfiguracionSerieController.aplicarConfiguracion(ConfiguracionSerieController.java:74)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:255)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:188)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:925)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:830)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108)
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:365)
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:100)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:195)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:230)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:352)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:268)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at com.gestiontaller.server.config.SecurityConfig$1.doFilterInternal(SecurityConfig.java:70)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1744)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: java.lang.IllegalArgumentException: org.hibernate.loader.MultipleBagFetchException: cannot simultaneously fetch multiple bags: [com.gestiontaller.server.model.configuracion.PlantillaConfiguracionSerie.materiales, com.gestiontaller.server.model.configuracion.PlantillaConfiguracionSerie.perfiles]
+	at org.hibernate.internal.ExceptionConverterImpl.convert(ExceptionConverterImpl.java:146)
+	at org.hibernate.query.spi.AbstractSelectionQuery.list(AbstractSelectionQuery.java:438)
+	at org.hibernate.query.spi.AbstractSelectionQuery.getSingleResult(AbstractSelectionQuery.java:564)
+	at org.springframework.data.jpa.repository.query.JpaQueryExecution$SingleEntityExecution.doExecute(JpaQueryExecution.java:223)
+	at org.springframework.data.jpa.repository.query.JpaQueryExecution.execute(JpaQueryExecution.java:92)
+	at org.springframework.data.jpa.repository.query.AbstractJpaQuery.doExecute(AbstractJpaQuery.java:149)
+	at org.springframework.data.jpa.repository.query.AbstractJpaQuery.execute(AbstractJpaQuery.java:137)
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.doInvoke(RepositoryMethodInvoker.java:170)
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.invoke(RepositoryMethodInvoker.java:158)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.doInvoke(QueryExecutorMethodInterceptor.java:164)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.invoke(QueryExecutorMethodInterceptor.java:143)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.data.projection.DefaultMethodInvokingMethodInterceptor.invoke(DefaultMethodInvokingMethodInterceptor.java:70)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:123)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:392)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137)
+	... 118 common frames omitted
+Caused by: org.hibernate.loader.MultipleBagFetchException: cannot simultaneously fetch multiple bags: [com.gestiontaller.server.model.configuracion.PlantillaConfiguracionSerie.materiales, com.gestiontaller.server.model.configuracion.PlantillaConfiguracionSerie.perfiles]
+	at org.hibernate.query.sqm.sql.BaseSqmToSqlAstConverter.createFetch(BaseSqmToSqlAstConverter.java:8246)
+	at org.hibernate.query.sqm.sql.BaseSqmToSqlAstConverter.visitFetches(BaseSqmToSqlAstConverter.java:8342)
+	at org.hibernate.sql.results.graph.AbstractFetchParent.afterInitialize(AbstractFetchParent.java:30)
+	at org.hibernate.sql.results.graph.entity.AbstractEntityResultGraphNode.afterInitialize(AbstractEntityResultGraphNode.java:69)
+	at org.hibernate.persister.entity.AbstractEntityPersister.createDomainResult(AbstractEntityPersister.java:1319)
+	at org.hibernate.query.sqm.sql.internal.AbstractSqmPathInterpretation.createDomainResult(AbstractSqmPathInterpretation.java:55)
+	at org.hibernate.query.sqm.sql.BaseSqmToSqlAstConverter.lambda$visitSelection$23(BaseSqmToSqlAstConverter.java:2300)
+	at java.base/java.util.Collections$SingletonList.forEach(Collections.java:5186)
+	at org.hibernate.query.sqm.sql.BaseSqmToSqlAstConverter.visitSelection(BaseSqmToSqlAstConverter.java:2295)
+	at org.hibernate.query.sqm.sql.BaseSqmToSqlAstConverter.visitSelectClause(BaseSqmToSqlAstConverter.java:2213)
+	at org.hibernate.query.sqm.sql.BaseSqmToSqlAstConverter.visitQuerySpec(BaseSqmToSqlAstConverter.java:2057)
+	at org.hibernate.query.sqm.sql.BaseSqmToSqlAstConverter.visitQuerySpec(BaseSqmToSqlAstConverter.java:440)
+	at org.hibernate.query.sqm.tree.select.SqmQuerySpec.accept(SqmQuerySpec.java:127)
+	at org.hibernate.query.sqm.spi.BaseSemanticQueryWalker.visitQueryPart(BaseSemanticQueryWalker.java:218)
+	at org.hibernate.query.sqm.sql.BaseSqmToSqlAstConverter.visitQueryPart(BaseSqmToSqlAstConverter.java:1915)
+	at org.hibernate.query.sqm.sql.BaseSqmToSqlAstConverter.visitSelectStatement(BaseSqmToSqlAstConverter.java:1600)
+	at org.hibernate.query.sqm.sql.BaseSqmToSqlAstConverter.visitSelectStatement(BaseSqmToSqlAstConverter.java:440)
+	at org.hibernate.query.sqm.tree.select.SqmSelectStatement.accept(SqmSelectStatement.java:228)
+	at org.hibernate.query.sqm.sql.BaseSqmToSqlAstConverter.translate(BaseSqmToSqlAstConverter.java:776)
+	at org.hibernate.query.sqm.internal.ConcreteSqmSelectQueryPlan.buildCacheableSqmInterpretation(ConcreteSqmSelectQueryPlan.java:402)
+	at org.hibernate.query.sqm.internal.ConcreteSqmSelectQueryPlan.withCacheableSqmInterpretation(ConcreteSqmSelectQueryPlan.java:327)
+	at org.hibernate.query.sqm.internal.ConcreteSqmSelectQueryPlan.performList(ConcreteSqmSelectQueryPlan.java:303)
+	at org.hibernate.query.sqm.internal.QuerySqmImpl.doList(QuerySqmImpl.java:509)
+	at org.hibernate.query.spi.AbstractSelectionQuery.list(AbstractSelectionQuery.java:427)
+	... 135 common frames omitted
+2025-04-20 10:06:57.723 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [application/json] and supported [application/json, application/*+json]
+2025-04-20 10:06:57.723 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [{timestamp=2025-04-20T10:06:57.722090100, status=500, error=Internal Server Error, message=org.hiber (truncated)...]
+2025-04-20 10:06:57.726 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.dao.InvalidDataAccessApiUsageException: org.hibernate.loader.MultipleBagFetchException: cannot simultaneously fetch multiple bags: [com.gestiontaller.server.model.configuracion.PlantillaConfiguracionSerie.materiales, com.gestiontaller.server.model.configuracion.PlantillaConfiguracionSerie.perfiles]]
+2025-04-20 10:06:57.726 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Completed 500 INTERNAL_SERVER_ERROR
+2025-04-20 10:06:57.726 [http-nio-8080-exec-5] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-04-20 10:07:55.143 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-04-20 10:07:55.144 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-04-20 10:07:55.148 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-04-20 10:15:49.933 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2025-04-20 10:15:49.961 [main] INFO  c.g.s.GestionTallerServerApplication - Starting GestionTallerServerApplication using Java 21.0.4 with PID 28152 (C:\Users\Alejandro\Desktop\GestionTallerCerrajeriayAluminioApp\server\target\classes started by Alejandro in C:\Users\Alejandro\Desktop\GestionTallerCerrajeriayAluminioApp)
+2025-04-20 10:15:49.961 [main] DEBUG c.g.s.GestionTallerServerApplication - Running with Spring Boot v3.2.4, Spring v6.1.5
+2025-04-20 10:15:49.962 [main] INFO  c.g.s.GestionTallerServerApplication - No active profile set, falling back to 1 default profile: "default"
+2025-04-20 10:15:50.515 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-04-20 10:15:50.587 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 67 ms. Found 15 JPA repository interfaces.
+2025-04-20 10:15:51.155 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-04-20 10:15:51.163 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-04-20 10:15:51.165 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-04-20 10:15:51.165 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.19]
+2025-04-20 10:15:51.204 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-04-20 10:15:51.205 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1214 ms
+2025-04-20 10:15:51.242 [main] DEBUG c.g.server.config.SecurityConfig$1 - Filter 'debugFilter' configured for use
+2025-04-20 10:15:51.307 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-04-20 10:15:51.481 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4b9dbf07
+2025-04-20 10:15:51.482 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-04-20 10:15:51.547 [main] INFO  o.f.c.i.license.VersionPrinter - Flyway Community Edition 9.22.3 by Redgate
+2025-04-20 10:15:51.547 [main] INFO  o.f.c.i.license.VersionPrinter - See release notes here: https://rd.gt/416ObMi
+2025-04-20 10:15:51.547 [main] INFO  o.f.c.i.license.VersionPrinter - 
+2025-04-20 10:15:51.559 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:mysql://localhost:3306/gestiontaller (MySQL 8.0)
+2025-04-20 10:15:51.585 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 6 migrations (execution time 00:00.015s)
+2025-04-20 10:15:51.593 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema `gestiontaller`: 5
+2025-04-20 10:15:51.595 [main] INFO  o.f.core.internal.command.DbMigrate - Schema `gestiontaller` is up to date. No migration necessary.
+2025-04-20 10:15:51.659 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-04-20 10:15:51.732 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.4.Final
+2025-04-20 10:15:51.765 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-04-20 10:15:51.907 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-04-20 10:15:51.948 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-04-20 10:15:52.742 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-04-20 10:15:52.743 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-04-20 10:15:53.164 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-04-20 10:15:54.180 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-04-20 10:15:54.201 [main] WARN  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 97b508b7-e856-477a-bb54-adbb51b45641
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-04-20 10:15:54.374 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 25 mappings in 'requestMappingHandlerMapping'
+2025-04-20 10:15:54.422 [main] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2025-04-20 10:15:54.473 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@17e77d57, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1f9c9485, org.springframework.security.web.context.SecurityContextHolderFilter@3f098695, org.springframework.security.web.header.HeaderWriterFilter@17294e82, org.springframework.web.filter.CorsFilter@5deae5ef, org.springframework.security.web.authentication.logout.LogoutFilter@7231547f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4fdc1a37, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@61b4a433, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@791ff1b9, org.springframework.security.web.access.ExceptionTranslationFilter@597cb2f5, org.springframework.security.web.access.intercept.AuthorizationFilter@19323826]
+2025-04-20 10:15:54.581 [main] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-04-20 10:15:54.617 [main] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-04-20 10:15:54.758 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-04-20 10:15:54.782 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+2025-04-20 10:15:54.797 [main] INFO  c.g.s.GestionTallerServerApplication - Started GestionTallerServerApplication in 5.064 seconds (process running for 5.409)
+2025-04-20 10:15:58.238 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-04-20 10:15:58.238 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-04-20 10:15:58.238 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected StandardServletMultipartResolver
+2025-04-20 10:15:58.238 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected AcceptHeaderLocaleResolver
+2025-04-20 10:15:58.238 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected FixedThemeResolver
+2025-04-20 10:15:58.239 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@580882fb
+2025-04-20 10:15:58.239 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Detected org.springframework.web.servlet.support.SessionFlashMapManager@82da5c9
+2025-04-20 10:15:58.239 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2025-04-20 10:15:58.239 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2025-04-20 10:15:58.248 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/auth/login
+2025-04-20 10:15:58.252 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/auth/login
+2025-04-20 10:15:58.252 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - POST "/api/auth/login", parameters={}
+2025-04-20 10:15:58.253 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.gestiontaller.server.controller.AuthController#login(LoginRequest)
+2025-04-20 10:15:58.286 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [LoginRequest(username=admin, password=admin)]
+2025-04-20 10:15:58.365 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [application/json] and supported [application/json, application/*+json]
+2025-04-20 10:15:58.365 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [LoginResponse(id=1, username=admin, nombre=Administrador, token=5ce0b0a7-5636-4b78-9864-4c2667372ef6 (truncated)...]
+2025-04-20 10:15:58.371 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2025-04-20 10:15:58.372 [http-nio-8080-exec-1] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-04-20 10:15:59.771 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/series/aluminio
+2025-04-20 10:15:59.771 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/series/aluminio
+2025-04-20 10:15:59.771 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - GET "/api/series/aluminio", parameters={}
+2025-04-20 10:15:59.771 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.gestiontaller.server.controller.SerieController#obtenerSeriesAluminio()
+2025-04-20 10:15:59.772 [http-nio-8080-exec-2] DEBUG c.g.s.controller.SerieController - REST - Obteniendo todas las series de aluminio
+2025-04-20 10:15:59.773 [http-nio-8080-exec-2] DEBUG c.g.s.service.impl.SerieServiceImpl - Obteniendo todas las series de aluminio
+2025-04-20 10:15:59.781 [http-nio-8080-exec-2] DEBUG c.g.s.service.impl.SerieServiceImpl - Obteniendo perfiles para serie ID: 1
+2025-04-20 10:15:59.784 [http-nio-8080-exec-2] DEBUG c.g.s.service.impl.SerieServiceImpl - Obteniendo descuentos para serie ID: 1
+2025-04-20 10:15:59.787 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [application/json] and supported [application/json, application/*+json]
+2025-04-20 10:15:59.790 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [[SerieAluminioDTO(tipoSerie=CORREDERA, espesorMinimo=1.5, espesorMaximo=1.8, color=BLANCO, roturaPue (truncated)...]
+2025-04-20 10:15:59.794 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2025-04-20 10:15:59.794 [http-nio-8080-exec-2] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-04-20 10:15:59.803 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/configuraciones-serie/serie/1
+2025-04-20 10:15:59.803 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/configuraciones-serie/serie/1
+2025-04-20 10:15:59.803 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - GET "/api/configuraciones-serie/serie/1", parameters={}
+2025-04-20 10:15:59.803 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.gestiontaller.server.controller.ConfiguracionSerieController#obtenerConfiguracionesPorSerie(Long)
+2025-04-20 10:15:59.804 [http-nio-8080-exec-3] DEBUG c.g.s.s.i.ConfiguracionSerieServiceImpl - Obteniendo configuraciones para serie ID: 1
+2025-04-20 10:15:59.822 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [application/json] and supported [application/json, application/*+json]
+2025-04-20 10:15:59.824 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [[PlantillaConfiguracionSerieDTO(id=1, serieId=1, nombreSerie=Serie ALUPROM 21, nombre=Ventana Corred (truncated)...]
+2025-04-20 10:15:59.825 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2025-04-20 10:15:59.825 [http-nio-8080-exec-3] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-04-20 10:16:06.643 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/configuraciones-serie/serie/1/hojas/2
+2025-04-20 10:16:06.643 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/configuraciones-serie/serie/1/hojas/2
+2025-04-20 10:16:06.643 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - GET "/api/configuraciones-serie/serie/1/hojas/2", parameters={}
+2025-04-20 10:16:06.643 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.gestiontaller.server.controller.ConfiguracionSerieController#obtenerConfiguracionPorSerieYHojas(Long, Integer)
+2025-04-20 10:16:06.644 [http-nio-8080-exec-4] DEBUG c.g.s.s.i.ConfiguracionSerieServiceImpl - Obteniendo configuración para serie ID: 1 con 2 hojas
+2025-04-20 10:16:06.658 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [application/json] and supported [application/json, application/*+json]
+2025-04-20 10:16:06.659 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [PlantillaConfiguracionSerieDTO(id=1, serieId=1, nombreSerie=Serie ALUPROM 21, nombre=Ventana Correde (truncated)...]
+2025-04-20 10:16:06.664 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2025-04-20 10:16:06.664 [http-nio-8080-exec-4] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-04-20 10:16:06.670 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/configuraciones-serie/1/aplicar?ancho=1200&alto=1000&incluyePersiana=false&tipoCristal=SIMPLE
+2025-04-20 10:16:06.673 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/configuraciones-serie/1/aplicar?ancho=1200&alto=1000&incluyePersiana=false&tipoCristal=SIMPLE
+2025-04-20 10:16:06.674 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - GET "/api/configuraciones-serie/1/aplicar?ancho=1200&alto=1000&incluyePersiana=false&tipoCristal=SIMPLE", parameters={masked}
+2025-04-20 10:16:06.674 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.gestiontaller.server.controller.ConfiguracionSerieController#aplicarConfiguracion(Long, Integer, Integer, Boolean, Integer, TipoCristal)
+2025-04-20 10:16:06.677 [http-nio-8080-exec-5] DEBUG c.g.s.s.i.ConfiguracionSerieServiceImpl - Aplicando configuración ID: 1 para ventana de 1200x1000 mm
+2025-04-20 10:16:06.758 [http-nio-8080-exec-5] INFO  c.g.s.s.i.ConfiguracionSerieServiceImpl - Cálculo completado para configuración ID: 1
+2025-04-20 10:16:06.762 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [application/json] and supported [application/json, application/*+json]
+2025-04-20 10:16:06.767 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [ResultadoCalculoDTO(tipoPresupuesto=VENTANA_CORREDERA, ancho=1200, alto=1000, anchoVentana=1200, alt (truncated)...]
+2025-04-20 10:16:06.771 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2025-04-20 10:16:06.771 [http-nio-8080-exec-5] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-04-20 10:16:37.652 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/series/aluminio
+2025-04-20 10:16:37.653 [http-nio-8080-exec-6] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/series/aluminio
+2025-04-20 10:16:37.653 [http-nio-8080-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - GET "/api/series/aluminio", parameters={}
+2025-04-20 10:16:37.653 [http-nio-8080-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.gestiontaller.server.controller.SerieController#obtenerSeriesAluminio()
+2025-04-20 10:16:37.653 [http-nio-8080-exec-6] DEBUG c.g.s.controller.SerieController - REST - Obteniendo todas las series de aluminio
+2025-04-20 10:16:37.654 [http-nio-8080-exec-6] DEBUG c.g.s.service.impl.SerieServiceImpl - Obteniendo todas las series de aluminio
+2025-04-20 10:16:37.655 [http-nio-8080-exec-6] DEBUG c.g.s.service.impl.SerieServiceImpl - Obteniendo perfiles para serie ID: 1
+2025-04-20 10:16:37.657 [http-nio-8080-exec-6] DEBUG c.g.s.service.impl.SerieServiceImpl - Obteniendo descuentos para serie ID: 1
+2025-04-20 10:16:37.659 [http-nio-8080-exec-6] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [application/json] and supported [application/json, application/*+json]
+2025-04-20 10:16:37.659 [http-nio-8080-exec-6] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [[SerieAluminioDTO(tipoSerie=CORREDERA, espesorMinimo=1.5, espesorMaximo=1.8, color=BLANCO, roturaPue (truncated)...]
+2025-04-20 10:16:37.660 [http-nio-8080-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2025-04-20 10:16:37.660 [http-nio-8080-exec-6] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-04-20 10:16:45.399 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/series/aluminio
+2025-04-20 10:16:45.400 [http-nio-8080-exec-7] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/series/aluminio
+2025-04-20 10:16:45.400 [http-nio-8080-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - GET "/api/series/aluminio", parameters={}
+2025-04-20 10:16:45.400 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.gestiontaller.server.controller.SerieController#obtenerSeriesAluminio()
+2025-04-20 10:16:45.400 [http-nio-8080-exec-7] DEBUG c.g.s.controller.SerieController - REST - Obteniendo todas las series de aluminio
+2025-04-20 10:16:45.401 [http-nio-8080-exec-7] DEBUG c.g.s.service.impl.SerieServiceImpl - Obteniendo todas las series de aluminio
+2025-04-20 10:16:45.403 [http-nio-8080-exec-7] DEBUG c.g.s.service.impl.SerieServiceImpl - Obteniendo perfiles para serie ID: 1
+2025-04-20 10:16:45.404 [http-nio-8080-exec-7] DEBUG c.g.s.service.impl.SerieServiceImpl - Obteniendo descuentos para serie ID: 1
+2025-04-20 10:16:45.406 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [application/json] and supported [application/json, application/*+json]
+2025-04-20 10:16:45.406 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [[SerieAluminioDTO(tipoSerie=CORREDERA, espesorMinimo=1.5, espesorMaximo=1.8, color=BLANCO, roturaPue (truncated)...]
+2025-04-20 10:16:45.407 [http-nio-8080-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2025-04-20 10:16:45.407 [http-nio-8080-exec-7] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-04-20 10:16:46.643 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/series/aluminio
+2025-04-20 10:16:46.643 [http-nio-8080-exec-8] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/series/aluminio
+2025-04-20 10:16:46.643 [http-nio-8080-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - GET "/api/series/aluminio", parameters={}
+2025-04-20 10:16:46.643 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.gestiontaller.server.controller.SerieController#obtenerSeriesAluminio()
+2025-04-20 10:16:46.644 [http-nio-8080-exec-8] DEBUG c.g.s.controller.SerieController - REST - Obteniendo todas las series de aluminio
+2025-04-20 10:16:46.644 [http-nio-8080-exec-8] DEBUG c.g.s.service.impl.SerieServiceImpl - Obteniendo todas las series de aluminio
+2025-04-20 10:16:46.646 [http-nio-8080-exec-8] DEBUG c.g.s.service.impl.SerieServiceImpl - Obteniendo perfiles para serie ID: 1
+2025-04-20 10:16:46.648 [http-nio-8080-exec-8] DEBUG c.g.s.service.impl.SerieServiceImpl - Obteniendo descuentos para serie ID: 1
+2025-04-20 10:16:46.649 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [application/json] and supported [application/json, application/*+json]
+2025-04-20 10:16:46.650 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [[SerieAluminioDTO(tipoSerie=CORREDERA, espesorMinimo=1.5, espesorMaximo=1.8, color=BLANCO, roturaPue (truncated)...]
+2025-04-20 10:16:46.650 [http-nio-8080-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2025-04-20 10:16:46.650 [http-nio-8080-exec-8] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-04-20 10:16:47.910 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/series/aluminio
+2025-04-20 10:16:47.910 [http-nio-8080-exec-9] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/series/aluminio
+2025-04-20 10:16:47.910 [http-nio-8080-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - GET "/api/series/aluminio", parameters={}
+2025-04-20 10:16:47.910 [http-nio-8080-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.gestiontaller.server.controller.SerieController#obtenerSeriesAluminio()
+2025-04-20 10:16:47.911 [http-nio-8080-exec-9] DEBUG c.g.s.controller.SerieController - REST - Obteniendo todas las series de aluminio
+2025-04-20 10:16:47.911 [http-nio-8080-exec-9] DEBUG c.g.s.service.impl.SerieServiceImpl - Obteniendo todas las series de aluminio
+2025-04-20 10:16:47.913 [http-nio-8080-exec-9] DEBUG c.g.s.service.impl.SerieServiceImpl - Obteniendo perfiles para serie ID: 1
+2025-04-20 10:16:47.914 [http-nio-8080-exec-9] DEBUG c.g.s.service.impl.SerieServiceImpl - Obteniendo descuentos para serie ID: 1
+2025-04-20 10:16:47.916 [http-nio-8080-exec-9] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [application/json] and supported [application/json, application/*+json]
+2025-04-20 10:16:47.916 [http-nio-8080-exec-9] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [[SerieAluminioDTO(tipoSerie=CORREDERA, espesorMinimo=1.5, espesorMaximo=1.8, color=BLANCO, roturaPue (truncated)...]
+2025-04-20 10:16:47.917 [http-nio-8080-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2025-04-20 10:16:47.917 [http-nio-8080-exec-9] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-04-20 10:16:47.919 [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/configuraciones-serie/serie/1
+2025-04-20 10:16:47.919 [http-nio-8080-exec-10] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/configuraciones-serie/serie/1
+2025-04-20 10:16:47.919 [http-nio-8080-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - GET "/api/configuraciones-serie/serie/1", parameters={}
+2025-04-20 10:16:47.919 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.gestiontaller.server.controller.ConfiguracionSerieController#obtenerConfiguracionesPorSerie(Long)
+2025-04-20 10:16:47.920 [http-nio-8080-exec-10] DEBUG c.g.s.s.i.ConfiguracionSerieServiceImpl - Obteniendo configuraciones para serie ID: 1
+2025-04-20 10:16:47.930 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [application/json] and supported [application/json, application/*+json]
+2025-04-20 10:16:47.930 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [[PlantillaConfiguracionSerieDTO(id=1, serieId=1, nombreSerie=Serie ALUPROM 21, nombre=Ventana Corred (truncated)...]
+2025-04-20 10:16:47.930 [http-nio-8080-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2025-04-20 10:16:47.930 [http-nio-8080-exec-10] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-04-20 10:17:14.520 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/series/aluminio
+2025-04-20 10:17:14.520 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/series/aluminio
+2025-04-20 10:17:14.520 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - GET "/api/series/aluminio", parameters={}
+2025-04-20 10:17:14.520 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.gestiontaller.server.controller.SerieController#obtenerSeriesAluminio()
+2025-04-20 10:17:14.520 [http-nio-8080-exec-1] DEBUG c.g.s.controller.SerieController - REST - Obteniendo todas las series de aluminio
+2025-04-20 10:17:14.521 [http-nio-8080-exec-1] DEBUG c.g.s.service.impl.SerieServiceImpl - Obteniendo todas las series de aluminio
+2025-04-20 10:17:14.523 [http-nio-8080-exec-1] DEBUG c.g.s.service.impl.SerieServiceImpl - Obteniendo perfiles para serie ID: 1
+2025-04-20 10:17:14.524 [http-nio-8080-exec-1] DEBUG c.g.s.service.impl.SerieServiceImpl - Obteniendo descuentos para serie ID: 1
+2025-04-20 10:17:14.526 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [application/json] and supported [application/json, application/*+json]
+2025-04-20 10:17:14.526 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [[SerieAluminioDTO(tipoSerie=CORREDERA, espesorMinimo=1.5, espesorMaximo=1.8, color=BLANCO, roturaPue (truncated)...]
+2025-04-20 10:17:14.527 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2025-04-20 10:17:14.527 [http-nio-8080-exec-1] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-04-20 10:17:19.339 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/series/aluminio
+2025-04-20 10:17:19.340 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/series/aluminio
+2025-04-20 10:17:19.340 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - GET "/api/series/aluminio", parameters={}
+2025-04-20 10:17:19.340 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.gestiontaller.server.controller.SerieController#obtenerSeriesAluminio()
+2025-04-20 10:17:19.340 [http-nio-8080-exec-2] DEBUG c.g.s.controller.SerieController - REST - Obteniendo todas las series de aluminio
+2025-04-20 10:17:19.341 [http-nio-8080-exec-2] DEBUG c.g.s.service.impl.SerieServiceImpl - Obteniendo todas las series de aluminio
+2025-04-20 10:17:19.342 [http-nio-8080-exec-2] DEBUG c.g.s.service.impl.SerieServiceImpl - Obteniendo perfiles para serie ID: 1
+2025-04-20 10:17:19.344 [http-nio-8080-exec-2] DEBUG c.g.s.service.impl.SerieServiceImpl - Obteniendo descuentos para serie ID: 1
+2025-04-20 10:17:19.346 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [application/json] and supported [application/json, application/*+json]
+2025-04-20 10:17:19.346 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [[SerieAluminioDTO(tipoSerie=CORREDERA, espesorMinimo=1.5, espesorMaximo=1.8, color=BLANCO, roturaPue (truncated)...]
+2025-04-20 10:17:19.347 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2025-04-20 10:17:19.347 [http-nio-8080-exec-2] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-04-20 10:17:19.348 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/configuraciones-serie/serie/1
+2025-04-20 10:17:19.348 [http-nio-8080-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/configuraciones-serie/serie/1
+2025-04-20 10:17:19.348 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - GET "/api/configuraciones-serie/serie/1", parameters={}
+2025-04-20 10:17:19.348 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.gestiontaller.server.controller.ConfiguracionSerieController#obtenerConfiguracionesPorSerie(Long)
+2025-04-20 10:17:19.349 [http-nio-8080-exec-3] DEBUG c.g.s.s.i.ConfiguracionSerieServiceImpl - Obteniendo configuraciones para serie ID: 1
+2025-04-20 10:17:19.358 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [application/json] and supported [application/json, application/*+json]
+2025-04-20 10:17:19.358 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [[PlantillaConfiguracionSerieDTO(id=1, serieId=1, nombreSerie=Serie ALUPROM 21, nombre=Ventana Corred (truncated)...]
+2025-04-20 10:17:19.358 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2025-04-20 10:17:19.358 [http-nio-8080-exec-3] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-04-20 10:17:25.607 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/configuraciones-serie/serie/1/hojas/2
+2025-04-20 10:17:25.607 [http-nio-8080-exec-4] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/configuraciones-serie/serie/1/hojas/2
+2025-04-20 10:17:25.607 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - GET "/api/configuraciones-serie/serie/1/hojas/2", parameters={}
+2025-04-20 10:17:25.607 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.gestiontaller.server.controller.ConfiguracionSerieController#obtenerConfiguracionPorSerieYHojas(Long, Integer)
+2025-04-20 10:17:25.608 [http-nio-8080-exec-4] DEBUG c.g.s.s.i.ConfiguracionSerieServiceImpl - Obteniendo configuración para serie ID: 1 con 2 hojas
+2025-04-20 10:17:25.618 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [application/json] and supported [application/json, application/*+json]
+2025-04-20 10:17:25.619 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [PlantillaConfiguracionSerieDTO(id=1, serieId=1, nombreSerie=Serie ALUPROM 21, nombre=Ventana Correde (truncated)...]
+2025-04-20 10:17:25.619 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2025-04-20 10:17:25.619 [http-nio-8080-exec-4] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-04-20 10:17:25.621 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing GET /api/configuraciones-serie/1/aplicar?ancho=1200&alto=1000&incluyePersiana=false&tipoCristal=SIMPLE
+2025-04-20 10:17:25.621 [http-nio-8080-exec-5] DEBUG o.s.security.web.FilterChainProxy - Secured GET /api/configuraciones-serie/1/aplicar?ancho=1200&alto=1000&incluyePersiana=false&tipoCristal=SIMPLE
+2025-04-20 10:17:25.621 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - GET "/api/configuraciones-serie/1/aplicar?ancho=1200&alto=1000&incluyePersiana=false&tipoCristal=SIMPLE", parameters={masked}
+2025-04-20 10:17:25.621 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.gestiontaller.server.controller.ConfiguracionSerieController#aplicarConfiguracion(Long, Integer, Integer, Boolean, Integer, TipoCristal)
+2025-04-20 10:17:25.622 [http-nio-8080-exec-5] DEBUG c.g.s.s.i.ConfiguracionSerieServiceImpl - Aplicando configuración ID: 1 para ventana de 1200x1000 mm
+2025-04-20 10:17:25.634 [http-nio-8080-exec-5] INFO  c.g.s.s.i.ConfiguracionSerieServiceImpl - Cálculo completado para configuración ID: 1
+2025-04-20 10:17:25.635 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [application/json] and supported [application/json, application/*+json]
+2025-04-20 10:17:25.635 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [ResultadoCalculoDTO(tipoPresupuesto=VENTANA_CORREDERA, ancho=1200, alto=1000, anchoVentana=1200, alt (truncated)...]
+2025-04-20 10:17:25.636 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2025-04-20 10:17:25.636 [http-nio-8080-exec-5] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-04-20 10:20:14.993 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-04-20 10:20:14.994 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-04-20 10:20:14.998 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.

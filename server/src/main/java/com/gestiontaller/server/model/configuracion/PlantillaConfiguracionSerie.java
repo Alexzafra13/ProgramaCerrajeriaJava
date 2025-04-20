@@ -4,8 +4,8 @@ import com.gestiontaller.server.model.serie.SerieBase;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "plantilla_configuracion_serie")
@@ -30,8 +30,29 @@ public class PlantillaConfiguracionSerie {
     private String descripcion;
 
     @OneToMany(mappedBy = "configuracion", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<PerfilConfiguracion> perfiles = new ArrayList<>();
+    private Set<PerfilConfiguracion> perfiles = new HashSet<>();
 
     @OneToMany(mappedBy = "configuracion", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<MaterialConfiguracion> materiales = new ArrayList<>();
+    private Set<MaterialConfiguracion> materiales = new HashSet<>();
+
+    // Métodos de utilidad para mantener la relación bidireccional
+    public void addPerfil(PerfilConfiguracion perfil) {
+        perfiles.add(perfil);
+        perfil.setConfiguracion(this);
+    }
+
+    public void removePerfil(PerfilConfiguracion perfil) {
+        perfiles.remove(perfil);
+        perfil.setConfiguracion(null);
+    }
+
+    public void addMaterial(MaterialConfiguracion material) {
+        materiales.add(material);
+        material.setConfiguracion(this);
+    }
+
+    public void removeMaterial(MaterialConfiguracion material) {
+        materiales.remove(material);
+        material.setConfiguracion(null);
+    }
 }

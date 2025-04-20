@@ -1,10 +1,9 @@
-
 package com.gestiontaller.common.dto.configuracion;
 
 import lombok.Data;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 public class PlantillaConfiguracionSerieDTO {
@@ -15,6 +14,6 @@ public class PlantillaConfiguracionSerieDTO {
     private Integer numHojas;
     private boolean activa;
     private String descripcion;
-    private List<PerfilConfiguracionDTO> perfiles = new ArrayList<>();
-    private List<MaterialConfiguracionDTO> materiales = new ArrayList<>();
+    private Set<PerfilConfiguracionDTO> perfiles = new HashSet<>();
+    private Set<MaterialConfiguracionDTO> materiales = new HashSet<>();
 }
